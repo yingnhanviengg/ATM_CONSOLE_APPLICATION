@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS User(
   number_phone varchar(11) NOT NULL UNIQUE,
   created_at timestamp DEFAULT CURRENT_TIMESTAMP(),
   role enum("admin","customer") DEFAULT "customer",
-  status enum("normal","remove"))
+  status enum("normal","remove") DEFAULT "normal")
   CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS Bank_Account(

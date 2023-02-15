@@ -26,25 +26,31 @@ namespace ATM_CONSOLE_APPLICATION
             string body = $"Your verification code is {code}.";
             try
             {
-                // Xác thực người dùng
+                /// Xác thực người dùng
                 UserCredential credential;
-                //file API gmail
-                using (var stream = new FileStream("C:\\Users\\Ying\\source\\repos\\ATM_CONSOLE_APPLICATION\\ATM_CONSOLE_APPLICATION\\Controller\\email\\client_secret.json", FileMode.Open, FileAccess.Read))
+
+                // Tạo đối tượng client secrets từ chuỗi JSON
+                ClientSecrets secrets = new ClientSecrets()
                 {
-                    string credPath = "C:\\Users\\Ying\\source\\repos\\ATM_CONSOLE_APPLICATION\\ATM_CONSOLE_APPLICATION\\Controller\\email\\token.json";
-                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        GoogleClientSecrets.Load(stream).Secrets,
-                        new[] { GmailService.Scope.GmailSend },
-                        "user",
-                        System.Threading.CancellationToken.None,
-                        new FileDataStore(credPath, true)).Result;
-                }
+                    ClientId = "1023815594177-g2cceo7j46je92k6k2qdn8vs45a0l0me.apps.googleusercontent.com",
+                    ClientSecret = "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",
+                };
+
+                // Sử dụng đối tượng client secrets để xác thực
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    secrets,
+                    new[] { GmailService.Scope.GmailSend },
+                    "user",
+                    System.Threading.CancellationToken.None,
+                    new FileDataStore("CredentialCache")).Result;
+
                 // Khởi tạo service Gmail
                 var service = new GmailService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
                     ApplicationName = "ATM Console Application"
                 });
+
                 // Khởi tạo service Gmail
                 Message message = new Message();
                 message.Raw = Base64UrlEncode(CreateEmailMessage(from, to, subject, body).ToString());

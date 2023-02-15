@@ -23,12 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.Gmail.v1" Version="1.59.0.2958" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector NET 8.0.31\Assemblies\net6.0\MySql.Data.dll</HintPath>
-    </Reference>
+    <PackageReference Include="MySql.Data" Version="8.0.32" />
   </ItemGroup>
 
 </Project>
