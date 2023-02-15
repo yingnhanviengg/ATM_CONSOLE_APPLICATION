@@ -30,8 +30,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                     return -3;
                 }
             }
-            string code = SendMail.GenerateRandomCode();
-            SendMail.SendMailCode(code);
+            //SendMail.SendMailCode();
             if (ModelUser.IsRegister(fullname, DateOfBirth, Address, user, pass, email, phone))
             {
                 return 1;

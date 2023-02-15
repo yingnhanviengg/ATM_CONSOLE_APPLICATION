@@ -50,7 +50,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Error_User_Already_Exists { get; set; }
         public static string Error_Limit_User_8_char { get; set; }
         public static void Vietnamese()
-        {          
+        {
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
