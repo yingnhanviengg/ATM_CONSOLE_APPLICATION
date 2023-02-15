@@ -12,6 +12,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public int ID { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string Gender { get; set; }
+        public string CMND_CCCD { get; set; }
         public string Address { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -21,11 +23,13 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public string role { get; set; }    
         public string status { get; set; }
         //public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
-        public ModelUser(int id, string fullname, DateTime dateofbirth, string address, string user, string password, string email, string phone, DateTime created_at, string role, string status)
+        public ModelUser(int id, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status)
         {
             this.ID = id;
             this.FullName = fullname;
             this.DateOfBirth = dateofbirth;
+            this.Gender = gender;
+            this.CMND_CCCD = CMND_CCCD;
             this.Address = address;
             this.Username = user;
             this.Password = password;
@@ -87,6 +91,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetInt32("id_user"),
                 reader.GetString("full_name"),
                 reader.GetDateTime("Date_Of_Birth"),
+                reader.GetString("gender"),
+                reader.GetString("cmnd_cccd"),
                 reader.GetString("Address"),
                 reader.GetString("username"),
                 reader.GetString("password"),

@@ -15,7 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public static void MenuCustomer()
         {
-            string[] Menu_Customer = {Language.Check_Bank_Balance, Language.Check_Account_Information, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Languege };
+            string[] Menu_Customer = { Language.Check_Account_Information, Language.Check_Bank_Balance, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Languege };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i+1}: {Menu_Customer[i]}");
@@ -29,7 +29,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Console.WriteLine($"{i+1}: {Menu_Admin[i]}");
             }
         }
-        public void ShowMenuCusomer()
+        public static void ShowMenuCusomer()
         {
             do
             {              
@@ -37,6 +37,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 switch (Common.Choose())
                 {
                     case 1:
+                        Information.TableInformation_User();
                         break;
                     case 2:
                         break;
@@ -59,9 +60,9 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
             } while (true);
         }
-        public void MenuLogin()
-        {
-            ViewLogin viewLogin = new ViewLogin();
+        public static bool MenuLogin()
+        {        
+            bool result = false;
             do
             {
                 Console.WriteLine("1: " + Language.Login);
@@ -70,25 +71,29 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     case 1:
                         Console.Clear();
-                        viewLogin.Login();
+                        result = ViewLogin.Login();
                         break;
                     case 2:
                         Console.Clear();
-                        viewLogin.Register();
+                        ViewLogin.Register();
                         break;
                     default:
                         Console.WriteLine(Language.Exception_choose_switch);
                         break;
                 }
-            } while (true);
+            } while (!result);
+            return result;
         }
-        public void MeinMenu()
+        public static void MeinMenu()
         {
             Change_Language();
-            MenuLogin();
+            if (MenuLogin())
+            {
+                ShowMenuCusomer();
+            }
             
         }
-        public void Change_Language()
+        public static void Change_Language()
         {
             while (true)
             {

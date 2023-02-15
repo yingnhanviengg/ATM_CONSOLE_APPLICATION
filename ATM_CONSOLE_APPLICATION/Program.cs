@@ -12,8 +12,8 @@ namespace ATM_CONSOLE_APPLICATION
         static void Main(string[] args)
         {
             Console.InputEncoding = Console.OutputEncoding = Encoding.Unicode;
-            MainMenu menu = new MainMenu();
-            menu.MeinMenu();           
+            Console.Title = "ATM CONSOLE APPLICATION";
+            MainMenu.MeinMenu();           
         }
     }
 }

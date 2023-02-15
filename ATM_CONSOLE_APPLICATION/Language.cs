@@ -45,6 +45,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Register_Success { get; set; }
         public static string Registration_Failed { get; set; }
         public static string Error_Email_Already_Exists { get; set; }
+        public static string Error_Invalid_BateOfBirth { get; set; }
         public static string Error_Phone_Already_Exists { get; set; }
         public static string Error_User_Already_Exists { get; set; }
         public static string Error_Limit_User_8_char { get; set; }
@@ -75,7 +76,7 @@ namespace ATM_CONSOLE_APPLICATION
             Notification_Login_Fasle = "Đăng nhập ko thành công";
             // Register
             Input_Fullname = "Nhập họ và tên: ";
-            Input_DateOfBirth = "Nhập sinh nhật: ";
+            Input_DateOfBirth = "Nhập ngày/tháng/năm sinh: ";
             Input_Address = "Nhập địa chỉ: ";
             Input_Email = "Nhập email: ";
             Input_Phone = "Nhập số điện thoại: ";
@@ -83,6 +84,7 @@ namespace ATM_CONSOLE_APPLICATION
             Error_Input_Phone = "Nhập số điện thoại không hợp lệ \nSố điện thoại bắt đầu bằng số 0 và có từ 9 đến 11 số";
             Register_Success = "Đăng ký thành công";
             Registration_Failed = "Đăng ký thất bại";
+            Error_Invalid_BateOfBirth = "Nhập sai định dạng ngày tháng năm";
             Error_Email_Already_Exists = "Email này đã được đăng ký trước";
             Error_Phone_Already_Exists = "Số điện thoại này đã được đăng ký trước";
             Error_User_Already_Exists = "Tên tài khoản đã được đăng ký trước";

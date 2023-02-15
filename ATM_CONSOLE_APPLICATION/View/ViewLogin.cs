@@ -11,30 +11,8 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class ViewLogin
     {
-        private ControllerUser ControllerUser = new ControllerUser();
-        public void MenuLogin()
-        {
-            do
-            {
-                Console.WriteLine("1: " + Language.Login);
-                Console.WriteLine("2: " + Language.Register);
-                switch (Common.Choose())
-                {
-                    case 1:
-                        Console.Clear();
-                        Login();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        Register();
-                        break;
-                    default:
-                        Console.WriteLine(Language.Exception_choose_switch);
-                        break;
-                }
-            } while (true);
-        }
-        public void Register()
+        private static ControllerUser ControllerUser = new ControllerUser();      
+        public static void Register()
         {
             string fullname = InputFullName();
             DateTime DateOfBirth = InputDateOfBirth();
@@ -68,25 +46,25 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Console.WriteLine(Language.Registration_Failed);
             }
         }
-        private string InputFullName()
+        private static string InputFullName()
         {
             Console.Write(Language.Input_Fullname);
             string fullname = Console.ReadLine();
             return fullname = StandardizeString(fullname);           
         }
-        private DateTime InputDateOfBirth()
+        private static DateTime InputDateOfBirth()
         {
             Console.Write(Language.Input_DateOfBirth);
             DateTime DateOfBirth = ConvertToDateTime();
             return DateOfBirth;
         }
-        private string InputPassword()
+        private static string InputPassword()
         {
             Console.Write(Language.Input_Pass);
             string pass = GetPassword();
             return pass;
         }
-        private string InptUsername()
+        private static string InptUsername()
         {
             string user;
             bool result;
@@ -102,13 +80,13 @@ namespace ATM_CONSOLE_APPLICATION.View
 
             return user;
         }
-        private string InputAddress()
+        private static string InputAddress()
         {
             Console.Write(Language.Input_Address);
             string Address = Console.ReadLine();
             return Address = StandardizeString(Address);
         }
-        public void Login()
+        public static bool Login()
         {
             string user = InptUsername();
             string pass = InputPassword();
@@ -117,14 +95,17 @@ namespace ATM_CONSOLE_APPLICATION.View
                 if (ControllerUser.IsLoggedIn(user, pass))
                 {
                     Console.WriteLine(Language.Notification_Login_True);
+                    return true;
                 }
                 else
                 {
                     Console.WriteLine(Language.Notification_Login_Fasle);
+                    return false;
                 }
             }
+            return false;
         }
-        private string GetPhoneNumber()
+        private static string GetPhoneNumber()
         {
             string phoneNumber = string.Empty;
             bool isValidPhoneNumber = false;
@@ -146,7 +127,7 @@ namespace ATM_CONSOLE_APPLICATION.View
 
             return phoneNumber;
         }
-        private string GetValidEmail()
+        private static string GetValidEmail()
         {
             string email;
             do
@@ -160,7 +141,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             } while (!IsValidEmail(email));
             return email;
         }
-        private bool IsValidEmail(string email)
+        private static bool IsValidEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -169,25 +150,34 @@ namespace ATM_CONSOLE_APPLICATION.View
             Regex regex = new Regex(@"^[a-zA-Z0-9~!@#$%^&*()_\-+=\[\]{}\\|;:'"",<.>/?]+@gmail\.com$");
             return regex.IsMatch(email);
         }
-        private DateTime ConvertToDateTime()
+        private static DateTime ConvertToDateTime()
         {
-            string DateOfBirth = Console.ReadLine();
-            string[] formats = { "dd/MM/yyyy", "yyyy/MM/dd", "dd/yyyy/MM", "yyyy/dd/MM","MM/yyyy/dd" };
             DateTime date;
-            foreach (string format in formats)
+            string inputDate;
+            do
             {
-                if (DateTime.TryParseExact(DateOfBirth, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                Console.Write(Language.Input_DateOfBirth);
+                inputDate = Console.ReadLine();
+            } while (!DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date));
+
+            string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
+            if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                if (date < DateTime.MinValue || date > DateTime.MaxValue)
                 {
-                    string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
-                    if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                    {
-                        return date;
-                    }
+                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                    return default;
                 }
+                return date;
             }
-            return default;
+            else
+            {
+                Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                return default;
+            }
         }
-        private string StandardizeString(string str)
+
+        private static string StandardizeString(string str)
         {
             str = str.Trim();
             str = str.ToLower();
@@ -203,19 +193,19 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             return Ghep_Chuoi.TrimEnd();
         }
-        public bool IsValidUsername(string str)
+        public static bool IsValidUsername(string str)
         {
             string pattern = @"^[a-zA-Z0-9]*$";
             Regex regex = new(pattern);
             return regex.IsMatch(str) && str.Length >= 8;
         }
-        public bool KT_Mat_Khau(string str)
+        public static bool KT_Mat_Khau(string str)
         {
             string pattern = @"^[a-zA-Z0-9]*$";
             Regex regex = new(pattern);
             return regex.IsMatch(str) && str.Length >= 8;
         }
-        private string GetPassword()
+        private static string GetPassword()
         {
             string pass = string.Empty;
             ConsoleKey key;
