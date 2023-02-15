@@ -40,11 +40,11 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }
         public static MySqlConnection MySql()
         {
-            string host = "127.0.0.1";
+            string host = "34.105.11.103";
             int port = 3306;
             string database = "atm";
             string userdb = "root";
-            string passdb = "123456789";
+            string passdb = "123456789a";
             return connectStr(host, port, database, userdb, passdb);
         }
     }
