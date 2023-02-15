@@ -5,11 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM_CONSOLE_APPLICATION.View;
+using static Google.Apis.Requests.RequestError;
 
 namespace ATM_CONSOLE_APPLICATION
 {
     public class Language
     {
+        public static string Enter_Code { get; set; }
+        public static string Error_Code { get; set; }
+        public static string Error_Code_Limit_3 { get; set; }
+        public static string Current_Language { get; set; }
         public static string Login { get; set; }
         public static string Register { get; set; }
         // Menu actor người dùng
@@ -41,16 +46,25 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Input_Email { get; set; }
         public static string Error_Input_Email { get; set; }
         public static string Input_Phone { get; set; }
+        public static string Input_Gender { get; set; }
+        public static string Input_CMND_CCCD { get; set; }
+        public static string Error_Input_Gender { get; set; }
+        public static string Error_Input_CMND { get; set; }
         public static string Error_Input_Phone { get; set; }
         public static string Register_Success { get; set; }
         public static string Registration_Failed { get; set; }
         public static string Error_Email_Already_Exists { get; set; }
         public static string Error_Invalid_BateOfBirth { get; set; }
         public static string Error_Phone_Already_Exists { get; set; }
+        public static string Error_CNMD_CCCD_Already_Exists { get; set; }
         public static string Error_User_Already_Exists { get; set; }
         public static string Error_Limit_User_8_char { get; set; }
         public static void Vietnamese()
         {
+            Enter_Code = "Nhập mã xác minh: ";
+            Error_Code = "Mã xác minh không chính xác";
+            Error_Code_Limit_3 = "Số lần nhập lại ";
+            Current_Language = "Vietnamese";
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
@@ -80,6 +94,10 @@ namespace ATM_CONSOLE_APPLICATION
             Input_Address = "Nhập địa chỉ: ";
             Input_Email = "Nhập email: ";
             Input_Phone = "Nhập số điện thoại: ";
+            Input_Gender = "Nhập giới tính (Nam/Nữ): ";
+            Input_CMND_CCCD = "Nhập số CMND hoặc CCCD: ";
+            Error_Input_Gender = "Nhập giới tính không hợp lệ";
+            Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
             Error_Input_Email = "Nhập email không hợp lệ";
             Error_Input_Phone = "Nhập số điện thoại không hợp lệ \nSố điện thoại bắt đầu bằng số 0 và có từ 9 đến 11 số";
             Register_Success = "Đăng ký thành công";
@@ -88,10 +106,12 @@ namespace ATM_CONSOLE_APPLICATION
             Error_Email_Already_Exists = "Email này đã được đăng ký trước";
             Error_Phone_Already_Exists = "Số điện thoại này đã được đăng ký trước";
             Error_User_Already_Exists = "Tên tài khoản đã được đăng ký trước";
+            Error_CNMD_CCCD_Already_Exists = "CMND hoặc CCCD đã được đăng ký trước";
             Error_Limit_User_8_char = "Tên tài khoản phải có tối thiểu 8 chữ số, không được phép có ký tự đặc biệt";
         }
         public static void English()
         {
+            Current_Language = "English";
             // Menu actor người dùng
             Login = "Login";
             Register = "Register";

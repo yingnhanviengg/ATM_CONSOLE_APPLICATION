@@ -15,16 +15,45 @@ namespace ATM_CONSOLE_APPLICATION.View
         public static void Register()
         {
             string fullname = InputFullName();
-            DateTime DateOfBirth = InputDateOfBirth();
+            string gender = InputGender();
+            DateTime DateOfBirth = ConvertToDateTime();
             string user = InptUsername();
             string pass = InputPassword();
             string Address = InputAddress();
+            string CMND_CCCD = InputCMND_CCCD();
             string email = GetValidEmail();
             string phone = GetPhoneNumber();
-            int result = ControllerUser.IsRegister(fullname, DateOfBirth, Address, user, pass, email, phone);
+            int result = ControllerUser.IsRegister(CMND_CCCD, user, email, phone);
             if (result == 1)
             {
-                Console.WriteLine(Language.Register_Success);
+                if (ControllerUser.Mail_Register(email, fullname))
+                {
+                    Console.Write(Language.Enter_Code);
+                    string code = Console.ReadLine();
+                    if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
+                    {
+                        Console.WriteLine(Language.Register_Success);
+                    }
+                    else
+                    {
+                        int cout = 3;
+                        do
+                        {
+                            Console.WriteLine(Language.Error_Code);
+                            Console.Write(Language.Enter_Code);
+                            code = Console.ReadLine();
+                            if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
+                            {
+                                Console.WriteLine(Language.Register_Success);
+                            }
+                            else
+                            {
+                                cout--;
+                            }
+                            Console.WriteLine(Language.Error_Code_Limit_3);
+                        } while (cout == 0);
+                    }
+                }              
             }
             else if(result == -1)
             {
@@ -41,9 +70,40 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Console.WriteLine(Language.Error_Phone_Already_Exists);
                 Console.WriteLine(Language.Registration_Failed);
             }
-            else
+            else if (result == -4)
             {
+                Console.WriteLine(Language.Error_CNMD_CCCD_Already_Exists);
                 Console.WriteLine(Language.Registration_Failed);
+            }
+        }
+        private static string InputCMND_CCCD()
+        {
+            while (true)
+            {
+                Console.Write(Language.Input_CMND_CCCD);
+                string id = Console.ReadLine().Trim();
+                if (id.Length == 9 || id.Length == 12)
+                {
+                    if (id.All(char.IsDigit))
+                    {
+                        return id;
+                    }
+                }
+                Console.WriteLine(Language.Error_Input_CMND);
+            }
+        }
+
+        private static string InputGender()
+        {
+            while (true)
+            {
+                Console.Write(Language.Input_Gender);
+                string gender = Console.ReadLine().Trim();
+                if (gender.ToLower().Equals("nam") || gender.ToLower().Equals("nữ"))
+                {
+                    return char.ToUpper(gender[0]) + gender.Substring(1);
+                }
+                Console.WriteLine(Language.Error_Input_Gender);
             }
         }
         private static string InputFullName()
@@ -51,12 +111,6 @@ namespace ATM_CONSOLE_APPLICATION.View
             Console.Write(Language.Input_Fullname);
             string fullname = Console.ReadLine();
             return fullname = StandardizeString(fullname);           
-        }
-        private static DateTime InputDateOfBirth()
-        {
-            Console.Write(Language.Input_DateOfBirth);
-            DateTime DateOfBirth = ConvertToDateTime();
-            return DateOfBirth;
         }
         private static string InputPassword()
         {
@@ -138,7 +192,11 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     Console.WriteLine(Language.Error_Input_Email);
                 }
-            } while (!IsValidEmail(email));
+                else
+                {
+                    break;
+                }
+            } while (true);
             return email;
         }
         private static bool IsValidEmail(string email)
@@ -158,7 +216,15 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 Console.Write(Language.Input_DateOfBirth);
                 inputDate = Console.ReadLine();
-            } while (!DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date));
+                if (!DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
 
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
             if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
@@ -176,7 +242,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                 return default;
             }
         }
-
         private static string StandardizeString(string str)
         {
             str = str.Trim();

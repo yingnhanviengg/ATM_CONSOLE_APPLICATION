@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,14 +40,16 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.role = role;
             this.status = status;
         }
-        public static bool IsRegister(string fullname, DateTime DateOfBirth, string Address, string user, string pass, string email, string phone)
+        public static bool IsRegister(string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string email, string phone)
         {
             try
             {
-                string query = "INSERT HIGH_PRIORITY INTO USER(full_name, Date_Of_Birth, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @address, @username, @password, @email, @numberphone);";
+                string query = "INSERT HIGH_PRIORITY INTO USER(full_name, Date_Of_Birth, gender, cmnd_cccd, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @gender, @cmnd_cccd, @address, @username, @password, @email, @numberphone);";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
                 mySqlCommand.Parameters.AddWithValue("@fullname", fullname);
                 mySqlCommand.Parameters.AddWithValue("@dateofbirth", DateOfBirth);
+                mySqlCommand.Parameters.AddWithValue("@gender", gender);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", CMND_CCCD);
                 mySqlCommand.Parameters.AddWithValue("@address", Address);
                 mySqlCommand.Parameters.AddWithValue("@username", user);
                 mySqlCommand.Parameters.AddWithValue("@password", pass);

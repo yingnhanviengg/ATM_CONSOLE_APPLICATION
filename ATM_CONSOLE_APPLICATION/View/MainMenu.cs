@@ -77,9 +77,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                         Console.Clear();
                         ViewLogin.Register();
                         break;
-                        case 3:
-                        SendMail.SendMailCode("nguyenducphonghai@gmail.com");
-                        break;
                     default:
                         Console.WriteLine(Language.Exception_choose_switch);
                         break;

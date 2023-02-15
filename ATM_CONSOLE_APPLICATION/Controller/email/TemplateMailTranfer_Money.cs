@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public class TemplateMailRegister : TemplateMail
+    public class TemplateMailTranfer_Money : TemplateMail
     {
-        public TemplateMailRegister()
+        public TemplateMailTranfer_Money()
         {
 
         }
         public override void Mail_Vietnamese()
         {
             base.Mail_Vietnamese();
-            Subject_Mail = "Mã xác nhận đăng ký tài khoản";
-            Body_Mail = " đây là mã xác minh đăng ký tài khoản của bạn ";
+            Subject_Mail = "Mã xác nhận rút tiền";
+            Body_Mail = " đây là mã xác minh rút tiền của bạn ";
         }
         public override void Mail_English()
         {
             base.Mail_English();
             Subject_Mail = "Mã xác nhận đăng ký tài khoản123";
             Body_Mail = " đây là mã xác minh đăng ký tài khoản của bạn123 ";
-        }       
+        }
     }
 }

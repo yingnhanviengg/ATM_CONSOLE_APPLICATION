@@ -7,25 +7,49 @@ using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION
 {
-    public static class SendMail
+    public static class Email
     {
         // Tài khoản email gửi
         private static string from = "yingnhanviengg@gmail.com";
         private static string password = "keguitumpfxrvpus";
         private static string? subject;
         private static string? body;
-        private static string? code;
-        public static void MailRegister(string fullname, string to)
+        public static string? code { get; set; }
+        public static void MailWithdraw(string fullname)
         {
-            TemplateMail template = new TemplateMailRegister();
+            TemplateMailWithdraw template = new TemplateMailWithdraw();
             // Tiêu đề email
-            template
+            if (Language.Current_Language.Equals("Vietnamese"))
+            {
+                template.Mail_Vietnamese();
+            }
+            else if (Language.Current_Language.Equals("English"))
+            {
+                template.Mail_English();
+            }
             subject = TemplateMail.Hello_Mail;
             // Nội dung email
-            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\"" + (code = GenerateRandomCode()) + "\"";
+            code = GenerateRandomCode();
+            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\"" + code + "\"";
         }
-
-        public static bool SendMailCode(string to)
+        public static void MailRegister(string fullname)
+        {
+            TemplateMailRegister template = new TemplateMailRegister();
+            // Tiêu đề email
+            if (Language.Current_Language.Equals("Vietnamese"))
+            {
+                template.Mail_Vietnamese();
+            }
+            else if (Language.Current_Language.Equals("English"))
+            {
+                template.Mail_English();
+            }
+            subject = TemplateMail.Hello_Mail;
+            // Nội dung email
+            code = GenerateRandomCode();
+            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\"" + code + "\"";
+        }
+        public static bool SendMail(string to)
         {               
             bool success = false;
             // Tạo message email

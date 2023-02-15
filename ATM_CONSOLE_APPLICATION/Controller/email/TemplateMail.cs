@@ -8,15 +8,26 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
     public class TemplateMail
     {
-        public static string Hello_Mail { get; set; }
-        public static string SendMail_Success { get; set; }
-        public static string SendMail_Error { get; set; }
-        public static string Subject_Mail { get; set; }
-        public static string Body_Mail { get; set; }
+        public static string? Hello_Mail { get; set; }
+        public static string? SendMail_Success { get; set; }
+        public static string? SendMail_Error { get; set; }
+        public static string? Subject_Mail { get; set; }
+        public static string? Body_Mail { get; set; }
         public TemplateMail()
         {
 
         }
-        
+        public virtual void Mail_Vietnamese()
+        {
+            Hello_Mail = "Xin chào ";
+            SendMail_Success = "Gửi email thành công hẫy kiểm tra gmail của bạn";
+            SendMail_Error = "Gửi mail không thành công";
+        }
+        public virtual void Mail_English()
+        {
+            Hello_Mail = "Xin chào Eng";
+            SendMail_Success = "Gửi email thành công hẫy kiểm tra gmail của bạn Eng";
+            SendMail_Error = "Gửi mail không thành công Eng";
+        }
     }
 }
