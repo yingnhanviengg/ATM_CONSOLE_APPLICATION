@@ -33,7 +33,7 @@ namespace ATM_CONSOLE_APPLICATION
         //Chosse
         public static string Input_choose { get; set; }
         public static string Exception_choose { get; set; }
-        public static string Exception_choose_switch { get; set; } = "Nhập sai lựa chọn";
+        public static string Exception_choose_switch { get; set; }
         // Login
         public static string Input_User { get; set; }
         public static string Input_Pass { get; set; }
@@ -84,6 +84,7 @@ namespace ATM_CONSOLE_APPLICATION
             // Chosse
             Input_choose = "Nhập lựa chọn: ";
             Exception_choose = "Chỉ được nhập số";
+            Exception_choose_switch = "Nhập sai lựa chọn";
             // Login
             Input_User = "Nhập tài khoản: ";
             Input_Pass = "Nhập mật khẩu: ";
