@@ -40,18 +40,23 @@ namespace ATM_CONSOLE_APPLICATION.View
                         do
                         {
                             Console.WriteLine(Language.Error_Code);
+                            Console.WriteLine(Language.Error_Code_Limit_3 + cout);
                             Console.Write(Language.Enter_Code);
                             code = Console.ReadLine();
                             if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
                             {
                                 Console.WriteLine(Language.Register_Success);
+                                break;
                             }
                             else
                             {
                                 cout--;
-                            }
-                            Console.WriteLine(Language.Error_Code_Limit_3);
-                        } while (cout == 0);
+                            }                        
+                        } while (cout != 0);
+                        if (cout == 0)
+                        {
+                            Console.WriteLine(Language.Error_Re_register);
+                        }
                     }
                 }              
             }

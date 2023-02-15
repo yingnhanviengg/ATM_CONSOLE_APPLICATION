@@ -11,10 +11,10 @@ namespace ATM_CONSOLE_APPLICATION
 {
     public class Language
     {
+        public static string Current_Language { get; set; }
         public static string Enter_Code { get; set; }
         public static string Error_Code { get; set; }
         public static string Error_Code_Limit_3 { get; set; }
-        public static string Current_Language { get; set; }
         public static string Login { get; set; }
         public static string Register { get; set; }
         // Menu actor người dùng
@@ -59,12 +59,13 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Error_CNMD_CCCD_Already_Exists { get; set; }
         public static string Error_User_Already_Exists { get; set; }
         public static string Error_Limit_User_8_char { get; set; }
+        public static string Error_Re_register { get; set; }
         public static void Vietnamese()
         {
+            Current_Language = "Vietnamese";
             Enter_Code = "Nhập mã xác minh: ";
             Error_Code = "Mã xác minh không chính xác";
-            Error_Code_Limit_3 = "Số lần nhập lại ";
-            Current_Language = "Vietnamese";
+            Error_Code_Limit_3 = "Số lần nhập lại ";          
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
@@ -108,6 +109,7 @@ namespace ATM_CONSOLE_APPLICATION
             Error_User_Already_Exists = "Tên tài khoản đã được đăng ký trước";
             Error_CNMD_CCCD_Already_Exists = "CMND hoặc CCCD đã được đăng ký trước";
             Error_Limit_User_8_char = "Tên tài khoản phải có tối thiểu 8 chữ số, không được phép có ký tự đặc biệt";
+            Error_Re_register = "Nhập sai quá nhiều lần, vui lòng đăng ký lại";
         }
         public static void English()
         {
