@@ -36,18 +36,15 @@ namespace ATM_CONSOLE_APPLICATION
                         new FileDataStore(credPath, true)).Result;
                 }
 
-                // Create Gmail API service.
                 var service = new GmailService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
                     ApplicationName = "ATM Console Application"
                 });
 
-                // Construct the message body.
                 Message message = new Message();
                 message.Raw = Base64UrlEncode(CreateEmailMessage(from, to, subject, body).ToString());
 
-                // Send the message.
                 var result = service.Users.Messages.Send(message, "me").Execute();
                 Console.WriteLine("Message sent: " + result.LabelIds[0]);
             }
