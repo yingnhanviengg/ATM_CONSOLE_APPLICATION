@@ -11,7 +11,26 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class ViewLogin
     {
-        private static ControllerBank_User ControllerUser = new ControllerBank_User();      
+        private static ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
+        public static bool Login()
+        {
+            string user = InptUsername();
+            string pass = InputPassword();
+            if (user != null && pass != null)
+            {
+                if (ControllerUser.IsLoggedIn(user, pass))
+                {
+                    Console.WriteLine(Language.Notification_Login_True);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine(Language.Notification_Login_Fasle);
+                    return false;
+                }
+            }
+            return false;
+        }
         public static void Register()
         {
             string fullname = InputFullName();
@@ -155,25 +174,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             string Address = Console.ReadLine();
             return Address = StandardizeString(Address);
         }
-        public static bool Login()
-        {
-            string user = InptUsername();
-            string pass = InputPassword();
-            if (user != null && pass != null)
-            {
-                if (ControllerUser.IsLoggedIn(user, pass))
-                {
-                    Console.WriteLine(Language.Notification_Login_True);
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine(Language.Notification_Login_Fasle);
-                    return false;
-                }
-            }
-            return false;
-        }
+
         private static string GetPhoneNumber()
         {
             string phoneNumber = string.Empty;

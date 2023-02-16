@@ -14,6 +14,24 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public double Balance { get; set; }
         public DateTime created_at_bank { get; set; }
         public string status_bank { get; set; }
+        public static ModelBank_Account _User { get; set; }
+
+        private static List<ModelBank_Account> _listBank_User;
+        public static List<ModelBank_Account> _ListBank_User
+        {
+            get
+            {
+                if (_listBank_User == null)
+                {
+                    _listBank_User = new List<ModelBank_Account>();
+                }
+                return _listBank_User;
+            }
+            set
+            {
+                _listBank_User = value;
+            }
+        }
         public ModelBank_Account(
             int id_user, string fullname, DateTime dateofbirth, 
             string gender, string CMND_CCCD, string address, string user, 
@@ -28,16 +46,47 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at_bank = created_at_bank;
             this.status_bank = status_bank;
         }
-        public static void GetListBank_User()
+        public static bool IsLoggedIn(string user, string pass)
         {
-            Controller.ControllerBank_User.ListBank_User.Clear();
+            try
+            {
+                string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user WHERE user.username = @user AND user.password = @pass;";
+                using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
+                command.Parameters.AddWithValue("@user",user);
+                command.Parameters.AddWithValue("@pass",pass);
+                using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
+                {
+                    if (mySqlDataReader.Read())
+                    {
+                        _User = GetBank_User(mySqlDataReader);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
+        public static void GetList_All_Bank_User()
+        {
+            _ListBank_User.Clear();
             string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user";
             using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
             using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
             {
                 while (mySqlDataReader.Read())
                 {
-                    Controller.ControllerBank_User.ListBank_User.Add(GetBank_User(mySqlDataReader));
+                    _ListBank_User.Add(GetBank_User(mySqlDataReader));
                 }
             }
             DBHelper.Close();

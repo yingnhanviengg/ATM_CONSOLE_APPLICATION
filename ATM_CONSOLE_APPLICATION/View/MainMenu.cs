@@ -97,7 +97,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 if (ControllerBank_User.User.role.Equals("admin"))
                 {
-
+                    Console.WriteLine("menu admin");
                 }
             }         
         }

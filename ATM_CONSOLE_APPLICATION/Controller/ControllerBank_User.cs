@@ -11,32 +11,64 @@ namespace ATM_CONSOLE_APPLICATION.Controller
 {
     public class ControllerBank_User
     {
+        private ControllerBank_User() { }
         public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
-        public static List<ModelBank_Account> ListBank_User { get; set; } = new List<ModelBank_Account>();
-        public static ModelBank_Account User { get; set; }
-        public ControllerBank_User() { ModelBank_Account.GetListBank_User(); }
+        public static List<ModelBank_Account> ListBank_User
+        {
+            get { return ModelBank_Account._ListBank_User; }
+        }
+        public static ModelBank_Account User
+        {
+            get { return ModelBank_Account._User;}
+        }
+        private static ControllerBank_User _ControllerUser;      
+        public static ControllerBank_User ControllerUser
+        {
+            get
+            {
+                if (_ControllerUser == null)
+                {
+                    _ControllerUser = new ControllerBank_User();
+                }
+                return _ControllerUser;
+            }
+        }      
         public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
         {
-            foreach (var item in ListBank_User)
+            try
             {
-                if (item.Username.Equals(user)) // tài khoản đã tồn tại
+                //ListBank_User = new List<ModelBank_Account>();
+                ModelBank_Account.GetList_All_Bank_User();
+                foreach (var item in ListBank_User)
                 {
-                    return -1;
+                    if (item.Username.Equals(user)) // tài khoản đã tồn tại
+                    {
+                        return -1;
+                    }
+                    else if (item.Email.Equals(mail)) // email đã tồn tại
+                    {
+                        return -2;
+                    }
+                    else if (item.Phone.Equals(phone)) // sdt đã tồn tại
+                    {
+                        return -3;
+                    }
+                    else if (item.CMND_CCCD.Equals(CMND_CCCD)) // CMND_CCCD đã tồn tại
+                    {
+                        return -4;
+                    }
                 }
-                else if (item.Email.Equals(mail)) // email đã tồn tại
-                {
-                    return -2;
-                }
-                else if (item.Phone.Equals(phone)) // sdt đã tồn tại
-                {
-                    return -3;
-                }
-                else if (item.CMND_CCCD.Equals(CMND_CCCD)) // CMND_CCCD đã tồn tại
-                {
-                    return -4;
-                }
+                return 1;
             }
-            return 1;
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                ListBank_User.Clear();
+            }
         }       
 
         public bool Register(string code, string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string mail, string phone)
@@ -59,19 +91,19 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool IsLoggedIn(string user, string pass)
         {
-            foreach (var item in ListBank_User)
-            {
-                if (user.Equals(item.Username) && pass.Equals(item.Password))
+            if (ModelBank_Account.IsLoggedIn(user, pass))
+            {             
+                if (User.role.Equals("admin"))
                 {
-                    User = new ModelBank_Account(
-                        item.ID_User, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, 
-                        item.Address, item.Username, item.Password, item.Email, item.Phone, 
-                        item.created_at, item.role, item.status_user,
-                        item.ID_Bank, item.Number_Bank, item.Balance, item.created_at_bank, item.status_bank);
-                    return true;
+                    //ListBank_User = new List<ModelBank_Account>();
+                    ModelBank_Account.GetList_All_Bank_User();
                 }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }
