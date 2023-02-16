@@ -12,6 +12,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
     public class ControllerUser
     {
         public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
+        public static ModelUser User { get; set; }
         public ControllerUser() { ModelUser.GetListUser(); }
         public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
         {
@@ -70,6 +71,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 if (user.Equals(item.Username) && pass.Equals(item.Password))
                 {
+                    User = new ModelUser(item.ID, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, item.Address, item.Username, item.Password, item.Email, item.Phone, item.created_at, item.role, item.status);
                     return true;
                 }
             }

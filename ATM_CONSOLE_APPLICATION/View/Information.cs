@@ -24,10 +24,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
             table.AddColumn("[springgreen2_1]Email[/]");
             table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-            foreach (var item in ControllerUser.ListUsers)
-            {
-                table.AddRow($"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}", $"{item.Gender}", $"{item.CMND_CCCD}", $"{item.Address}", $"{item.Email}", $"{item.Phone}");
-            }
+            table.AddRow($"{ControllerUser.User.FullName}", $"{DateOfBirthToString(ControllerUser.User.DateOfBirth)}", $"{ControllerUser.User.Gender}", $"{ControllerUser.User.CMND_CCCD}", $"{ControllerUser.User.Address}", $"{ControllerUser.User.Email}", $"{ControllerUser.User.Phone}");
             AnsiConsole.Write(table);              
             table.Rows.Clear();         
         }

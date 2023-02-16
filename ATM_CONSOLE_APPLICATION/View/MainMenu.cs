@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ATM_CONSOLE_APPLICATION.Controller;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
@@ -89,9 +90,15 @@ namespace ATM_CONSOLE_APPLICATION.View
             Change_Language();
             if (MenuLogin())
             {
-                ShowMenuCusomer();
-            }
-            
+                if (ControllerUser.User.role.Equals("customer"))
+                {
+                    ShowMenuCusomer();
+                }
+                if (ControllerUser.User.role.Equals("admin"))
+                {
+
+                }
+            }         
         }
         public static void Change_Language()
         {
