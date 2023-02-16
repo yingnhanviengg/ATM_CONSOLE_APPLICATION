@@ -18,17 +18,25 @@ namespace ATM_CONSOLE_APPLICATION.Model
             {
                 Connection = MySql();
             }
-            try
+            do
             {
-                if (Connection.State == ConnectionState.Closed)
+                try
                 {
-                    Connection.Open();
+                    if (Connection.State == ConnectionState.Closed)
+                    {
+                        Connection.Open();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    Thread.Sleep(3000);
+                }
+                if (Connection.State == ConnectionState.Open)
+                {
+                    break;
+                }
+            } while (true);
             return Connection;
         }
         public static void Close()

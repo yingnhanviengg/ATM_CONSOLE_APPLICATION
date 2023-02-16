@@ -193,7 +193,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                     Console.WriteLine(Language.Error_Input_Phone);
                 }
             }
-
             return phoneNumber;
         }
         private static string GetValidEmail()
