@@ -18,7 +18,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Login { get; set; }
         public static string Register { get; set; }
         // Menu actor người dùng
-        public static string Check_Bank_Balance { get; set; }
+        public static string Create_ATM_Card { get; set; }
         public static string Check_Account_Information { get; set; }
         public static string Withdraw_Money { get; set; }
         public static string Recharge { get; set; }
@@ -70,7 +70,7 @@ namespace ATM_CONSOLE_APPLICATION
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
-            Check_Bank_Balance = "Kiểm tra số dư tài khoản";
+            Create_ATM_Card = "Tạo thẻ ATM";
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
             Withdraw_Money = "Rút tiền";
             Recharge = "Nạp tiền";
@@ -120,7 +120,7 @@ namespace ATM_CONSOLE_APPLICATION
             // Menu actor người dùng
             Login = "Login";
             Register = "Register";
-            Check_Bank_Balance = "Kiểm tra số dư tài khoản";
+            Create_ATM_Card = "Kiểm tra số dư tài khoản";
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
             Withdraw_Money = "Rút tiền";
             Recharge = "Nạp tiền";

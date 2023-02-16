@@ -16,7 +16,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public static void MenuCustomer()
         {
-            string[] Menu_Customer = { Language.Check_Account_Information, Language.Check_Bank_Balance, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Languege };
+            string[] Menu_Customer = { Language.Check_Account_Information, Language.Create_ATM_Card, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Languege };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i+1}: {Menu_Customer[i]}");
