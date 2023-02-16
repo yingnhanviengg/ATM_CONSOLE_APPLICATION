@@ -13,7 +13,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
     {
         public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
         public static List<ModelBank_Account> ListBank_User { get; set; } = new List<ModelBank_Account>();
-        public static ModelUser User { get; set; }
+        public static ModelBank_Account User { get; set; }
         public ControllerBank_User() { ModelBank_Account.GetListBank_User(); }
         public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
         {
@@ -63,7 +63,11 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 if (user.Equals(item.Username) && pass.Equals(item.Password))
                 {
-                    User = new ModelUser(item.ID_User, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, item.Address, item.Username, item.Password, item.Email, item.Phone, item.created_at, item.role, item.status_user);
+                    User = new ModelBank_Account(
+                        item.ID_User, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, 
+                        item.Address, item.Username, item.Password, item.Email, item.Phone, 
+                        item.created_at, item.role, item.status_user,
+                        item.ID_Bank, item.Number_Bank, item.Balance, item.created_at_bank, item.status_bank);
                     return true;
                 }
             }

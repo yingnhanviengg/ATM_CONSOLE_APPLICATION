@@ -38,6 +38,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 switch (Common.Choose())
                 {
                     case 1:
+                        Console.Clear();
                         Information.TableInformation_User();
                         break;
                     case 2:

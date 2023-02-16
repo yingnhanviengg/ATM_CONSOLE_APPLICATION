@@ -21,10 +21,15 @@ namespace ATM_CONSOLE_APPLICATION.View
             table.AddColumn("[springgreen2_1]Ngày/Tháng/Năm Sinh[/]");
             table.AddColumn("[springgreen2_1]Giới Tính[/]");
             table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
+            table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+            table.AddColumn("[springgreen2_1]Số Dư[/]");
             table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
             table.AddColumn("[springgreen2_1]Email[/]");
             table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-            table.AddRow($"{ControllerBank_User.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.User.DateOfBirth)}", $"{ControllerBank_User.User.Gender}", $"{ControllerBank_User.User.CMND_CCCD}", $"{ControllerBank_User.User.Address}", $"{ControllerBank_User.User.Email}", $"{ControllerBank_User.User.Phone}");
+            table.AddRow($"{ControllerBank_User.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.User.DateOfBirth)}", 
+                $"{ControllerBank_User.User.Gender}", $"{ControllerBank_User.User.CMND_CCCD}", 
+                $"{ControllerBank_User.User.Number_Bank}", $"{ControllerBank_User.User.Balance}", $"{ControllerBank_User.User.Address}",
+                $"{ControllerBank_User.User.Email}", $"{ControllerBank_User.User.Phone}");
             AnsiConsole.Write(table);              
             table.Rows.Clear();         
         }
