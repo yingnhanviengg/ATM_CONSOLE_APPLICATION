@@ -10,7 +10,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
 {
     public class ModelUser
     {
-        public int ID { get; set; }
+        public int ID_User { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
@@ -22,10 +22,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public string Phone { get; set; }
         public DateTime created_at { get; set; }
         public string role { get; set; }    
-        public string status { get; set; }
-        public ModelUser(int id, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status)
+        public string status_user { get; set; }
+        public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
         {
-            this.ID = id;
+            this.ID_User = id_user;
             this.FullName = fullname;
             this.DateOfBirth = dateofbirth;
             this.Gender = gender;
@@ -37,8 +37,9 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Phone = phone;
             this.created_at = created_at;
             this.role = role;
-            this.status = status;
+            this.status_user = status_user;
         }
+
         public static bool IsRegister(string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string email, string phone)
         {
             try
@@ -70,20 +71,20 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             finally
             {
-                GetListUser();
+                ModelBank_Account.GetListBank_User();
                 DBHelper.Close();
             }
         }
         public static void GetListUser()
         {
-            Controller.ControllerUser.ListUsers.Clear();
-            string query = "SELECT user.* FROM user";
+            Controller.ControllerBank_User.ListUsers.Clear();
+            string query = "SELECT user.* FROM user;";
             using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
             using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
             {
                 while (mySqlDataReader.Read())
                 {
-                    Controller.ControllerUser.ListUsers.Add(GetUser(mySqlDataReader));
+                    Controller.ControllerBank_User.ListUsers.Add(GetUser(mySqlDataReader));
                 }
             }
             DBHelper.Close();
@@ -103,7 +104,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetString("number_phone"),
                 reader.GetDateTime("created_at"),
                 reader.GetString("role"),
-                reader.GetString("status")
+                reader.GetString("status_user")
                 );
             return user;
         }

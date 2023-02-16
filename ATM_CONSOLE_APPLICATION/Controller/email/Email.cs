@@ -7,7 +7,7 @@ using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION
 {
-    public static class Email
+    public class Email
     {
         // Tài khoản email gửi
         private static string from = "yingnhanviengg@gmail.com";
@@ -82,6 +82,15 @@ namespace ATM_CONSOLE_APPLICATION
                 success = false;
             }
             return success;
+        }
+        public static bool Send_Mail_Register(string email, string fullname)
+        {
+            Email.MailRegister(fullname);
+            if (Email.SendMail(email))
+            {
+                return true;
+            }
+            return false;
         }
         public static string GenerateRandomCode()
         {

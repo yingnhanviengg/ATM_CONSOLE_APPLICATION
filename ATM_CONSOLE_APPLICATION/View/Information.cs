@@ -24,7 +24,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
             table.AddColumn("[springgreen2_1]Email[/]");
             table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-            table.AddRow($"{ControllerUser.User.FullName}", $"{DateOfBirthToString(ControllerUser.User.DateOfBirth)}", $"{ControllerUser.User.Gender}", $"{ControllerUser.User.CMND_CCCD}", $"{ControllerUser.User.Address}", $"{ControllerUser.User.Email}", $"{ControllerUser.User.Phone}");
+            table.AddRow($"{ControllerBank_User.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.User.DateOfBirth)}", $"{ControllerBank_User.User.Gender}", $"{ControllerBank_User.User.CMND_CCCD}", $"{ControllerBank_User.User.Address}", $"{ControllerBank_User.User.Email}", $"{ControllerBank_User.User.Phone}");
             AnsiConsole.Write(table);              
             table.Rows.Clear();         
         }
@@ -35,15 +35,15 @@ namespace ATM_CONSOLE_APPLICATION.View
         public void TableInformation_Admin()
         {
             int pageNumber = 1;
-            int pageCount = (ControllerUser.ListUsers.Count + 10 - 1) / 10;
+            int pageCount = (ControllerBank_User.ListUsers.Count + 10 - 1) / 10;
             int pageSize = 10;
-            if (ControllerUser.ListUsers.Count > 10)
+            if (ControllerBank_User.ListUsers.Count > 10)
             {
                 while (true)
                 {
                     try
                     {
-                        Console.WriteLine($"Sinh viên hiển thị {pageCount} trang, {ControllerUser.ListUsers.Count} sinh viên ");
+                        Console.WriteLine($"Sinh viên hiển thị {pageCount} trang, {ControllerBank_User.ListUsers.Count} sinh viên ");
                         Console.Write("Nhập số trang: ");
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
@@ -55,7 +55,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                     }
                 }
             }
-            if (ControllerUser.ListUsers.Count == 0)
+            if (ControllerBank_User.ListUsers.Count == 0)
             {
                 Console.WriteLine("Ko có dữ liệu");
                 return;
@@ -83,7 +83,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 else
                 {
                     int startIndex = (pageNumber - 1) * pageSize;
-                    foreach (var item in ControllerUser.ListUsers.Skip(startIndex).Take(pageSize).ToList())
+                    foreach (var item in ControllerBank_User.ListUsers.Skip(startIndex).Take(pageSize).ToList())
                     {
                         table.AddRow($"");
                     }

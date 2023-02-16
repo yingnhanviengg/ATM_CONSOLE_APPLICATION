@@ -11,7 +11,7 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class ViewLogin
     {
-        private static ControllerUser ControllerUser = new ControllerUser();      
+        private static ControllerBank_User ControllerUser = new ControllerBank_User();      
         public static void Register()
         {
             string fullname = InputFullName();
@@ -26,7 +26,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             int result = ControllerUser.IsRegister(CMND_CCCD, user, email, phone);
             if (result == 1)
             {
-                if (ControllerUser.Mail_Register(email, fullname))
+                if (Email.Send_Mail_Register(email, fullname))
                 {
                     Console.Write(Language.Enter_Code);
                     string code = Console.ReadLine();

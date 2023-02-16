@@ -9,14 +9,15 @@ using MySql.Data.MySqlClient;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
-    public class ControllerUser
+    public class ControllerBank_User
     {
         public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
+        public static List<ModelBank_Account> ListBank_User { get; set; } = new List<ModelBank_Account>();
         public static ModelUser User { get; set; }
-        public ControllerUser() { ModelUser.GetListUser(); }
+        public ControllerBank_User() { ModelBank_Account.GetListBank_User(); }
         public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
         {
-            foreach (var item in ListUsers)
+            foreach (var item in ListBank_User)
             {
                 if (item.Username.Equals(user)) // tài khoản đã tồn tại
                 {
@@ -36,16 +37,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 }
             }
             return 1;
-        }
-        public bool Mail_Register(string email, string fullname)
-        {
-            Email.MailRegister(fullname);
-            if (Email.SendMail(email))
-            {
-                return true;
-            }
-            return false;
-        }
+        }       
 
         public bool Register(string code, string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string mail, string phone)
         {
@@ -67,11 +59,11 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool IsLoggedIn(string user, string pass)
         {
-            foreach (var item in ListUsers)
+            foreach (var item in ListBank_User)
             {
                 if (user.Equals(item.Username) && pass.Equals(item.Password))
                 {
-                    User = new ModelUser(item.ID, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, item.Address, item.Username, item.Password, item.Email, item.Phone, item.created_at, item.role, item.status);
+                    User = new ModelUser(item.ID_User, item.FullName, item.DateOfBirth, item.Gender, item.CMND_CCCD, item.Address, item.Username, item.Password, item.Email, item.Phone, item.created_at, item.role, item.status_user);
                     return true;
                 }
             }

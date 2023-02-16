@@ -90,11 +90,11 @@ namespace ATM_CONSOLE_APPLICATION.View
             Change_Language();
             if (MenuLogin())
             {
-                if (ControllerUser.User.role.Equals("customer"))
+                if (ControllerBank_User.User.role.Equals("customer"))
                 {
                     ShowMenuCusomer();
                 }
-                if (ControllerUser.User.role.Equals("admin"))
+                if (ControllerBank_User.User.role.Equals("admin"))
                 {
 
                 }
