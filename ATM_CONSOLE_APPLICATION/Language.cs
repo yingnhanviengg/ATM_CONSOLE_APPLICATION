@@ -51,6 +51,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Error_Input_Gender { get; set; }
         public static string Error_Input_CMND { get; set; }
         public static string Error_Input_Phone { get; set; }
+        public static string Error_Input_Pass { get; set; }
         public static string Register_Success { get; set; }
         public static string Registration_Failed { get; set; }
         public static string Error_Email_Already_Exists { get; set; }
@@ -102,6 +103,7 @@ namespace ATM_CONSOLE_APPLICATION
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
             Error_Input_Email = "Nhập email không hợp lệ";
             Error_Input_Phone = "Nhập số điện thoại không hợp lệ \nSố điện thoại bắt đầu bằng số 0 và có từ 9 đến 11 số";
+            Error_Input_Pass = "Mật khẩu có tối thiểu 8 ký tự";
             Register_Success = "Đăng ký thành công";
             Registration_Failed = "Đăng ký thất bại";
             Error_Invalid_BateOfBirth = "Nhập sai định dạng ngày tháng năm";

@@ -23,7 +23,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at { get; set; }
         public string role { get; set; }    
         public string status { get; set; }
-        //public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
         public ModelUser(int id, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status)
         {
             this.ID = id;
@@ -44,7 +43,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
             try
             {
-                string query = "INSERT HIGH_PRIORITY INTO USER(full_name, Date_Of_Birth, gender, cmnd_cccd, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @gender, @cmnd_cccd, @address, @username, @password, @email, @numberphone);";
+                string query = "INSERT HIGH_PRIORITY INTO user(full_name, Date_Of_Birth, gender, cmnd_cccd, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @gender, @cmnd_cccd, @address, @username, @password, @email, @numberphone);";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
                 mySqlCommand.Parameters.AddWithValue("@fullname", fullname);
                 mySqlCommand.Parameters.AddWithValue("@dateofbirth", DateOfBirth);
@@ -71,6 +70,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             finally
             {
+                GetListUser();
                 DBHelper.Close();
             }
         }

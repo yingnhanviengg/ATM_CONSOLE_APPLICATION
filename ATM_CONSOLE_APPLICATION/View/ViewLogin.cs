@@ -97,7 +97,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Console.WriteLine(Language.Error_Input_CMND);
             }
         }
-
         private static string InputGender()
         {
             while (true)
@@ -119,25 +118,36 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         private static string InputPassword()
         {
-            Console.Write(Language.Input_Pass);
-            string pass = GetPassword();
-            return pass;
+            do
+            {
+                Console.Write(Language.Input_Pass);
+                string pass = GetPassword();
+                if (pass.Length >= 8)
+                {
+                    return pass;
+                }
+                else
+                {
+                    Console.WriteLine(Language.Error_Input_Pass);
+                }
+            } while (true);
         }
         private static string InptUsername()
         {
             string user;
-            bool result;
             do
             {
                 Console.Write(Language.Input_User);
                 user = Console.ReadLine();
-                if (result =!IsValidUsername(user))
+                if (IsValidUsername(user))
+                {
+                    return user;
+                }
+                else
                 {
                     Console.WriteLine(Language.Error_Limit_User_8_char);
                 }
-            } while (result);
-
-            return user;
+            } while (true);
         }
         private static string InputAddress()
         {
@@ -264,12 +274,6 @@ namespace ATM_CONSOLE_APPLICATION.View
             return Ghep_Chuoi.TrimEnd();
         }
         public static bool IsValidUsername(string str)
-        {
-            string pattern = @"^[a-zA-Z0-9]*$";
-            Regex regex = new(pattern);
-            return regex.IsMatch(str) && str.Length >= 8;
-        }
-        public static bool KT_Mat_Khau(string str)
         {
             string pattern = @"^[a-zA-Z0-9]*$";
             Regex regex = new(pattern);

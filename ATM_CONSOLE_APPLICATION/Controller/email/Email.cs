@@ -27,10 +27,10 @@ namespace ATM_CONSOLE_APPLICATION
             {
                 template.Mail_English();
             }
-            subject = TemplateMail.Hello_Mail;
+            subject = TemplateMail.Subject_Mail;
             // Nội dung email
             code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\"" + code + "\"";
+            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\" " + code + "\" ";
         }
         public static void MailRegister(string fullname)
         {
@@ -44,10 +44,10 @@ namespace ATM_CONSOLE_APPLICATION
             {
                 template.Mail_English();
             }
-            subject = TemplateMail.Hello_Mail;
+            subject = TemplateMail.Subject_Mail;
             // Nội dung email
             code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\"" + code + "\"";
+            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\" " + code + "\" ";
         }
         public static bool SendMail(string to)
         {               
