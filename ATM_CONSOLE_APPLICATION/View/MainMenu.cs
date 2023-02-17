@@ -34,10 +34,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 return _menu;
             }
-            set
-            {
-                _menu = value;
-            }
         }
         public bool MenuLogin()
         {
