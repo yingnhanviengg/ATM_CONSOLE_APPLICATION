@@ -26,6 +26,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 }
                 return _informationAdmin;
             }
+        }       
+        public override void Information_Manager_Menu()
+        {
+            throw new NotImplementedException();
+        }
+        public override void Information_Manager()
+        {
+            throw new NotImplementedException();
+        }
+        public override void Update_Information()
+        {
+            throw new NotImplementedException();
         }
         public override void Table_Informatio()
         {

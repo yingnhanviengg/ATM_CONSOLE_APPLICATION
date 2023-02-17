@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.View.Information;
+using ATM_CONSOLE_APPLICATION.Controller.email;
 
 namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
@@ -27,8 +28,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         public ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
         public bool Login()
         {
-            string user = InptUsername();
-            string pass = InputPassword();
+            string user = InputisValid.InptUsername();
+            string pass = InputisValid.InputPassword();
             if (user != null && pass != null)
             {
                 if (ControllerUser.IsLoggedIn(user, pass))
@@ -45,24 +46,25 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             return false;
         }
         public void Register()
-        {
-            string fullname = InputFullName();
-            string gender = InputGender();
-            DateTime DateOfBirth = InputDateTime();
-            string user = InptUsername();
-            string pass = InputPassword();
-            string Address = InputAddress();
-            string CMND_CCCD = InputCMND_CCCD();
-            string email = GetValidEmail();
-            string phone = GetPhoneNumber();
-            int result = ControllerUser.IsRegister(CMND_CCCD, user, email, phone);
+        {         
+            ControllerBank_User._User.FullName = InputisValid.InputFullName();
+            ControllerBank_User._User.Gender = InputisValid.InputGender();
+            ControllerBank_User._User.DateOfBirth = InputisValid.InputDateTime();
+            ControllerBank_User._User.Username = InputisValid.InptUsername();
+            ControllerBank_User._User.Password = InputisValid.InputPassword();
+            ControllerBank_User._User.Address = InputisValid.InputAddress();
+            ControllerBank_User._User.CMND_CCCD = InputisValid.InputCMND_CCCD();
+            ControllerBank_User._User.Email = InputisValid.InputValidEmail();
+            ControllerBank_User._User.Phone = InputisValid.InputPhoneNumber();
+            int result = ControllerUser.IsRegister();
             if (result == 1)
             {
-                if (Email.Send_Mail_Register(email, fullname))
+                TemplateMail templateMail = new TemplateMailRegister();
+                if (templateMail.Mail())
                 {
                     Console.Write(Language.Enter_Code);
                     string code = Console.ReadLine().Trim();
-                    if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
+                    if (ControllerUser.Register(code))
                     {
                         Common.PrintMessage_Console(Language.Register_Success, true);
                     }
@@ -75,7 +77,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
                             Console.Write(Language.Enter_Code);
                             code = Console.ReadLine().Trim();
-                            if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
+                            if (ControllerUser.Register(code))
                             {
                                 Common.PrintMessage_Console(Language.Register_Success, true);
                                 break;
@@ -109,203 +111,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
         }
-        public string InputCMND_CCCD()
-        {
-            while (true)
-            {
-                Console.Write(Language.Input_CMND_CCCD);
-                string id = Console.ReadLine().Trim();
-                if (id.Length == 9 || id.Length == 12)
-                {
-                    if (id.All(char.IsDigit))
-                    {
-                        return id;
-                    }
-                }
-                Common.PrintMessage_Console(Language.Error_Input_CMND, false);
-            }
-        }
-        public string InputGender()
-        {
-            while (true)
-            {
-                Console.Write(Language.Input_Gender);
-                string gender = Console.ReadLine().Trim();
-                if (gender.ToLower().Equals("nam") || gender.ToLower().Equals("nữ"))
-                {
-                    return char.ToUpper(gender[0]) + gender.Substring(1);
-                }
-                Common.PrintMessage_Console(Language.Error_Input_Gender, false);
-            }
-        }
-        public string InputFullName()
-        {
-            Console.Write(Language.Input_Fullname);
-            string fullname = Console.ReadLine();
-            return fullname = StandardizeString(fullname);
-        }
-        public string InputPassword()
-        {
-            do
-            {
-                Console.Write(Language.Input_Pass);
-                string pass = GetPassword();
-                if (pass.Length >= 8)
-                {
-                    return pass;
-                }
-                else
-                {
-                    Common.PrintMessage_Console(Language.Error_Input_Pass, false);
-                }
-            } while (true);
-        }
-        public string InptUsername()
-        {
-            string user;
-            do
-            {
-                Console.Write(Language.Input_User);
-                user = Console.ReadLine().Trim();
-                if (IsValidUsername(user))
-                {
-                    return user;
-                }
-                else
-                {
-                    Common.PrintMessage_Console(Language.Error_Limit_User_8_char, false);
-                }
-            } while (true);
-        }
-        public string InputAddress()
-        {
-            Console.Write(Language.Input_Address);
-            string Address = Console.ReadLine();
-            return Address = StandardizeString(Address);
-        }
-        public string GetPhoneNumber()
-        {
-            string phoneNumber = string.Empty;
-            bool isValidPhoneNumber = false;
-
-            while (!isValidPhoneNumber)
-            {
-                Console.Write(Language.Input_Phone);
-                phoneNumber = Console.ReadLine().Trim();
-
-                if (phoneNumber.StartsWith("0") && phoneNumber.All(char.IsDigit) && phoneNumber.Length >= 9 && phoneNumber.Length <= 11)
-                {
-                    isValidPhoneNumber = true;
-                }
-                else
-                {
-                    Common.PrintMessage_Console(Language.Error_Input_Phone, false);
-                }
-            }
-            return phoneNumber;
-        }
-        public string GetValidEmail()
-        {
-            string email;
-            do
-            {
-                Console.Write(Language.Input_Email);
-                email = Console.ReadLine().Trim();
-                if (IsValidEmail(email))
-                {
-                    return email;
-                }
-                else
-                {
-                    Common.PrintMessage_Console(Language.Error_Input_Email, false);
-                }
-            } while (true);
-        }
-        public bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrEmpty(email))
-            {
-                return false;
-            }
-            Regex regex = new Regex(@"^[a-zA-Z0-9~!@#$%^&*()_\-+=\[\]{}\\|;:'"",<.>/?]+@gmail\.com$");
-            return regex.IsMatch(email);
-        }
-        public DateTime InputDateTime()
-        {
-            DateTime date;
-            string inputDate;
-            do
-            {
-                Console.Write(Language.Input_DateOfBirth);
-                inputDate = Console.ReadLine().Trim();
-                if (DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    if (date < DateTime.MinValue || date > DateTime.MaxValue)
-                    {
-                        Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
-                        continue;
-                    }
-                    break;
-                }
-                else
-                {
-                    Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
-                }
-            } while (true);
-            string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
-            if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-            {
-                return date;
-            }
-            else
-            {
-                Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
-                return default;
-            }
-        }
-        public string StandardizeString(string str)
-        {
-            str = str.Trim();
-            str = str.ToLower();
-            while (str.Contains("  "))
-            {
-                str = str.Replace(" ", " ");
-            }
-            string[] Tach_Chuoi = str.Split(' ');
-            string Ghep_Chuoi = string.Empty;
-            for (int i = 0; i < Tach_Chuoi.Length; i++)
-            {
-                Ghep_Chuoi += Tach_Chuoi[i][..1].ToUpper() + Tach_Chuoi[i][1..] + " ";
-            }
-            return Ghep_Chuoi.TrimEnd();
-        }
-        public bool IsValidUsername(string str)
-        {
-            string pattern = @"^[a-zA-Z0-9]*$";
-            Regex regex = new(pattern);
-            return regex.IsMatch(str) && str.Length >= 8;
-        }
-        public string GetPassword()
-        {
-            string pass = string.Empty;
-            ConsoleKey key;
-            do
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                key = keyInfo.Key;
-                if (key == ConsoleKey.Backspace && pass.Length > 0)
-                {
-                    Console.Write("\b \b");
-                    pass = pass[0..^1];
-                }
-                else if (!char.IsControl(keyInfo.KeyChar))
-                {
-                    Console.Write("*");
-                    pass += keyInfo.KeyChar;
-                }
-            } while (key != ConsoleKey.Enter);
-            Console.WriteLine();
-            return pass;
-        }
+        
     }
 }

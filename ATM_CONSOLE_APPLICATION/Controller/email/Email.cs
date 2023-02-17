@@ -1,56 +1,27 @@
-﻿using System;
-using System.Net.Mail;
-using ATM_CONSOLE_APPLICATION.Controller.email;
-using MailKit.Net.Smtp;
-using MimeKit;
-using Spectre.Console;
+﻿using MimeKit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ATM_CONSOLE_APPLICATION
+namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public class Email
+    public abstract class TemplateMail
     {
-        // Tài khoản email gửi
         private static string from = "yingnhanviengg@gmail.com";
         private static string password = "keguitumpfxrvpus";
-        private static string? subject;
-        private static string? body;
+        public string? SendMail_Success { get; set; }
+        public string? SendMail_Error { get; set; }
+        public string? subject { get; set; }
+        public string? body { get; set; }
         public static string? code { get; set; }
-        public static void MailWithdraw(string fullname)
+        public TemplateMail() {    }
+        public abstract bool Mail();
+        public abstract void Mail_Vietnamese();
+        public abstract void Mail_English();
+        public bool SendMail(string to)
         {
-            TemplateMailWithdraw template = new TemplateMailWithdraw();         
-            if (Language.Current_Language.Equals("Vietnamese"))
-            {
-                template.Mail_Vietnamese();
-            }
-            else if (Language.Current_Language.Equals("English"))
-            {
-                template.Mail_English();
-            }
-            // Tiêu đề email
-            subject = TemplateMail.Subject_Mail;
-            // Nội dung email
-            code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + "\n" + TemplateMail.Body_Mail + "\" " + code + "\" ";
-        }
-        public static void MailRegister(string fullname)
-        {
-            TemplateMailRegister template = new TemplateMailRegister();           
-            if (Language.Current_Language.Equals("Vietnamese"))
-            {
-                template.Mail_Vietnamese();
-            }
-            else if (Language.Current_Language.Equals("English"))
-            {
-                template.Mail_English();
-            }
-            // Tiêu đề email
-            subject = TemplateMail.Subject_Mail;
-            // Nội dung email
-            code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + "\n" + TemplateMail.Body_Mail + "\" " + code + "\" ";
-        }
-        public static bool SendMail(string to)
-        {               
             bool success = false;
             // Tạo message email
             var message = new MimeMessage();
@@ -73,24 +44,15 @@ namespace ATM_CONSOLE_APPLICATION
 
                     client.Disconnect(true);
                 }
-                Common.PrintMessage_Console(TemplateMail.SendMail_Success, true);
+                Common.PrintMessage_Console(SendMail_Success, true);
                 success = true;
             }
             catch (Exception ex)
             {
-                Common.PrintMessage_Console(TemplateMail.SendMail_Error + ex.Message, false);
+                Common.PrintMessage_Console(SendMail_Error + ex.Message, false);
                 success = false;
             }
             return success;
-        }
-        public static bool Send_Mail_Register(string email, string fullname)
-        {
-            Email.MailRegister(fullname);
-            if (Email.SendMail(email))
-            {
-                return true;
-            }
-            return false;
         }
         public static string GenerateRandomCode()
         {

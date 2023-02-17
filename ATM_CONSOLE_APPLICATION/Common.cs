@@ -35,7 +35,7 @@
         {
             while (true)
             {
-                Console.WriteLine("Có muốn sửa giá trị này không? (Y hoặc N)");
+                Console.WriteLine(Language.IsUpdate);
                 string x = Console.ReadLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                 if (x.ToUpper().Equals("Y"))
@@ -46,7 +46,7 @@
                 {
                     return false;
                 }
-                else { Console.WriteLine("Chỉ được nhập Y hoặc N"); }
+                else { Console.WriteLine(Language.IsY_or_N); }
             }
         }
         public static bool CreatedCard()
@@ -63,7 +63,7 @@
                 {
                     return false;
                 }
-                else { Console.WriteLine("Chỉ được nhập Y hoặc N"); }
+                else { Console.WriteLine(Language.IsY_or_N); }
             }
         }
     }

@@ -12,17 +12,34 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         {
 
         }
+        public override bool Mail()
+        {
+            if (Language.Current_Language.Equals("Vietnamese"))
+            {
+                Mail_Vietnamese();
+            }
+            else if (Language.Current_Language.Equals("English"))
+            {
+                Mail_English();
+            }
+            if (SendMail(Language.Current_Language))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override void Mail_Vietnamese()
         {
-            base.Mail_Vietnamese();
-            Subject_Mail = "Mã xác nhận rút tiền";
-            Body_Mail = "Đây là mã xác minh rút tiền của bạn ";
+            subject = "Mã xác nhận rút tiền";
+            body = "Đây là mã xác minh rút tiền của bạn ";
         }
         public override void Mail_English()
         {
-            base.Mail_English();
-            Subject_Mail = "Withdrawal confirmation code";
-            Body_Mail = "This is your withdrawal confirmation code";
+            subject = "Withdrawal confirmation code";
+            body = "This is your withdrawal confirmation code";
         }
     }
 }

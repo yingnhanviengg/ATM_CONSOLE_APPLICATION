@@ -27,7 +27,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 1:
                         Console.Clear();
                         Information.InformationCustomer customer = InformationCustomer._InformationCustomer;
-                        customer.Table_Informatio();
+                        customer.Information_Manager();
                         break;
                     case 2:
                         Console.Clear();

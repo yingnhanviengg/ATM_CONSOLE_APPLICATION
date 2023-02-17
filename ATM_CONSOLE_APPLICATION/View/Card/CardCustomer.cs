@@ -31,9 +31,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         }
         public override void Card_Management()
         {
-            if (ControllerBank_User.User.role.Equals("customer"))
+            if (ControllerBank_User.UserBank.role.Equals("customer"))
             {
-                ModelCard.GetCard(ControllerBank_User.User.ID_Bank);
+                ModelCard.GetCard(ControllerBank_User.UserBank.ID_Bank);
                 if (ControllerCard.Card == null)
                 {
                     Common.PrintMessage_Console(Language.No_CardYet, true);
@@ -47,7 +47,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     TableCard();
                 }
             }
-            else if (ControllerBank_User.User.role.Equals("admin"))
+            else if (ControllerBank_User.UserBank.role.Equals("admin"))
             {
                 ModelCard.GetListCard();
             }

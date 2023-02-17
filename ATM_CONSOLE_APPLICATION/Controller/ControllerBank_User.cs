@@ -6,20 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using ATM_CONSOLE_APPLICATION.Model;
 using MySql.Data.MySqlClient;
+using ATM_CONSOLE_APPLICATION.Controller.email;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
     public class ControllerBank_User
     {
-        private ControllerBank_User() { }
-        public static List<ModelUser> ListUsers { get; set; } = new List<ModelUser>();
+        private ControllerBank_User() { ModelBank_Account.GetList_All_Bank_User(); }     
         public static List<ModelBank_Account> ListBank_User
         {
             get { return ModelBank_Account._ListBank_User; }
         }
-        public static ModelBank_Account User
+        public static ModelBank_Account UserBank
         {
-            get { return ModelBank_Account._User;}
+            get { return ModelBank_Account._UserBank;}
+        }
+        public static ModelUser _User
+        {
+            get { return ModelUser._User; }
         }
         private static ControllerBank_User _ControllerUser;      
         public static ControllerBank_User ControllerUser
@@ -32,25 +36,25 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 }
                 return _ControllerUser;
             }
-        }      
-        public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
+        }
+
+        public int IsRegister()
         {
-            ModelBank_Account.GetList_All_Bank_User();
             foreach (var item in ListBank_User)
             {
-                if (item.Username.Equals(user)) // tài khoản đã tồn tại
+                if (item.Username.Equals(_User.Username)) // tài khoản đã tồn tại
                 {
                     return -1;
                 }
-                else if (item.Email.Equals(mail)) // email đã tồn tại
+                else if (item.Email.Equals(_User.Email)) // email đã tồn tại
                 {
                     return -2;
                 }
-                else if (item.Phone.Equals(phone)) // sdt đã tồn tại
+                else if (item.Phone.Equals(_User.Phone)) // sdt đã tồn tại
                 {
                     return -3;
                 }
-                else if (item.CMND_CCCD.Equals(CMND_CCCD)) // CMND_CCCD đã tồn tại
+                else if (item.CMND_CCCD.Equals(_User.CMND_CCCD)) // CMND_CCCD đã tồn tại
                 {
                     return -4;
                 }
@@ -58,14 +62,11 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             return 1;
         }       
 
-        public bool Register(string code, string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string mail, string phone)
+        public bool Register(string code)
         {
-            if (Email.code != null && Email.code.Equals(code))
+            if (TemplateMail.code != null && TemplateMail.code.Equals(code))
             {
-                if (
-                    ModelUser.IsRegister(fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, mail, phone) 
-                    && ModelBank_Account.Create_Bank_Account(ModelUser.Select_ID_User(user, mail, CMND_CCCD), GenerateRandomNumberBank())
-                    )
+                if (ModelUser.IsRegister() && ModelBank_Account.Create_Bank_Account(ModelUser.Select_ID_User(_User.Username, _User.Email, _User.CMND_CCCD), GenerateRandomNumberBank()))
                 {
                     return true;
                 }
@@ -90,10 +91,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             if (ModelBank_Account.IsLoggedIn(user, pass))
             {             
-                if (User.role.Equals("admin"))
-                {
-                    ModelBank_Account.GetList_All_Bank_User();
-                }
                 return true;
             }
             else

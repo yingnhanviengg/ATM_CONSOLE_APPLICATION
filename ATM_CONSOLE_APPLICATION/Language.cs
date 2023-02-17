@@ -66,6 +66,19 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Created_Card_Success { get; set; }
         public static string Error_Create_Card { get; set; }
         public static string No_CardYet { get; set; }
+        public static string Update_Information { get; set; }
+        public static string IsY_or_N { get; set; }
+        public static string IsUpdate { get; set; }
+        public static string Name_Current { get; set; }
+        public static string DateOfBirth_Current { get; set; }
+        public static string Gender_Current { get; set; }
+        public static string CMND_CCCD_Current { get; set; }
+        public static string Address_Current { get; set; }
+        public static string Email_Current { get; set; }
+        public static string SDT_Current { get; set; }
+        public static string Update_Information_Success { get; set; }
+        public static string Update_Information_Error { get; set; }
+
         public static void Vietnamese()
         {
             Current_Language = "Vietnamese";
@@ -123,6 +136,18 @@ namespace ATM_CONSOLE_APPLICATION
             Created_Card_Success = "Tạo thẻ thành công";
             Error_Create_Card = "Tạo thẻ thất bại";
             No_CardYet = "Bạn chưa tạo thẻ ngân hàng.\nCó muốn tạo thẻ ngân hàng ngay không? (Y/N)";
+            Update_Information = "Cập nhật thông tin tài khoản ";
+            IsY_or_N = "Chỉ được nhập Y hoặc N";
+            IsUpdate = "Có muốn sửa giá trị này không? (Y hoặc N)";
+            Name_Current = "Họ và tên hiện tại: " ;
+            DateOfBirth_Current = "Ngày/Tháng/Năm sinh hiện tại: ";
+            Gender_Current = "Giới tính hiện tại: ";
+            CMND_CCCD_Current = "CMND/CCCD hiện tại: ";
+            Address_Current = "Địa chỉ hiện tại: ";
+            Email_Current = "Email hiện tại: ";
+            SDT_Current = "Số điện thoại hiện tại: ";
+            Update_Information_Success = "Cập nhật thông tin tài khoản thành công";
+            Update_Information_Error = "Cập nhật thông tin tài khoản thất bại";
         }
         public static void English()
         {

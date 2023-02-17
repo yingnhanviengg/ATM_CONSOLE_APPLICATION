@@ -47,12 +47,12 @@ namespace ATM_CONSOLE_APPLICATION.View
             Console.Clear();
             if (MenuLogin())
             {
-                if (ControllerBank_User.User.role.Equals("customer"))
+                if (ControllerBank_User.UserBank.role.Equals("customer"))
                 {
                     Menu = new MenuCustomer();
                     Menu.ShowMenu();
                 }
-                if (ControllerBank_User.User.role.Equals("admin"))
+                if (ControllerBank_User.UserBank.role.Equals("admin"))
                 {
                     Menu = new MenuAdmin();
                     Menu.ShowMenu();

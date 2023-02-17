@@ -12,17 +12,40 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         {
 
         }
+        public override bool Mail()
+        {
+            if (Language.Current_Language.Equals("Vietnamese"))
+            {
+                Mail_Vietnamese();
+            }
+            else if (Language.Current_Language.Equals("English"))
+            {
+                Mail_English();
+            }
+            code = GenerateRandomCode();
+            if (SendMail(ControllerBank_User._User.Email))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override void Mail_Vietnamese()
         {
-            base.Mail_Vietnamese();
-            Subject_Mail = "Mã xác nhận đăng ký tài khoản";
-            Body_Mail = "Đây là mã xác minh đăng ký tài khoản của bạn ";
+            SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
+            SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
+            subject = "Mã xác nhận đăng ký tài khoản";
+            body = $"Xin chào {ControllerBank_User._User.FullName} \n" +
+                $"Đây là mã xác minh đăng ký tài khoản {ControllerBank_User._User.Username} của bạn {code}";
         }
         public override void Mail_English()
         {
-            base.Mail_English();
-            Subject_Mail = "Account registration confirmation code";
-            Body_Mail = "This is your account registration verification code";
+            SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
+            SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
+            subject = "Account registration confirmation code";
+            body = "This is your account registration verification code";
         }       
     }
 }

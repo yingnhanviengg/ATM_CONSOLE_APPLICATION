@@ -14,8 +14,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public double Balance { get; set; }
         public DateTime created_at_bank { get; set; }
         public string status_bank { get; set; }
-        public static ModelBank_Account _User { get; set; }
-
+        public static ModelBank_Account _UserBank { get; set; }
         private static List<ModelBank_Account> _listBank_User;
         public static List<ModelBank_Account> _ListBank_User
         {
@@ -89,7 +88,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     if (mySqlDataReader.Read())
                     {
-                        _User = GetBank_User(mySqlDataReader);
+                        _UserBank = GetBank_User(mySqlDataReader);
+                        _User = ModelUser.GetUser(mySqlDataReader);
                         return true;
                     }
                     else
