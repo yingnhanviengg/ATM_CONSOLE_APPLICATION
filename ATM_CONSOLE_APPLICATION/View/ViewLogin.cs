@@ -35,7 +35,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         {
             string fullname = InputFullName();
             string gender = InputGender();
-            DateTime DateOfBirth = ConvertToDateTime();
+            DateTime DateOfBirth = InputDateTime();
             string user = InptUsername();
             string pass = InputPassword();
             string Address = InputAddress();
@@ -222,7 +222,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             Regex regex = new Regex(@"^[a-zA-Z0-9~!@#$%^&*()_\-+=\[\]{}\\|;:'"",<.>/?]+@gmail\.com$");
             return regex.IsMatch(email);
         }
-        private static DateTime ConvertToDateTime()
+        private static DateTime InputDateTime()
         {
             DateTime date;
             string inputDate;
