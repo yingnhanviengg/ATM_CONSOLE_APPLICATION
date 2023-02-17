@@ -21,8 +21,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public override void Mail_English()
         {
             base.Mail_English();
-            Subject_Mail = "Mã xác nhận đăng ký tài khoản123";
-            Body_Mail = " đây là mã xác minh đăng ký tài khoản của bạn123 ";
+            Subject_Mail = "Account registration confirmation code";
+            Body_Mail = "This is your account registration verification code";
         }       
     }
 }

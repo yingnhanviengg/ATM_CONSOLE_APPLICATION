@@ -15,14 +15,14 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public override void Mail_Vietnamese()
         {
             base.Mail_Vietnamese();
-            Subject_Mail = "Mã xác nhận rút tiền";
-            Body_Mail = " đây là mã xác minh rút tiền của bạn ";
+            Subject_Mail = "Mã xác nhận chuyển tiền";
+            Body_Mail = "Đây là mã xác minh chuyển tiền của bạn ";
         }
         public override void Mail_English()
         {
             base.Mail_English();
-            Subject_Mail = "Mã xác nhận đăng ký tài khoản123";
-            Body_Mail = " đây là mã xác minh đăng ký tài khoản của bạn123 ";
+            Subject_Mail = "Transfer confirmation code";
+            Body_Mail = "This is your transfer confirmation code";
         }
     }
 }
