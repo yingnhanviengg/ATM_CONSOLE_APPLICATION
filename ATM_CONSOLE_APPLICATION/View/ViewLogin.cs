@@ -231,14 +231,14 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     if (date < DateTime.MinValue || date > DateTime.MaxValue)
                     {
-                        Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
+                        Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
                         continue;
                     }
                     break;
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
+                    Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
                 }
             } while (true);
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
@@ -248,7 +248,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             else
             {
-                Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
+                Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
                 return default;
             }
         }

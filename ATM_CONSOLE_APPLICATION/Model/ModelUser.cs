@@ -39,6 +39,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.role = role;
             this.status_user = status_user;
         }
+        public ModelUser()
+        {
+
+        }
         public static bool IsRegister(string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string email, string phone)
         {
             try

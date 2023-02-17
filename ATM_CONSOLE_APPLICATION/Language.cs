@@ -11,6 +11,7 @@ namespace ATM_CONSOLE_APPLICATION
 {
     public class Language
     {
+        public static string Change_Language { get; set; }
         public static string Current_Language { get; set; }
         public static string Enter_Code { get; set; }
         public static string Error_Code { get; set; }
@@ -24,8 +25,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Recharge { get; set; }
         public static string Tranfer_Money { get; set; }
         public static string Bank_Deposit { get; set; }
-        public static string Transaction_History { get; set; }
-        public static string Languege { get; set; }
+        public static string Transaction_History { get; set; }    
         // Menu actor Admin
         public static string Check_Account_Information_Admin { get; set; }
         public static string Transaction_History_Admin { get; set; }
@@ -55,7 +55,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Register_Success { get; set; }
         public static string Registration_Failed { get; set; }
         public static string Error_Email_Already_Exists { get; set; }
-        public static string Error_Invalid_BateOfBirth { get; set; }
+        public static string Error_Invalid_DateOfBirth { get; set; }
         public static string Error_Phone_Already_Exists { get; set; }
         public static string Error_CNMD_CCCD_Already_Exists { get; set; }
         public static string Error_User_Already_Exists { get; set; }
@@ -77,7 +77,7 @@ namespace ATM_CONSOLE_APPLICATION
             Tranfer_Money = "Chuyển khoản";
             Bank_Deposit = "Gửi tiết kiệm";
             Transaction_History = "Kiểm tra lịch sử giao dịch";
-            Language = "Chuyển ngôn ngữ";
+            Change_Language = "Chuyển ngôn ngữ";
             // Menu actor Admin
             Check_Account_Information_Admin = "Kiểm tra thông tin tài khoản";
             Transaction_History_Admin = "Kiểm tra lịch sử giao dịch";
@@ -106,7 +106,7 @@ namespace ATM_CONSOLE_APPLICATION
             Error_Input_Pass = "Mật khẩu có tối thiểu 8 ký tự";
             Register_Success = "Đăng ký thành công";
             Registration_Failed = "Đăng ký thất bại";
-            Error_Invalid_BateOfBirth = "Nhập sai định dạng ngày tháng năm";
+            Error_Invalid_DateOfBirth = "Nhập sai định dạng ngày tháng năm";
             Error_Email_Already_Exists = "Email này đã được đăng ký trước";
             Error_Phone_Already_Exists = "Số điện thoại này đã được đăng ký trước";
             Error_User_Already_Exists = "Tên tài khoản đã được đăng ký trước";
@@ -127,7 +127,7 @@ namespace ATM_CONSOLE_APPLICATION
             Tranfer_Money = "Transfer Money";
             Bank_Deposit = "Bank Deposit";
             Transaction_History = "Check Transaction History";
-            Language = "Switch Language";
+            Change_Language = "Switch Language";
             // Menu actor Admin
             Check_Account_Information_Admin = "Check Account Information";
             Transaction_History_Admin = "Check Transaction History";

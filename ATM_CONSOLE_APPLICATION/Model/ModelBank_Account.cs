@@ -32,6 +32,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 _listBank_User = value;
             }
         }
+        public ModelBank_Account()
+        {
+
+        }
         public ModelBank_Account(
             int id_user, string fullname, DateTime dateofbirth, 
             string gender, string CMND_CCCD, string address, string user, 
