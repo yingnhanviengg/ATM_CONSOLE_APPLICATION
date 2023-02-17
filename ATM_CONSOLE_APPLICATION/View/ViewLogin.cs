@@ -48,7 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 if (Email.Send_Mail_Register(email, fullname))
                 {
                     Console.Write(Language.Enter_Code);
-                    string code = Console.ReadLine();
+                    string code = Console.ReadLine().Trim();
                     if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
                     {
                         Console.WriteLine(Language.Register_Success);
@@ -61,7 +61,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                             Console.WriteLine(Language.Error_Code);
                             Console.WriteLine(Language.Error_Code_Limit_3 + cout);
                             Console.Write(Language.Enter_Code);
-                            code = Console.ReadLine();
+                            code = Console.ReadLine().Trim();
                             if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
                             {
                                 Console.WriteLine(Language.Register_Success);
@@ -157,7 +157,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             do
             {
                 Console.Write(Language.Input_User);
-                user = Console.ReadLine();
+                user = Console.ReadLine().Trim();
                 if (IsValidUsername(user))
                 {
                     return user;
@@ -203,16 +203,15 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 Console.Write(Language.Input_Email);
                 email = Console.ReadLine().Trim();
-                if (!IsValidEmail(email))
+                if (IsValidEmail(email))
                 {
-                    Console.WriteLine(Language.Error_Input_Email);
+                    return email;
                 }
                 else
                 {
-                    break;
+                    Console.WriteLine(Language.Error_Input_Email);
                 }
             } while (true);
-            return email;
         }
         private static bool IsValidEmail(string email)
         {
@@ -230,25 +229,24 @@ namespace ATM_CONSOLE_APPLICATION.View
             do
             {
                 Console.Write(Language.Input_DateOfBirth);
-                inputDate = Console.ReadLine();
-                if (!DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                inputDate = Console.ReadLine().Trim();
+                if (DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
-                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                    if (date < DateTime.MinValue || date > DateTime.MaxValue)
+                    {
+                        Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                        continue;
+                    }
+                    break;
                 }
                 else
                 {
-                    break;
+                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
                 }
             } while (true);
-
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
             if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-            {
-                if (date < DateTime.MinValue || date > DateTime.MaxValue)
-                {
-                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
-                    return default;
-                }
+            {              
                 return date;
             }
             else
