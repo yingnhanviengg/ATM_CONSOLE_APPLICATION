@@ -59,7 +59,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             int result = ControllerUser.IsRegister();
             if (result == 1)
             {
-                TemplateMail templateMail = new TemplateMailRegister();
+                Email templateMail = new TemplateMailRegister();
                 if (templateMail.Mail())
                 {
                     Console.Write(Language.Enter_Code);

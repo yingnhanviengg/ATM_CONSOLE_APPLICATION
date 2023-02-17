@@ -64,7 +64,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
 
         public bool Register(string code)
         {
-            if (TemplateMail.code != null && TemplateMail.code.Equals(code))
+            if (Email.code != null && Email.code.Equals(code))
             {
                 if (ModelUser.IsRegister() && ModelBank_Account.Create_Bank_Account(ModelUser.Select_ID_User(_User.Username, _User.Email, _User.CMND_CCCD), GenerateRandomNumberBank()))
                 {

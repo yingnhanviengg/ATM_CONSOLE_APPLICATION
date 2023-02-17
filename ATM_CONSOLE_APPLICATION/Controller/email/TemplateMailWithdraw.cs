@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public class TemplateMailWithdraw : TemplateMail
+    public class TemplateMailWithdraw : Email
     {
         public TemplateMailWithdraw()
         {

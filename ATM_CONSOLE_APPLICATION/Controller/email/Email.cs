@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public abstract class TemplateMail
+    public abstract class Email
     {
         private static string from = "yingnhanviengg@gmail.com";
         private static string password = "keguitumpfxrvpus";
@@ -16,7 +16,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public string? subject { get; set; }
         public string? body { get; set; }
         public static string? code { get; set; }
-        public TemplateMail() {    }
+        public Email() {    }
         public abstract bool Mail();
         public abstract void Mail_Vietnamese();
         public abstract void Mail_English();

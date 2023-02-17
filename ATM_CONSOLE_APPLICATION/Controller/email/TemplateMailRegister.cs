@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public class TemplateMailRegister : TemplateMail
+    public class TemplateMailRegister : Email
     {
         public TemplateMailRegister()
         {

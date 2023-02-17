@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
-    public class TemplateMailTranfer_Money : TemplateMail
+    public class TemplateMailTranfer_Money : Email
     {
         public TemplateMailTranfer_Money()
         {
