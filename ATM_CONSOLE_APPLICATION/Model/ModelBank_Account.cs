@@ -46,6 +46,33 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at_bank = created_at_bank;
             this.status_bank = status_bank;
         }
+        public static bool Create_Bank_Account(int id_user, string number_bank)
+        {
+            try
+            {
+                string query = "INSERT HIGH_PRIORITY INTO bank_account(id_user, number_bank) VALUES (@id_user, @number_bank);";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@id_user", id_user);
+                mySqlCommand.Parameters.AddWithValue("@number_bank",number_bank);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
         public static bool IsLoggedIn(string user, string pass)
         {
             try

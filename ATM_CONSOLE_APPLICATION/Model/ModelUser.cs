@@ -74,6 +74,37 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 DBHelper.Close();
             }
         }
+        public static int Select_ID_User(string user, string email, string cmnd_cccd)
+        {
+            try
+            {
+                string query = "SELECT user.id_user FROM user WHERE user.username = @username AND user.email = @email AND user.cmnd_cccd = @cmnd_cccd";
+                using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
+                command.Parameters.AddWithValue("@username", user);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@cmnd_cccd", cmnd_cccd);
+                using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
+                {
+                    if (mySqlDataReader.Read())
+                    {
+                        return mySqlDataReader.GetInt32("id_user");
+                    }
+                    else
+                    {
+                        return 0;
+                    }                
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
         public static void GetListUser()
         {
             Controller.ControllerBank_User.ListUsers.Clear();

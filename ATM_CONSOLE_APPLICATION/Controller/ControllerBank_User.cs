@@ -35,47 +35,37 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }      
         public int IsRegister(string CMND_CCCD, string user, string mail, string phone)
         {
-            try
+            ModelBank_Account.GetList_All_Bank_User();
+            foreach (var item in ListBank_User)
             {
-                //ListBank_User = new List<ModelBank_Account>();
-                ModelBank_Account.GetList_All_Bank_User();
-                foreach (var item in ListBank_User)
+                if (item.Username.Equals(user)) // tài khoản đã tồn tại
                 {
-                    if (item.Username.Equals(user)) // tài khoản đã tồn tại
-                    {
-                        return -1;
-                    }
-                    else if (item.Email.Equals(mail)) // email đã tồn tại
-                    {
-                        return -2;
-                    }
-                    else if (item.Phone.Equals(phone)) // sdt đã tồn tại
-                    {
-                        return -3;
-                    }
-                    else if (item.CMND_CCCD.Equals(CMND_CCCD)) // CMND_CCCD đã tồn tại
-                    {
-                        return -4;
-                    }
+                    return -1;
                 }
-                return 1;
+                else if (item.Email.Equals(mail)) // email đã tồn tại
+                {
+                    return -2;
+                }
+                else if (item.Phone.Equals(phone)) // sdt đã tồn tại
+                {
+                    return -3;
+                }
+                else if (item.CMND_CCCD.Equals(CMND_CCCD)) // CMND_CCCD đã tồn tại
+                {
+                    return -4;
+                }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                ListBank_User.Clear();
-            }
+            return 1;
         }       
 
         public bool Register(string code, string fullname, string gender, DateTime DateOfBirth, string Address, string CMND_CCCD, string user, string pass, string mail, string phone)
         {
-            if (Email.code.Equals(code))
+            if (Email.code != null && Email.code.Equals(code))
             {
-                if (ModelUser.IsRegister(fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, mail, phone))
+                if (
+                    ModelUser.IsRegister(fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, mail, phone) 
+                    && ModelBank_Account.Create_Bank_Account(ModelUser.Select_ID_User(user, mail, CMND_CCCD), GenerateRandomNumberBank())
+                    )
                 {
                     return true;
                 }
@@ -88,6 +78,13 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 return false;
             }          
+        }
+        public string GenerateRandomNumberBank()
+        {
+            Random random = new Random();
+            const string chars = "0123456789";
+            return new string(Enumerable.Repeat(chars, 10)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         public bool IsLoggedIn(string user, string pass)
         {
