@@ -31,7 +31,7 @@
             Console.WriteLine(str);
             Console.ResetColor();
         }
-        public static bool YN()
+        public static bool Edit()
         {
             while (true)
             {
@@ -48,6 +48,23 @@
                 }
                 else { Console.WriteLine("Chỉ được nhập Y hoặc N"); }
             }
-        }      
+        }
+        public static bool CreatedCard()
+        {
+            while (true)
+            {
+                string x = Console.ReadLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                if (x.ToUpper().Equals("Y"))
+                {
+                    return true;
+                }
+                else if (x.ToUpper().Equals("N"))
+                {
+                    return false;
+                }
+                else { Console.WriteLine("Chỉ được nhập Y hoặc N"); }
+            }
+        }
     }
 }

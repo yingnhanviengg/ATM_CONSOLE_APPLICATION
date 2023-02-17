@@ -16,7 +16,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public static void MenuCustomer()
         {
-            string[] Menu_Customer = { Language.Check_Account_Information, Language.Create_ATM_Card, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Change_Language };
+            string[] Menu_Customer = { Language.Check_Account_Information, Language.Card_Management, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Change_Language };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i+1}: {Menu_Customer[i]}");
@@ -42,6 +42,8 @@ namespace ATM_CONSOLE_APPLICATION.View
                         Information.TableInformation_User();
                         break;
                     case 2:
+                        Console.Clear();
+                        Card.Card_Management();
                         break;
                     case 3:
                         break;
@@ -89,6 +91,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         public static void MeinMenu()
         {
             Change_Language();
+            Console.Clear();
             if (MenuLogin())
             {
                 if (ControllerBank_User.User.role.Equals("customer"))

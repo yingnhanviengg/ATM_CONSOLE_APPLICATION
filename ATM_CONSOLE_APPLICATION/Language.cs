@@ -19,7 +19,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Login { get; set; }
         public static string Register { get; set; }
         // Menu actor người dùng
-        public static string Create_ATM_Card { get; set; }
+        public static string Card_Management { get; set; }
         public static string Check_Account_Information { get; set; }
         public static string Withdraw_Money { get; set; }
         public static string Recharge { get; set; }
@@ -61,6 +61,11 @@ namespace ATM_CONSOLE_APPLICATION
         public static string Error_User_Already_Exists { get; set; }
         public static string Error_Limit_User_8_char { get; set; }
         public static string Error_Re_register { get; set; }
+        // Card
+        public static string Input_Card_Type { get; set; }
+        public static string Created_Card_Success { get; set; }
+        public static string Error_Create_Card { get; set; }
+        public static string No_CardYet { get; set; }
         public static void Vietnamese()
         {
             Current_Language = "Vietnamese";
@@ -70,7 +75,7 @@ namespace ATM_CONSOLE_APPLICATION
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
-            Create_ATM_Card = "Tạo thẻ ATM";
+            Card_Management = "Quản lý thẻ";
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
             Withdraw_Money = "Rút tiền";
             Recharge = "Nạp tiền";
@@ -113,6 +118,11 @@ namespace ATM_CONSOLE_APPLICATION
             Error_CNMD_CCCD_Already_Exists = "CMND hoặc CCCD đã được đăng ký trước";
             Error_Limit_User_8_char = "Tên tài khoản phải có tối thiểu 8 chữ số, không được phép có ký tự đặc biệt";
             Error_Re_register = "Nhập sai quá nhiều lần, vui lòng đăng ký lại";
+            // Card
+            Input_Card_Type = "Nhập loại thẻ muốn đăng ký (Napas - Visa - Mastercard): ";
+            Created_Card_Success = "Tạo thẻ thành công";
+            Error_Create_Card = "Tạo thẻ thất bại";
+            No_CardYet = "Bạn chưa tạo thẻ ngân hàng.\nCó muốn tạo thẻ ngân hàng ngay không? (Y/N)";
         }
         public static void English()
         {
@@ -120,7 +130,7 @@ namespace ATM_CONSOLE_APPLICATION
             // Menu actor người dùng
             Login = "Login";
             Register = "Register";
-            Create_ATM_Card = "Create ATM Card";
+            Card_Management = "Card Management";
             Check_Account_Information = "Check Account Information";
             Withdraw_Money = "Withdraw Money";
             Recharge = "Recharge";

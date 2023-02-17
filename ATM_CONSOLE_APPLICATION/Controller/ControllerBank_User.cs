@@ -92,7 +92,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {             
                 if (User.role.Equals("admin"))
                 {
-                    //ListBank_User = new List<ModelBank_Account>();
                     ModelBank_Account.GetList_All_Bank_User();
                 }
                 return true;
