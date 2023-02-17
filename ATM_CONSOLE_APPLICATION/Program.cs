@@ -13,7 +13,8 @@ namespace ATM_CONSOLE_APPLICATION
         {
             Console.InputEncoding = Console.OutputEncoding = Encoding.Unicode;
             Console.Title = "ATM CONSOLE APPLICATION";
-            MainMenu.MeinMenu();           
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.ShowMainMenu();
         }
     }
 }

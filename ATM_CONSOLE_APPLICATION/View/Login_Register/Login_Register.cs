@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ATM_CONSOLE_APPLICATION.Controller;
-using static Google.Apis.Requests.RequestError;
+using ATM_CONSOLE_APPLICATION.View.Information;
 
-namespace ATM_CONSOLE_APPLICATION.View
+namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
-    public class ViewLogin
+    public class Login_Register : ILogin_Register
     {
-        private static ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
-        public static bool Login()
+        public static Login_Register? _login_Register;
+
+        public Login_Register()
+        {
+
+        }
+        public static Login_Register _Login_Register
+        {
+            get
+            {
+                if (_login_Register == null)
+                {
+                    _login_Register = new Login_Register();
+                }
+                return _login_Register;
+            }
+        }
+        public ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
+        public bool Login()
         {
             string user = InptUsername();
             string pass = InputPassword();
@@ -32,7 +44,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             return false;
         }
-        public static void Register()
+        public void Register()
         {
             string fullname = InputFullName();
             string gender = InputGender();
@@ -71,16 +83,16 @@ namespace ATM_CONSOLE_APPLICATION.View
                             else
                             {
                                 cout--;
-                            }                        
+                            }
                         } while (cout != 0);
                         if (cout == 0)
                         {
                             Common.PrintMessage_Console(Language.Error_Re_register, false);
                         }
                     }
-                }              
+                }
             }
-            else if(result == -1)
+            else if (result == -1)
             {
                 Common.PrintMessage_Console(Language.Error_User_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
@@ -97,7 +109,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
         }
-        private static string InputCMND_CCCD()
+        public string InputCMND_CCCD()
         {
             while (true)
             {
@@ -113,7 +125,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Common.PrintMessage_Console(Language.Error_Input_CMND, false);
             }
         }
-        private static string InputGender()
+        public string InputGender()
         {
             while (true)
             {
@@ -126,13 +138,13 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Common.PrintMessage_Console(Language.Error_Input_Gender, false);
             }
         }
-        private static string InputFullName()
+        public string InputFullName()
         {
             Console.Write(Language.Input_Fullname);
             string fullname = Console.ReadLine();
-            return fullname = StandardizeString(fullname);           
+            return fullname = StandardizeString(fullname);
         }
-        private static string InputPassword()
+        public string InputPassword()
         {
             do
             {
@@ -148,7 +160,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
             } while (true);
         }
-        private static string InptUsername()
+        public string InptUsername()
         {
             string user;
             do
@@ -165,14 +177,13 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
             } while (true);
         }
-        private static string InputAddress()
+        public string InputAddress()
         {
             Console.Write(Language.Input_Address);
             string Address = Console.ReadLine();
             return Address = StandardizeString(Address);
         }
-
-        private static string GetPhoneNumber()
+        public string GetPhoneNumber()
         {
             string phoneNumber = string.Empty;
             bool isValidPhoneNumber = false;
@@ -182,7 +193,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 Console.Write(Language.Input_Phone);
                 phoneNumber = Console.ReadLine().Trim();
 
-                if (phoneNumber.StartsWith("0") && phoneNumber.All(char.IsDigit) && (phoneNumber.Length >= 9 && phoneNumber.Length <= 11))
+                if (phoneNumber.StartsWith("0") && phoneNumber.All(char.IsDigit) && phoneNumber.Length >= 9 && phoneNumber.Length <= 11)
                 {
                     isValidPhoneNumber = true;
                 }
@@ -193,7 +204,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             return phoneNumber;
         }
-        private static string GetValidEmail()
+        public string GetValidEmail()
         {
             string email;
             do
@@ -210,7 +221,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
             } while (true);
         }
-        private static bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
@@ -219,7 +230,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             Regex regex = new Regex(@"^[a-zA-Z0-9~!@#$%^&*()_\-+=\[\]{}\\|;:'"",<.>/?]+@gmail\.com$");
             return regex.IsMatch(email);
         }
-        private static DateTime InputDateTime()
+        public DateTime InputDateTime()
         {
             DateTime date;
             string inputDate;
@@ -243,7 +254,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             } while (true);
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
             if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-            {              
+            {
                 return date;
             }
             else
@@ -252,7 +263,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 return default;
             }
         }
-        private static string StandardizeString(string str)
+        public string StandardizeString(string str)
         {
             str = str.Trim();
             str = str.ToLower();
@@ -268,13 +279,13 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             return Ghep_Chuoi.TrimEnd();
         }
-        public static bool IsValidUsername(string str)
+        public bool IsValidUsername(string str)
         {
             string pattern = @"^[a-zA-Z0-9]*$";
             Regex regex = new(pattern);
             return regex.IsMatch(str) && str.Length >= 8;
         }
-        private static string GetPassword()
+        public string GetPassword()
         {
             string pass = string.Empty;
             ConsoleKey key;

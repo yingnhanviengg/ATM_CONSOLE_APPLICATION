@@ -174,5 +174,30 @@ namespace ATM_CONSOLE_APPLICATION
             Error_Limit_User_8_char = "Account name must have at least 8 characters and special characters are not allowed";
             Error_Re_register = "Entered incorrectly too many times, please re-register!";
         }
+        public static void _Change_Language()
+        {
+            while (true)
+            {
+                int x;
+                Console.WriteLine("1: English");
+                Console.WriteLine("2: Vietnamese");
+                switch (x = Common.Choose())
+                {
+                    case 1:
+                        Language.English();
+                        break;
+                    case 2:
+                        Language.Vietnamese();
+                        break;
+                    default:
+                        Common.PrintMessage_Console(Language.Exception_choose_switch, false);
+                        break;
+                }
+                if (x == 1 || x == 2)
+                {
+                    break;
+                }
+            }
+        }
     }
 }

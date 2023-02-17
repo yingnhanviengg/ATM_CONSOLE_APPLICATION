@@ -5,68 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.View.Menu;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
-    public sealed class MainMenu
-    {       
+    public class MainMenu
+    {
         public MainMenu()
         {
 
         }
-        public static void MenuCustomer()
+        public bool MenuLogin()
         {
-            string[] Menu_Customer = { Language.Check_Account_Information, Language.Card_Management, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Change_Language };
-            for (int i = 0; i < Menu_Customer.Length; i++)
-            {
-                Console.WriteLine($"{i+1}: {Menu_Customer[i]}");
-            }
-        }
-        public static void MenuAdmin()
-        {
-            string[] Menu_Admin = {Language.Check_Account_Information_Admin, Language.Transaction_History_Admin, Language.Transaction_Statistics};
-            for (int i = 0; i < Menu_Admin.Length; i++)
-            {
-                Console.WriteLine($"{i+1}: {Menu_Admin[i]}");
-            }
-        }
-        public static void ShowMenuCusomer()
-        {
-            do
-            {              
-                MenuCustomer();
-                switch (Common.Choose())
-                {
-                    case 1:
-                        Console.Clear();
-                        Information.TableInformation_User();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        Card.Card_Management();
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        Change_Language();
-                        break;
-                    default:
-                        Console.WriteLine(Language.Exception_choose_switch);
-                        break;
-                }
-            } while (true);
-        }
-        public static bool MenuLogin()
-        {        
             bool result = false;
+            Login_Register.Login_Register login_Register = Login_Register.Login_Register._Login_Register;
             do
             {
                 Console.WriteLine("1: " + Language.Login);
@@ -75,11 +27,11 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     case 1:
                         Console.Clear();
-                        result = ViewLogin.Login();
+                        result = login_Register.Login();
                         break;
                     case 2:
                         Console.Clear();
-                        ViewLogin.Register();
+                        login_Register.Register();
                         break;
                     default:
                         Common.PrintMessage_Console(Language.Exception_choose_switch, false);
@@ -88,46 +40,24 @@ namespace ATM_CONSOLE_APPLICATION.View
             } while (!result);
             return result;
         }
-        public static void MeinMenu()
+        public void ShowMainMenu()
         {
-            Change_Language();
+            AbstractMenu Menu;
+            Language._Change_Language();
             Console.Clear();
             if (MenuLogin())
             {
                 if (ControllerBank_User.User.role.Equals("customer"))
                 {
-                    ShowMenuCusomer();
+                    Menu = new MenuCustomer();
+                    Menu.ShowMenu();
                 }
                 if (ControllerBank_User.User.role.Equals("admin"))
                 {
-                    Console.WriteLine("menu admin");
-                }
-            }         
-        }
-        public static void Change_Language()
-        {
-            while (true)
-            {
-                int x;
-                Console.WriteLine("1: English");
-                Console.WriteLine("2: Vietnamese");
-                switch (x = Common.Choose())
-                {
-                    case 1:
-                        Language.English();
-                        break;
-                    case 2:
-                        Language.Vietnamese();
-                        break;
-                    default:
-                        Common.PrintMessage_Console(Language.Exception_choose_switch, false);
-                        break;
-                }
-                if (x == 1 || x == 2)
-                {
-                    break;
+                    Menu = new MenuAdmin();
+                    Menu.ShowMenu();
                 }
             }
-        }
+        }       
     }
 }

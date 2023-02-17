@@ -8,11 +8,28 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATM_CONSOLE_APPLICATION.View
+namespace ATM_CONSOLE_APPLICATION.View.Card
 {
-    public class Card
+    public class CardCustomer : AbstractCard
     {
-        public static void Card_Management()
+        private static CardCustomer? _cardCustomer;
+
+        private CardCustomer()
+        {
+
+        }
+        public static CardCustomer _CardCustomer
+        {
+            get
+            {
+                if (_cardCustomer == null)
+                {
+                    _cardCustomer = new CardCustomer();
+                }
+                return _cardCustomer;
+            }
+        }
+        public override void Card_Management()
         {
             if (ControllerBank_User.User.role.Equals("customer"))
             {
@@ -35,7 +52,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 ModelCard.GetListCard();
             }
         }
-        public static void TableCard()
+        public override void TableCard()
         {
             Table table = new Table();
             table.Border(TableBorder.AsciiDoubleHead);
@@ -45,17 +62,16 @@ namespace ATM_CONSOLE_APPLICATION.View
             table.AddColumn("[springgreen2_1]CVV[/]");
             table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
             table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
-            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Card_Type}",
-                $"{ControllerCard.Card.CVV}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}");
+            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Card_Type}",$"{ControllerCard.Card.CVV}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}");
             AnsiConsole.Write(table);
             table.Rows.Clear();
         }
-        private static string DateOfBirthToString(DateTime item)
+        public override string DateOfBirthToString(DateTime item)
         {
             return item.Date.ToString("dd/MM/yyyy");
         }
-        public static void CreateCrad()
-        {         
+        public void CreateCrad()
+        {
             string CardType = InputCardType();
             if (ControllerCard.CreateCard(CardType))
             {
@@ -63,10 +79,10 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             else
             {
-                Console.WriteLine(Language.Error_Create_Card,false);
+                Console.WriteLine(Language.Error_Create_Card, false);
             }
         }
-        private static string InputCardType()
+        private string InputCardType()
         {
             do
             {
@@ -76,7 +92,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     return CardType;
                 }
-            } while (true);           
+            } while (true);
         }
     }
 }
