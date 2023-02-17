@@ -19,13 +19,13 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         }
         public virtual void Mail_Vietnamese()
         {
-            Hello_Mail = "Xin chào ...";
+            Hello_Mail = "Xin chào ";
             SendMail_Success = "Gửi email thành công hãy kiểm tra gmail của bạn";
             SendMail_Error = "Gửi mail không thành công";
         }
         public virtual void Mail_English()
         {
-            Hello_Mail = "Hello...";
+            Hello_Mail = "Hello ";
             SendMail_Success = "Email sent successfully. Please check your gmail!";
             SendMail_Error = "Email sent failed. Please check again!";
         }
