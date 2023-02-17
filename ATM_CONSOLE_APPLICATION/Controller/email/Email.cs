@@ -17,8 +17,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string? code { get; set; }
         public static void MailWithdraw(string fullname)
         {
-            TemplateMailWithdraw template = new TemplateMailWithdraw();
-            // Tiêu đề email
+            TemplateMailWithdraw template = new TemplateMailWithdraw();         
             if (Language.Current_Language.Equals("Vietnamese"))
             {
                 template.Mail_Vietnamese();
@@ -27,15 +26,15 @@ namespace ATM_CONSOLE_APPLICATION
             {
                 template.Mail_English();
             }
+            // Tiêu đề email
             subject = TemplateMail.Subject_Mail;
             // Nội dung email
             code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\" " + code + "\" ";
+            body = TemplateMail.Hello_Mail + fullname + "\n" + TemplateMail.Body_Mail + "\" " + code + "\" ";
         }
         public static void MailRegister(string fullname)
         {
-            TemplateMailRegister template = new TemplateMailRegister();
-            // Tiêu đề email
+            TemplateMailRegister template = new TemplateMailRegister();           
             if (Language.Current_Language.Equals("Vietnamese"))
             {
                 template.Mail_Vietnamese();
@@ -44,18 +43,19 @@ namespace ATM_CONSOLE_APPLICATION
             {
                 template.Mail_English();
             }
+            // Tiêu đề email
             subject = TemplateMail.Subject_Mail;
             // Nội dung email
             code = GenerateRandomCode();
-            body = TemplateMail.Hello_Mail + fullname + TemplateMail.Body_Mail + "\" " + code + "\" ";
+            body = TemplateMail.Hello_Mail + fullname + "\n" + TemplateMail.Body_Mail + "\" " + code + "\" ";
         }
         public static bool SendMail(string to)
         {               
             bool success = false;
             // Tạo message email
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("", from));
-            message.To.Add(new MailboxAddress("", to));
+            message.From.Add(new MailboxAddress("ATM CONSOLE APPLICATION", from));
+            message.To.Add(new MailboxAddress("Customer", to));
             message.Subject = subject;
             message.Body = new TextPart("plain") { Text = body };
             try

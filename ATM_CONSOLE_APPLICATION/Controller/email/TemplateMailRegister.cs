@@ -16,7 +16,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         {
             base.Mail_Vietnamese();
             Subject_Mail = "Mã xác nhận đăng ký tài khoản";
-            Body_Mail = " đây là mã xác minh đăng ký tài khoản của bạn ";
+            Body_Mail = "Đây là mã xác minh đăng ký tài khoản của bạn ";
         }
         public override void Mail_English()
         {
