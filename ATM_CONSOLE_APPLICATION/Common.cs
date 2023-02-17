@@ -14,9 +14,22 @@
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine(Language.Exception_choose);
+                    PrintMessage_Console(Language.Exception_choose, false);
                 }
             }
+        }
+        public static void PrintMessage_Console(string str, bool status)
+        {
+            if (status)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            Console.WriteLine(str);
+            Console.ResetColor();
         }
         public static bool YN()
         {

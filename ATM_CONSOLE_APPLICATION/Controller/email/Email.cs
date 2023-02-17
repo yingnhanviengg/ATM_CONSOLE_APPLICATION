@@ -73,12 +73,12 @@ namespace ATM_CONSOLE_APPLICATION
 
                     client.Disconnect(true);
                 }
-                Console.WriteLine(TemplateMail.SendMail_Success);
+                Common.PrintMessage_Console(TemplateMail.SendMail_Success, true);
                 success = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(TemplateMail.SendMail_Error + ex.Message);
+                Common.PrintMessage_Console(TemplateMail.SendMail_Error + ex.Message, false);
                 success = false;
             }
             return success;

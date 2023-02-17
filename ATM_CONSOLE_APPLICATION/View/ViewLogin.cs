@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ATM_CONSOLE_APPLICATION.Controller;
+using static Google.Apis.Requests.RequestError;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
@@ -20,12 +21,12 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 if (ControllerUser.IsLoggedIn(user, pass))
                 {
-                    Console.WriteLine(Language.Notification_Login_True);
+                    Common.PrintMessage_Console(Language.Notification_Login_True, true);
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine(Language.Notification_Login_Fasle);
+                    Common.PrintMessage_Console(Language.Notification_Login_Fasle, false);
                     return false;
                 }
             }
@@ -51,20 +52,20 @@ namespace ATM_CONSOLE_APPLICATION.View
                     string code = Console.ReadLine().Trim();
                     if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
                     {
-                        Console.WriteLine(Language.Register_Success);
+                        Common.PrintMessage_Console(Language.Register_Success, true);
                     }
                     else
                     {
                         int cout = 3;
                         do
                         {
-                            Console.WriteLine(Language.Error_Code);
-                            Console.WriteLine(Language.Error_Code_Limit_3 + cout);
+                            Common.PrintMessage_Console(Language.Error_Code, false);
+                            Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
                             Console.Write(Language.Enter_Code);
                             code = Console.ReadLine().Trim();
                             if (ControllerUser.Register(code, fullname, gender, DateOfBirth, Address, CMND_CCCD, user, pass, email, phone))
                             {
-                                Console.WriteLine(Language.Register_Success);
+                                Common.PrintMessage_Console(Language.Register_Success, true);
                                 break;
                             }
                             else
@@ -74,30 +75,26 @@ namespace ATM_CONSOLE_APPLICATION.View
                         } while (cout != 0);
                         if (cout == 0)
                         {
-                            Console.WriteLine(Language.Error_Re_register);
+                            Common.PrintMessage_Console(Language.Error_Re_register, false);
                         }
                     }
                 }              
             }
             else if(result == -1)
             {
-                Console.WriteLine(Language.Error_User_Already_Exists);
-                Console.WriteLine(Language.Registration_Failed);
+                Common.PrintMessage_Console(Language.Error_User_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
             else if (result == -2)
             {
-                Console.WriteLine(Language.Error_Email_Already_Exists);
-                Console.WriteLine(Language.Registration_Failed);
+                Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
             else if (result == -3)
             {
-                Console.WriteLine(Language.Error_Phone_Already_Exists);
-                Console.WriteLine(Language.Registration_Failed);
+                Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
             else if (result == -4)
             {
-                Console.WriteLine(Language.Error_CNMD_CCCD_Already_Exists);
-                Console.WriteLine(Language.Registration_Failed);
+                Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
             }
         }
         private static string InputCMND_CCCD()
@@ -113,7 +110,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                         return id;
                     }
                 }
-                Console.WriteLine(Language.Error_Input_CMND);
+                Common.PrintMessage_Console(Language.Error_Input_CMND, false);
             }
         }
         private static string InputGender()
@@ -126,7 +123,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     return char.ToUpper(gender[0]) + gender.Substring(1);
                 }
-                Console.WriteLine(Language.Error_Input_Gender);
+                Common.PrintMessage_Console(Language.Error_Input_Gender, false);
             }
         }
         private static string InputFullName()
@@ -147,7 +144,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Console.WriteLine(Language.Error_Input_Pass);
+                    Common.PrintMessage_Console(Language.Error_Input_Pass, false);
                 }
             } while (true);
         }
@@ -164,7 +161,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Console.WriteLine(Language.Error_Limit_User_8_char);
+                    Common.PrintMessage_Console(Language.Error_Limit_User_8_char, false);
                 }
             } while (true);
         }
@@ -191,7 +188,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Console.WriteLine(Language.Error_Input_Phone);
+                    Common.PrintMessage_Console(Language.Error_Input_Phone, false);
                 }
             }
             return phoneNumber;
@@ -209,7 +206,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Console.WriteLine(Language.Error_Input_Email);
+                    Common.PrintMessage_Console(Language.Error_Input_Email, false);
                 }
             } while (true);
         }
@@ -234,14 +231,14 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     if (date < DateTime.MinValue || date > DateTime.MaxValue)
                     {
-                        Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                        Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
                         continue;
                     }
                     break;
                 }
                 else
                 {
-                    Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                    Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
                 }
             } while (true);
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
@@ -251,7 +248,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             else
             {
-                Console.WriteLine(Language.Error_Invalid_BateOfBirth);
+                Common.PrintMessage_Console(Language.Error_Invalid_BateOfBirth, false);
                 return default;
             }
         }

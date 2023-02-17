@@ -80,7 +80,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                         ViewLogin.Register();
                         break;
                     default:
-                        Console.WriteLine(Language.Exception_choose_switch);
+                        Common.PrintMessage_Console(Language.Exception_choose_switch, false);
                         break;
                 }
             } while (!result);
@@ -117,7 +117,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                         Language.Vietnamese();
                         break;
                     default:
-                        Console.WriteLine(Language.Exception_choose_switch);
+                        Common.PrintMessage_Console(Language.Exception_choose_switch, false);
                         break;
                 }
                 if (x == 1 || x == 2)
