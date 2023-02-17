@@ -44,6 +44,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         Console.Clear();
                         Update_Information();
                         break;
+                    case 3:
+                        Console.Clear();
+                        MainMenu.Menu.ShowMenu();
+                        break;
                     default:
                         break;
                 }

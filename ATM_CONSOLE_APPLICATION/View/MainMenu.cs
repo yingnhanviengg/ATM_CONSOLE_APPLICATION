@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Model;
 using ATM_CONSOLE_APPLICATION.View.Menu;
 
 namespace ATM_CONSOLE_APPLICATION.View
@@ -13,7 +14,30 @@ namespace ATM_CONSOLE_APPLICATION.View
     {
         public MainMenu()
         {
-
+            
+        }
+        private static AbstractMenu _menu;
+        public static AbstractMenu Menu
+        {
+            get
+            {
+                if (_menu == null)
+                {
+                    if (ControllerBank_User.UserBank.role.Equals("customer"))
+                    {
+                        _menu = new MenuCustomer();
+                    }
+                    if (ControllerBank_User.UserBank.role.Equals("admin"))
+                    {
+                        _menu = new MenuAdmin();
+                    }
+                }
+                return _menu;
+            }
+            set
+            {
+                _menu = value;
+            }
         }
         public bool MenuLogin()
         {
@@ -42,19 +66,16 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public void ShowMainMenu()
         {
-            AbstractMenu Menu;
             Language._Change_Language();
             Console.Clear();
             if (MenuLogin())
             {
                 if (ControllerBank_User.UserBank.role.Equals("customer"))
                 {
-                    Menu = new MenuCustomer();
                     Menu.ShowMenu();
                 }
                 if (ControllerBank_User.UserBank.role.Equals("admin"))
                 {
-                    Menu = new MenuAdmin();
                     Menu.ShowMenu();
                 }
             }

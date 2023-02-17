@@ -24,8 +24,22 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at { get; set; }
         public string role { get; set; }    
         public string status_user { get; set; }
-        public static ModelUser _User { get; set; }
-
+        private static ModelUser _user;
+        public static ModelUser _User
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    _user = new ModelUser();
+                }
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
         public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
         {
             this.ID_User = id_user;

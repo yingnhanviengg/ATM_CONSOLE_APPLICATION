@@ -15,7 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public string? SendMail_Error { get; set; }
         public string? subject { get; set; }
         public string? body { get; set; }
-        public static string? code { get; set; }
+        public static string code { get; set; }
         public Email() {    }
         public abstract bool Mail();
         public abstract void Mail_Vietnamese();
