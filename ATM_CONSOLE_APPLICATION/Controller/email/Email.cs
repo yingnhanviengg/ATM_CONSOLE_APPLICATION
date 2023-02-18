@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
@@ -17,11 +19,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public string? subject { get; set; }
         public string? body { get; set; }
         public static string code { get; set; }
-        public static string signature { get; set; } = "\n=================================================\n" +
-            "ATM CONSOLE APPLICATION\n" +
-            "Coded with love by Ying and VuAnh, This code is the product of countless cups of coffee\n" +
-            "Email: yingnhanviengg@gmail.com or anhvt290791@gmail.com\n" +
-            "Phone: 0345211459";
+        public static string signature { get; set; }
         public Email() {    }
         public abstract bool Mail(ModelBank_Account modelBank_Account);
         public abstract void Mail_Vietnamese(ModelBank_Account modelBank_Account);
@@ -34,7 +32,13 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             message.From.Add(new MailboxAddress("ATM CONSOLE APPLICATION", from));
             message.To.Add(new MailboxAddress("Customer", to));
             message.Subject = subject;
-            message.Body = new TextPart("plain") { Text = body };
+            signature = "<p style='font-size: 10px; color: gray;'>ATM CONSOLE APPLICATION<br/>" +
+            "Coded with love by Ying and VuAnh, This code is the product of countless cups of coffee<br/>" +
+            "Email: yingnhanviengg@gmail.com or anhvt290791@gmail.com<br/>" +
+            "Phone: 0345211459</p>" +
+            "<hr style='border-top: 3px solid #ccc; margin: 10px 0;'>";
+
+            message.Body = new TextPart("html") { Text = body + signature };
             try
             {
                 // Tạo kết nối SMTP

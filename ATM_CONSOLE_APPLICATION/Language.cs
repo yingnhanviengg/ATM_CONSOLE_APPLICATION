@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM_CONSOLE_APPLICATION.View;
-using static Google.Apis.Requests.RequestError;
 
 namespace ATM_CONSOLE_APPLICATION
 {

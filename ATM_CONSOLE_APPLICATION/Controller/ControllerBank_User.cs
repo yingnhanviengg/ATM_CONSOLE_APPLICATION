@@ -36,7 +36,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Upate_Information(ModelBank_Account modelBank_Account)
         {         
-            if (ModelUser.Update_Information(modelBank_Account))
+            if (modelBank_Account.Update_Information(modelBank_Account))
             {
                 if (UserBank.role.Equals("customer") || modelBank_Account.ID_User.Equals(UserBank.ID_User))
                 {
@@ -131,11 +131,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 return false;
             }           
-            bool isUserRegistered = ModelUser.IsRegister(modelBank_Account);
-            bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(ModelUser.Select_ID_User(modelBank_Account), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
+            bool isUserRegistered = modelBank_Account.IsRegister(modelBank_Account);
+            bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(modelBank_Account.Select_ID_User(modelBank_Account), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
             Email templateMail = new TempMailRegister_Success();
             bool isMailSent = templateMail.Mail(modelBank_Account);
-
             return isUserRegistered && isBankAccountCreated && isMailSent;
         }
 
