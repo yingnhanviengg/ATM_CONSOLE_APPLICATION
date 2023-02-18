@@ -10,6 +10,22 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class InputisValid
     {
+        public static int InputIDUser()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write(Language.Input_IDUser);
+                    int iduser = Convert.ToInt32(Console.ReadLine().Trim());
+                    return iduser;
+                }
+                catch (FormatException)
+                {
+                    Common.PrintMessage_Console(Language.Exception_choose, false);
+                }               
+            }
+        }
         public static string InputCMND_CCCD()
         {
             while (true)

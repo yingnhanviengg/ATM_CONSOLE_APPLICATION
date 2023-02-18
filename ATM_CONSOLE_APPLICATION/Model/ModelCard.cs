@@ -16,7 +16,19 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime Expiration_Date { get; set; }
         public string Status_Card { get; set; }
         public DateTime Created_at_Card { get; set; }
-        public static ModelCard Card { get; set; }
+        private static ModelCard _Card;
+        public static ModelCard Card
+        {
+            get
+            {
+                if (_Card == null)
+                {
+                    _Card = new ModelCard();
+                }
+                return _Card;
+            }
+            set { _Card = value; }
+        }
         private static List<ModelCard> _ListCards;
         public static List<ModelCard> ListCards
         {
@@ -29,6 +41,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 return _ListCards;
             }
             set { _ListCards = value; }
+        }
+        public ModelCard()
+        {
+
         }
         public ModelCard(int id_card, int id_bank, string number_card, string card_type, string cvv, DateTime expiration_Date, string status, DateTime created_at_card)
         {

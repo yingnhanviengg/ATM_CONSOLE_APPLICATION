@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATM_CONSOLE_APPLICATION.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,15 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         {
 
         }
-        public override bool Mail()
+        public override bool Mail(ModelBank_Account modelBank_Account)
         {
             if (Language.Current_Language.Equals("Vietnamese"))
             {
-                Mail_Vietnamese();
+                Mail_Vietnamese(modelBank_Account);
             }
             else if (Language.Current_Language.Equals("English"))
             {
-                Mail_English();
+                Mail_English(modelBank_Account);
             }
             if (SendMail(Language.Current_Language))
             {
@@ -31,12 +32,12 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
                 return false;
             }
         }
-        public override void Mail_Vietnamese()
+        public override void Mail_Vietnamese(ModelBank_Account modelBank_Account)
         {
             subject = "Mã xác nhận chuyển tiền";
             body = "Đây là mã xác minh chuyển tiền của bạn ";
         }
-        public override void Mail_English()
+        public override void Mail_English(ModelBank_Account modelBank_Account)
         {
             subject = "Transfer confirmation code";
             body = "This is your transfer confirmation code";

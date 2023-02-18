@@ -78,6 +78,7 @@ namespace ATM_CONSOLE_APPLICATION
         public static string SDT_Current { get; set; }
         public static string Update_Information_Success { get; set; }
         public static string Update_Information_Error { get; set; }
+        public static string Input_IDUser { get; set; }
 
         public static void Vietnamese()
         {
@@ -148,6 +149,7 @@ namespace ATM_CONSOLE_APPLICATION
             SDT_Current = "Số điện thoại hiện tại: ";
             Update_Information_Success = "Cập nhật thông tin tài khoản thành công";
             Update_Information_Error = "Cập nhật thông tin tài khoản thất bại";
+            Input_IDUser = "Nhập ID khách hàng: ";
         }
         public static void English()
         {

@@ -1,4 +1,5 @@
-﻿using MimeKit;
+﻿using ATM_CONSOLE_APPLICATION.Model;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,15 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public string? subject { get; set; }
         public string? body { get; set; }
         public static string code { get; set; }
+        public static string signature { get; set; } = "\n=================================================\n" +
+            "ATM CONSOLE APPLICATION\n" +
+            "Coded with love by Ying and VuAnh, This code is the product of countless cups of coffee\n" +
+            "Email: yingnhanviengg@gmail.com or anhvt290791@gmail.com\n" +
+            "Phone: 0345211459";
         public Email() {    }
-        public abstract bool Mail();
-        public abstract void Mail_Vietnamese();
-        public abstract void Mail_English();
+        public abstract bool Mail(ModelBank_Account modelBank_Account);
+        public abstract void Mail_Vietnamese(ModelBank_Account modelBank_Account);
+        public abstract void Mail_English(ModelBank_Account modelBank_Account);
         public bool SendMail(string to)
         {
             bool success = false;

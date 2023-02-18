@@ -32,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public static bool CreateCard(string cardtype)
         {
-            if (ModelCard.CreateCard(ModelBank_Account._UserBank.ID_Bank, GenerateRandomNumberCard(), cardtype, GenerateRandomNumberCVV(), Expiration_Date()))
+            if (ModelCard.CreateCard(ModelBank_Account.UserBank.ID_Bank, GenerateRandomNumberCard(), cardtype, GenerateRandomNumberCVV(), Expiration_Date()))
             {
                 return true;
             }

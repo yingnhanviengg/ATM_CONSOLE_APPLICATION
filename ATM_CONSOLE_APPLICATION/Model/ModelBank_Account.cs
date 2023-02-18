@@ -14,7 +14,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public double Balance { get; set; }
         public DateTime created_at_bank { get; set; }
         public string status_bank { get; set; }
-        public static ModelBank_Account _UserBank { get; set; }
+        public static ModelBank_Account UserBank { get; set; }
         private static List<ModelBank_Account> _listBank_User;
         public static List<ModelBank_Account> _ListBank_User
         {
@@ -34,6 +34,20 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public ModelBank_Account()
         {
 
+        }
+        public ModelBank_Account(int id_user , string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string user, string pass, string email, string phone, string number_bank)
+        {
+            this.ID_User = id_user;
+            this.FullName = fullname;
+            this.DateOfBirth = dateofbirth;
+            this.Gender = gender;
+            this.CMND_CCCD = cmnd_cccd;
+            this.Address = address;
+            this.Username = user;
+            this.Password = pass;
+            this.Email = email;
+            this.Phone = phone;
+            this.Number_Bank = number_bank;
         }
         public ModelBank_Account(
             int id_user, string fullname, DateTime dateofbirth, 
@@ -88,8 +102,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     if (mySqlDataReader.Read())
                     {
-                        _UserBank = GetBank_User(mySqlDataReader);
-                        _User = ModelUser.GetUser(mySqlDataReader);
+                        UserBank = GetBank_User(mySqlDataReader);
                         return true;
                     }
                     else

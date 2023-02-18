@@ -1,4 +1,5 @@
-﻿using ATM_CONSOLE_APPLICATION.View.Information;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.View.Information;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -24,22 +25,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at { get; set; }
         public string role { get; set; }    
         public string status_user { get; set; }
-        private static ModelUser _user;
-        public static ModelUser _User
-        {
-            get
-            {
-                if (_user == null)
-                {
-                    _user = new ModelUser();
-                }
-                return _user;
-            }
-            set
-            {
-                _user = value;
-            }
-        }
         public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
         {
             this.ID_User = id_user;
@@ -60,21 +45,21 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
 
         }
-        public static bool IsRegister()
+        public static bool IsRegister(ModelBank_Account modelBank_Account)
         {
             try
             {
                 string query = "INSERT HIGH_PRIORITY INTO user(full_name, Date_Of_Birth, gender, cmnd_cccd, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @gender, @cmnd_cccd, @address, @username, @password, @email, @numberphone);";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
-                mySqlCommand.Parameters.AddWithValue("@fullname", _User.FullName);
-                mySqlCommand.Parameters.AddWithValue("@dateofbirth", _User.DateOfBirth);
-                mySqlCommand.Parameters.AddWithValue("@gender", _User.Gender);
-                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", _User.CMND_CCCD);
-                mySqlCommand.Parameters.AddWithValue("@address", _User.Address);
-                mySqlCommand.Parameters.AddWithValue("@username", _User.Username);
-                mySqlCommand.Parameters.AddWithValue("@password", _User.Password);
-                mySqlCommand.Parameters.AddWithValue("@email", _User.Email);
-                mySqlCommand.Parameters.AddWithValue("@numberphone", _User.Phone);
+                mySqlCommand.Parameters.AddWithValue("@fullname", modelBank_Account.FullName);
+                mySqlCommand.Parameters.AddWithValue("@dateofbirth", modelBank_Account.DateOfBirth);
+                mySqlCommand.Parameters.AddWithValue("@gender", modelBank_Account.Gender);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", modelBank_Account.CMND_CCCD);
+                mySqlCommand.Parameters.AddWithValue("@address", modelBank_Account.Address);
+                mySqlCommand.Parameters.AddWithValue("@username", modelBank_Account.Username);
+                mySqlCommand.Parameters.AddWithValue("@password", modelBank_Account.Password);
+                mySqlCommand.Parameters.AddWithValue("@email", modelBank_Account.Email);
+                mySqlCommand.Parameters.AddWithValue("@numberphone", modelBank_Account.Phone);
                 if (mySqlCommand.ExecuteNonQuery() != 0)
                 {
                     return true;
@@ -95,20 +80,20 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 DBHelper.Close();
             }
         }
-        public static bool Update_Information(int iduser, string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string email, string phone)
+        public static bool Update_Information(ModelBank_Account modelBank_Account)
         {
             try
             {
                 string query = "UPDATE user SET full_name = @fullname, Date_Of_Birth = @dateofbirth, gender = @gender, cmnd_cccd = @cmnd_cccd, Address = @address, email = @email, number_phone = @numberphone WHERE id_user = @iduser;";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
-                mySqlCommand.Parameters.AddWithValue("@iduser", iduser);
-                mySqlCommand.Parameters.AddWithValue("@fullname", fullname);
-                mySqlCommand.Parameters.AddWithValue("@dateofbirth", dateofbirth);
-                mySqlCommand.Parameters.AddWithValue("@gender", gender);
-                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", cmnd_cccd);
-                mySqlCommand.Parameters.AddWithValue("@address", address);
-                mySqlCommand.Parameters.AddWithValue("@email", email);
-                mySqlCommand.Parameters.AddWithValue("@numberphone", phone);
+                mySqlCommand.Parameters.AddWithValue("@iduser", modelBank_Account.ID_User);
+                mySqlCommand.Parameters.AddWithValue("@fullname", modelBank_Account.FullName);
+                mySqlCommand.Parameters.AddWithValue("@dateofbirth", modelBank_Account.DateOfBirth);
+                mySqlCommand.Parameters.AddWithValue("@gender", modelBank_Account.Gender);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", modelBank_Account.CMND_CCCD);
+                mySqlCommand.Parameters.AddWithValue("@address", modelBank_Account.Address);
+                mySqlCommand.Parameters.AddWithValue("@email", modelBank_Account.Email);
+                mySqlCommand.Parameters.AddWithValue("@numberphone", modelBank_Account.Phone);
                 if (mySqlCommand.ExecuteNonQuery() != 0)
                 {
                     return true;
@@ -125,6 +110,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             finally
             {
+                ModelBank_Account.IsLoggedIn(ModelBank_Account.UserBank.Username, ModelBank_Account.UserBank.Password);
                 ModelBank_Account.GetList_All_Bank_User();
                 DBHelper.Close();
             }

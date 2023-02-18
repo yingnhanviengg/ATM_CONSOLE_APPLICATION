@@ -47,24 +47,26 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         }
         public void Register()
         {         
-            ControllerBank_User._User.FullName = InputisValid.InputFullName();
-            ControllerBank_User._User.Gender = InputisValid.InputGender();
-            ControllerBank_User._User.DateOfBirth = InputisValid.InputDateTime();
-            ControllerBank_User._User.Username = InputisValid.InptUsername();
-            ControllerBank_User._User.Password = InputisValid.InputPassword();
-            ControllerBank_User._User.Address = InputisValid.InputAddress();
-            ControllerBank_User._User.CMND_CCCD = InputisValid.InputCMND_CCCD();
-            ControllerBank_User._User.Email = InputisValid.InputValidEmail();
-            ControllerBank_User._User.Phone = InputisValid.InputPhoneNumber();
-            int result = ControllerUser.IsRegister();
+            string fullname = InputisValid.InputFullName();
+            string gender = InputisValid.InputGender();
+            DateTime dateofbirth = InputisValid.InputDateTime();
+            string username = InputisValid.InptUsername();
+            string password = InputisValid.InputPassword();
+            string address = InputisValid.InputAddress();
+            string cmnd_cccd = InputisValid.InputCMND_CCCD();
+            string email = InputisValid.InputValidEmail();
+            string phone = InputisValid.InputPhoneNumber();
+            var register = new Model.ModelBank_Account(id_user: default, fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone, number_bank: string.Empty);
+            int result = ControllerUser.IsRegister(register);
             if (result == 1)
             {
-                Email templateMail = new TemplateMailRegister();
-                if (templateMail.Mail())
+                Email templateMail;
+                templateMail = new TemplateMailRegister_Code();
+                if (templateMail.Mail(register))
                 {
                     Console.Write(Language.Enter_Code);
                     string code = Console.ReadLine().Trim();
-                    if (ControllerUser.Register(code))
+                    if (ControllerUser.Register(code, register))
                     {
                         Common.PrintMessage_Console(Language.Register_Success, true);
                     }
@@ -77,10 +79,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
                             Console.Write(Language.Enter_Code);
                             code = Console.ReadLine().Trim();
-                            if (ControllerUser.Register(code))
+                            if (ControllerUser.Register(code, register))
                             {
                                 Common.PrintMessage_Console(Language.Register_Success, true);
-                                break;
                             }
                             else
                             {

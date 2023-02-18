@@ -29,15 +29,78 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }       
         public override void Information_Manager_Menu()
         {
-            throw new NotImplementedException();
+            string[] Menu_Customer = { Language.Check_Account_Information, Language.Update_Information };
+            for (int i = 0; i < Menu_Customer.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
+            }
         }
         public override void Information_Manager()
         {
-            throw new NotImplementedException();
+            do
+            {
+                Information_Manager_Menu();
+                switch (Common.Choose())
+                {
+                    case 1:
+                        Console.Clear();
+                        Table_Informatio();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Update_Information();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        MainMenu.Menu.ShowMenu();
+                        break;
+                    default:
+                        break;
+                }
+            } while (true);
         }
         public override void Update_Information()
         {
-            throw new NotImplementedException();
+            Table_Informatio();
+            int id = InputisValid.InputIDUser();
+
+            foreach (var item in ControllerBank_User.ListBank_User)
+            {
+                if (item.ID_User.Equals(ControllerBank_User.UserBank.ID_User))
+                {
+                    Console.WriteLine($"{Language.Name_Current}{item.FullName}");
+                    string fullname = Common.Edit() ? InputisValid.InputFullName() : item.FullName;
+
+                    Console.WriteLine($"{Language.DateOfBirth_Current}{DateOfBirthToString(item.DateOfBirth)}");
+                    DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : item.DateOfBirth;
+
+                    Console.WriteLine($"{Language.Gender_Current}{item.Gender}");
+                    string gender = Common.Edit() ? InputisValid.InputGender() : item.Gender;
+
+                    Console.WriteLine($"{Language.CMND_CCCD_Current}{item.CMND_CCCD}");
+                    string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : item.CMND_CCCD;
+
+                    Console.WriteLine($"{Language.Address_Current}{item.Address}");
+                    string address = Common.Edit() ? InputisValid.InputAddress() : item.Address;
+
+                    Console.WriteLine($"{Language.Email_Current}{item.Email}");
+                    string email = Common.Edit() ? InputisValid.InputValidEmail() : item.Email;
+
+                    Console.WriteLine($"{Language.SDT_Current}{item.Phone}");
+                    string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.Phone;
+
+                    ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
+
+                    if (controllerBank_User.Upate_Information(new Model.ModelBank_Account(id, fullname, dateofbirth, gender, cmnd_cccd, address, user:string.Empty, pass: string.Empty, email, phone, number_bank: string.Empty)))
+                    {
+                        Common.PrintMessage_Console(Language.Update_Information_Success, true);
+                    }
+                    else
+                    {
+                        Common.PrintMessage_Console(Language.Update_Information_Error, false);
+                    }
+                }
+            }          
         }
         public override void Table_Informatio()
         {
@@ -72,6 +135,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
+                table.AddColumn("[springgreen2_1]ID Khách Hàng[/]");
                 table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
                 table.AddColumn("[springgreen2_1]Ngày/Tháng/Năm Sinh[/]");
                 table.AddColumn("[springgreen2_1]Giới Tính[/]");
@@ -92,10 +156,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}",
-                            $"{item.Gender}", $"{item.CMND_CCCD}",
-                            $"{item.Number_Bank}", $"{item.Balance}", $"{item.Address}",
-                            $"{item.Email}", $"{item.Phone}");
+                        table.AddRow($"{item.ID_User}", $"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}",$"{item.Gender}", $"{item.CMND_CCCD}",$"{item.Number_Bank}", $"{item.Balance}", $"{item.Address}",$"{item.Email}", $"{item.Phone}");
                     }
                 }
                 AnsiConsole.Write(table);

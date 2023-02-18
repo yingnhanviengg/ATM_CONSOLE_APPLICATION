@@ -27,7 +27,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 1:
                         Console.Clear();
                         InformationAdmin admin = InformationAdmin._InformationAdmin;
-                        admin.Table_Informatio();
+                        admin.Information_Manager();
                         break;
                     case 2:
                         Console.Clear();

@@ -64,29 +64,31 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         public override void Update_Information()
         {
             Table_Informatio();
-            Console.WriteLine($"{Language.Name_Current}{Model.ModelBank_Account._UserBank.FullName}");
-            Model.ModelBank_Account._UserBank.FullName = Common.Edit() ? InputisValid.InputFullName() : Model.ModelBank_Account._UserBank.FullName;
+            Console.WriteLine($"{Language.Name_Current}{ControllerBank_User.UserBank.FullName}");
+            string fullname = Common.Edit() ? InputisValid.InputFullName() : ControllerBank_User.UserBank.FullName;
 
-            Console.WriteLine($"{Language.DateOfBirth_Current}{DateOfBirthToString(Model.ModelBank_Account._UserBank.DateOfBirth)}");
-            Model.ModelBank_Account._UserBank.DateOfBirth = Common.Edit() ? InputisValid.InputDateTime() : Model.ModelBank_Account._UserBank.DateOfBirth;
+            Console.WriteLine($"{Language.DateOfBirth_Current}{DateOfBirthToString(ControllerBank_User.UserBank.DateOfBirth)}");
+            DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : ControllerBank_User.UserBank.DateOfBirth;
 
-            Console.WriteLine($"{Language.Gender_Current}{Model.ModelBank_Account._UserBank.Gender}");
-            Model.ModelBank_Account._UserBank.Gender = Common.Edit() ? InputisValid.InputGender() : Model.ModelBank_Account._UserBank.Gender;
+            Console.WriteLine($"{Language.Gender_Current}{ControllerBank_User.UserBank.Gender}");
+            string gender = Common.Edit() ? InputisValid.InputGender() : ControllerBank_User.UserBank.Gender;
 
-            Console.WriteLine($"{Language.CMND_CCCD_Current}{Model.ModelBank_Account._UserBank.CMND_CCCD}");
-            Model.ModelBank_Account._UserBank.CMND_CCCD = Common.Edit() ? InputisValid.InputCMND_CCCD() : Model.ModelBank_Account._UserBank.CMND_CCCD;
+            Console.WriteLine($"{Language.CMND_CCCD_Current}{ControllerBank_User.UserBank.CMND_CCCD}");
+            string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : ControllerBank_User.UserBank.CMND_CCCD;
 
-            Console.WriteLine($"{Language.Address_Current}{Model.ModelBank_Account._UserBank.Address}");
-            Model.ModelBank_Account._UserBank.Address = Common.Edit() ? InputisValid.InputAddress() : Model.ModelBank_Account._UserBank.Address;
+            Console.WriteLine($"{Language.Address_Current}{ControllerBank_User.UserBank.Address}");
+            string address = Common.Edit() ? InputisValid.InputAddress() : ControllerBank_User.UserBank.Address;
 
-            Console.WriteLine($"{Language.Email_Current}{Model.ModelBank_Account._UserBank.Email}");
-            Model.ModelBank_Account._UserBank.Email = Common.Edit() ? InputisValid.InputValidEmail() : Model.ModelBank_Account._UserBank.Email;
+            Console.WriteLine($"{Language.Email_Current}{ControllerBank_User.UserBank.Email}");
+            string email = Common.Edit() ? InputisValid.InputValidEmail() : ControllerBank_User.UserBank.Email;
 
-            Console.WriteLine($"{Language.SDT_Current}{Model.ModelBank_Account._UserBank.Phone}");
-            Model.ModelBank_Account._UserBank.Phone = Common.Edit() ? InputisValid.InputPhoneNumber() : Model.ModelBank_Account._UserBank.Phone;
+            Console.WriteLine($"{Language.SDT_Current}{ControllerBank_User.UserBank.Phone}");
+            string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.Phone;
 
-            if (Model.ModelUser.Update_Information(Model.ModelBank_Account._UserBank.ID_User, Model.ModelBank_Account._UserBank.FullName, Model.ModelBank_Account._UserBank.DateOfBirth,Model.ModelBank_Account._UserBank.Gender, Model.ModelBank_Account._UserBank.CMND_CCCD, Model.ModelBank_Account._UserBank.Address,Model.ModelBank_Account._UserBank.Email, Model.ModelBank_Account._UserBank.Phone))
-            {
+            ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
+
+            if (controllerBank_User.Upate_Information(new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, user: string.Empty, pass: string.Empty, email, phone, number_bank: string.Empty)))
+            {              
                 Common.PrintMessage_Console(Language.Update_Information_Success, true);
             }
             else
