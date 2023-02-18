@@ -14,7 +14,22 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public double Balance { get; set; }
         public DateTime created_at_bank { get; set; }
         public string status_bank { get; set; }
-        public static ModelBank_Account UserBank { get; set; }
+        private static ModelBank_Account _UserBank;
+        public static ModelBank_Account UserBank
+        {
+            get
+            {
+                if (_UserBank == null)
+                {
+                    _UserBank = new ModelBank_Account();
+                }
+                return _UserBank;
+            }
+            set
+            {
+                _UserBank = value;
+            }
+        }
         private static List<ModelBank_Account> _listBank_User;
         public static List<ModelBank_Account> _ListBank_User
         {
@@ -33,11 +48,26 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }
         public ModelBank_Account()
         {
-
+            
         }
-        public ModelBank_Account(int id_user , string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string user, string pass, string email, string phone, string number_bank)
+        public ModelBank_Account(string user, string pass)
         {
-            this.ID_User = id_user;
+            this.Username = user;
+            this.Password = pass;
+        }
+        public ModelBank_Account(int id, string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string email, string phone)
+        {
+            this.ID_User = id;
+            this.FullName = fullname;
+            this.DateOfBirth = dateofbirth;
+            this.Gender = gender;
+            this.CMND_CCCD = cmnd_cccd;
+            this.Address = address;
+            this.Email = email;
+            this.Phone = phone;
+        }
+        public ModelBank_Account( string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string user, string pass, string email, string phone, string number_bank)
+        {
             this.FullName = fullname;
             this.DateOfBirth = dateofbirth;
             this.Gender = gender;
@@ -63,7 +93,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at_bank = created_at_bank;
             this.status_bank = status_bank;
         }
-        public static bool Create_Bank_Account(int id_user, string number_bank)
+        public bool Create_Bank_Account(int id_user, string number_bank)
         {
             try
             {
@@ -90,38 +120,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 DBHelper.Close();
             }
         }
-        public static bool IsLoggedIn(string user, string pass)
-        {
-            try
-            {
-                string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user WHERE user.username = @user AND user.password = @pass;";
-                using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
-                command.Parameters.AddWithValue("@user",user);
-                command.Parameters.AddWithValue("@pass",pass);
-                using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
-                {
-                    if (mySqlDataReader.Read())
-                    {
-                        UserBank = GetBank_User(mySqlDataReader);
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
-        }
-        public static void GetList_All_Bank_User()
+        public void GetList_All_Bank_User()
         {
             _ListBank_User.Clear();
             string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user";
@@ -130,12 +129,20 @@ namespace ATM_CONSOLE_APPLICATION.Model
             {
                 while (mySqlDataReader.Read())
                 {
-                    _ListBank_User.Add(GetBank_User(mySqlDataReader));
+                    _ListBank_User.Add(GetBank_UserMysql(mySqlDataReader));
                 }
             }
             DBHelper.Close();
         }
-        public static ModelBank_Account GetBank_User(MySqlDataReader reader)
+        public void GetBank_User(ModelBank_Account user)
+        {
+            UserBank = new ModelBank_Account(
+                user.ID_User, user.FullName, user.DateOfBirth, user.Gender, user.CMND_CCCD,
+                user.Address, user.Username, user.Password, user.Email, user.Phone, user.created_at, user.role, user.status_user, user.ID_Bank,
+                user.Number_Bank, user.Balance, user.created_at_bank, user.status_bank
+                );
+        }
+        public ModelBank_Account GetBank_UserMysql(MySqlDataReader reader)
         {
             ModelBank_Account bank = new ModelBank_Account(
                 reader.GetInt32("id_user"),

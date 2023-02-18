@@ -30,9 +30,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         {
             string user = InputisValid.InptUsername();
             string pass = InputisValid.InputPassword();
+            var login = new Model.ModelBank_Account(user, pass);
             if (user != null && pass != null)
             {
-                if (ControllerUser.IsLoggedIn(user, pass))
+                if (ControllerUser.IsLoggedIn(login))
                 {
                     Common.PrintMessage_Console(Language.Notification_Login_True, true);
                     return true;
@@ -56,62 +57,62 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             string cmnd_cccd = InputisValid.InputCMND_CCCD();
             string email = InputisValid.InputValidEmail();
             string phone = InputisValid.InputPhoneNumber();
-            var register = new Model.ModelBank_Account(id_user: default, fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone, number_bank: string.Empty);
+            var register = new Model.ModelBank_Account(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone, number_bank: string.Empty);
             int result = ControllerUser.IsRegister(register);
-            if (result == 1)
+            switch (result)
             {
-                Email templateMail;
-                templateMail = new TemplateMailRegister_Code();
-                if (templateMail.Mail(register))
-                {
-                    Console.Write(Language.Enter_Code);
-                    string code = Console.ReadLine().Trim();
-                    if (ControllerUser.Register(code, register))
+                case 1:
+                    Email templateMail;
+                    templateMail = new TemplateMailRegister_Code();
+                    if (templateMail.Mail(register))
                     {
-                        Common.PrintMessage_Console(Language.Register_Success, true);
-                    }
-                    else
-                    {
-                        int cout = 3;
-                        do
+                        Console.Write(Language.Enter_Code);
+                        string code = Console.ReadLine().Trim();
+                        if (ControllerUser.Register(code, register))
                         {
-                            Common.PrintMessage_Console(Language.Error_Code, false);
-                            Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
-                            Console.Write(Language.Enter_Code);
-                            code = Console.ReadLine().Trim();
-                            if (ControllerUser.Register(code, register))
-                            {
-                                Common.PrintMessage_Console(Language.Register_Success, true);
-                            }
-                            else
-                            {
-                                cout--;
-                            }
-                        } while (cout != 0);
-                        if (cout == 0)
-                        {
-                            Common.PrintMessage_Console(Language.Error_Re_register, false);
+                            Common.PrintMessage_Console(Language.Register_Success, true);
                         }
+                        else
+                        {
+                            int cout = 3;
+                            do
+                            {
+                                Common.PrintMessage_Console(Language.Error_Code, false);
+                                Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
+                                Console.Write(Language.Enter_Code);
+                                code = Console.ReadLine().Trim();
+                                if (ControllerUser.Register(code, register))
+                                {
+                                    Common.PrintMessage_Console(Language.Register_Success, true);
+                                }
+                                else
+                                {
+                                    cout--;
+                                }
+                            } while (cout != 0);
+                            if (cout == 0)
+                            {
+                                Common.PrintMessage_Console(Language.Error_Re_register, false);
+                            }
+                        }
+                        break;
                     }
-                }
-            }
-            else if (result == -1)
-            {
-                Common.PrintMessage_Console(Language.Error_User_Already_Exists + "\n" + Language.Registration_Failed, false);
-            }
-            else if (result == -2)
-            {
-                Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
-            }
-            else if (result == -3)
-            {
-                Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
-            }
-            else if (result == -4)
-            {
-                Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
-            }
-        }
-        
+                    else break;
+                case -1:
+                    Common.PrintMessage_Console(Language.Error_User_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                case -2:
+                    Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                case -3:
+                    Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                case -4:
+                    Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                default:
+                    break;
+            }       
+        }     
     }
 }

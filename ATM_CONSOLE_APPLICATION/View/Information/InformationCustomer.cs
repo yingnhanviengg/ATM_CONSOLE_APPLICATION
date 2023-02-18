@@ -87,7 +87,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
 
             ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
 
-            if (controllerBank_User.Upate_Information(new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, user: string.Empty, pass: string.Empty, email, phone, number_bank: string.Empty)))
+            if (controllerBank_User.Upate_Information(new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone)))
             {              
                 Common.PrintMessage_Console(Language.Update_Information_Success, true);
             }

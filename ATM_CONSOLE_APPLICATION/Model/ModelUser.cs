@@ -24,8 +24,12 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public string Phone { get; set; }
         public DateTime created_at { get; set; }
         public string role { get; set; }    
-        public string status_user { get; set; }
-        public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD ,string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
+        public string status_user { get; set; }         
+        public ModelUser()
+        {
+            
+        }       
+        public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD, string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
         {
             this.ID_User = id_user;
             this.FullName = fullname;
@@ -40,10 +44,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at = created_at;
             this.role = role;
             this.status_user = status_user;
-        }
-        public ModelUser()
-        {
-
         }
         public static bool IsRegister(ModelBank_Account modelBank_Account)
         {
@@ -76,7 +76,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             finally
             {
-                ModelBank_Account.GetList_All_Bank_User();
+                modelBank_Account.GetList_All_Bank_User();
                 DBHelper.Close();
             }
         }
@@ -104,26 +104,25 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
             }
             catch (Exception ex)
+
             {
                 Console.WriteLine(ex);
                 throw;
             }
             finally
-            {
-                ModelBank_Account.IsLoggedIn(ModelBank_Account.UserBank.Username, ModelBank_Account.UserBank.Password);
-                ModelBank_Account.GetList_All_Bank_User();
+            {            
                 DBHelper.Close();
             }
         }
-        public static int Select_ID_User(string user, string email, string cmnd_cccd)
+        public static int Select_ID_User(ModelUser modelBank_Account)
         {
             try
             {
                 string query = "SELECT user.id_user FROM user WHERE user.username = @username AND user.email = @email AND user.cmnd_cccd = @cmnd_cccd";
                 using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
-                command.Parameters.AddWithValue("@username", user);
-                command.Parameters.AddWithValue("@email", email);
-                command.Parameters.AddWithValue("@cmnd_cccd", cmnd_cccd);
+                command.Parameters.AddWithValue("@username", modelBank_Account.Username);
+                command.Parameters.AddWithValue("@email", modelBank_Account.Email);
+                command.Parameters.AddWithValue("@cmnd_cccd", modelBank_Account.CMND_CCCD);
                 using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
                 {
                     if (mySqlDataReader.Read())
@@ -146,7 +145,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 DBHelper.Close();
             }
         }
-        public static ModelUser GetUser(MySqlDataReader reader)
+        public ModelUser GetUser(MySqlDataReader reader)
         {
             ModelUser user = new ModelUser(
                 reader.GetInt32("id_user"),
