@@ -110,8 +110,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 case -4:
                     Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
                     break;
-                default:
-                    break;
             }       
         }     
     }

@@ -35,7 +35,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             }
         }
         public bool Upate_Information(ModelBank_Account modelBank_Account)
-        {         
+        {
             if (modelBank_Account.Update_Information(modelBank_Account))
             {
                 if (UserBank.role.Equals("customer") || modelBank_Account.ID_User.Equals(UserBank.ID_User))
@@ -50,9 +50,88 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return false;
             }
         }
+        public int IsValidUpdate(ModelBank_Account modelBank_Account)
+        {
+            var index = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            var valid = ListBank_User[index];
+            if (!modelBank_Account.CMND_CCCD.Equals(valid.CMND_CCCD))
+            {
+                if (FindCMND_CCCD(modelBank_Account))
+                {
+                    return -4;
+                }
+            }
+            if (!modelBank_Account.Phone.Equals(valid.Phone))
+            {
+                if (FindPhone(modelBank_Account))
+                {
+                    return -3;
+                }
+            }
+            if (!modelBank_Account.Email.Equals(valid.Email))
+            {
+                if (FindEmail(modelBank_Account))
+                {
+                    return -2;
+                }
+            }
+            return 1;
+        }
+        public bool FindUser(ModelBank_Account modelBank_Account)
+        {
+            if (ListBank_User.FirstOrDefault(u => u.Username == modelBank_Account.Username) != null)
+            {
+                return true; // tài khoản đã tồn tại
+            }
+            return false;
+        }
+        public bool FindEmail(ModelBank_Account modelBank_Account)
+        {
+            if (ListBank_User.FirstOrDefault(u => u.Email == modelBank_Account.Email) != null)
+            {
+                return true; // email đã tồn tại
+            }
+            return false;
+        }
+        public bool FindPhone(ModelBank_Account modelBank_Account)
+        {
+            if (ListBank_User.FirstOrDefault(u => u.Phone == modelBank_Account.Phone) != null)
+            {
+                return true; // sdt đã tồn tại
+            }
+            return false;
+        }
+        public bool FindCMND_CCCD(ModelBank_Account modelBank_Account)
+        {
+            if (ListBank_User.FirstOrDefault(u => u.CMND_CCCD == modelBank_Account.CMND_CCCD) != null)
+            {
+                return true; // CMND_CCCD đã tồn tại
+            }
+            return false;
+        }
+        public int IsRegister(ModelBank_Account modelBank_Account)
+        {
+            if (FindUser(modelBank_Account))
+            {
+                return -1; // tài khoản đã tồn tại
+            }
+            if (FindEmail(modelBank_Account))
+            {
+                return -2; // email đã tồn tại
+            }
+            if (FindPhone(modelBank_Account))
+            {
+                return -3; // sdt đã tồn tại
+            }
+            if (FindCMND_CCCD(modelBank_Account))
+            {
+                return -4; // CMND_CCCD đã tồn tại
+            }
+            return 1;
+        }
         public void UpdateList_User(ModelBank_Account modelBank_Account)
         {
-            var userindex = SearchUserIndexByID(modelBank_Account.ID_User);
+            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
             if (userindex != -1)
             {
                 var user = ListBank_User[userindex];
@@ -101,29 +180,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 }
             }
             return -1;
-        }      
-        public int IsRegister(ModelBank_Account modelBank_Account)
-        {
-            foreach (var item in ListBank_User)
-            {
-                if (item.Username.Equals(modelBank_Account.Username)) // tài khoản đã tồn tại
-                {
-                    return -1;
-                }
-                else if (item.Email.Equals(modelBank_Account.Email)) // email đã tồn tại
-                {
-                    return -2;
-                }
-                else if (item.Phone.Equals(modelBank_Account.Phone)) // sdt đã tồn tại
-                {
-                    return -3;
-                }
-                else if (item.CMND_CCCD.Equals(modelBank_Account.CMND_CCCD)) // CMND_CCCD đã tồn tại
-                {
-                    return -4;
-                }
-            }
-            return 1;
         }
         public bool Register(string code, ModelBank_Account modelBank_Account)
         {
@@ -133,6 +189,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             }           
             bool isUserRegistered = modelBank_Account.IsRegister(modelBank_Account);
             bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(modelBank_Account.Select_ID_User(modelBank_Account), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
+            modelBank_Account.GetList_All_Bank_User();
             Email templateMail = new TempMailRegister_Success();
             bool isMailSent = templateMail.Mail(modelBank_Account);
             return isUserRegistered && isBankAccountCreated && isMailSent;

@@ -86,14 +86,28 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.Phone;
 
             ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
-
-            if (controllerBank_User.Upate_Information(new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone)))
-            {              
-                Common.PrintMessage_Console(Language.Update_Information_Success, true);
-            }
-            else
+            var update = new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+            switch (controllerBank_User.IsValidUpdate(update))
             {
-                Common.PrintMessage_Console(Language.Update_Information_Error, false);
+                case 1:
+                    if (controllerBank_User.Upate_Information(update))
+                    {
+                        Common.PrintMessage_Console(Language.Update_Information_Success, true);
+                    }
+                    else
+                    {
+                        Common.PrintMessage_Console(Language.Update_Information_Error, false);
+                    }
+                    break;
+                case -2:
+                    Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                case -3:
+                    Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
+                case -4:
+                    Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    break;
             }
         }
         public override void Table_Informatio()

@@ -164,8 +164,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 throw;
             }
             finally
-            {
-                modelBank_Account.GetList_All_Bank_User();
+            {              
                 DBHelper.Close();
             }
         }

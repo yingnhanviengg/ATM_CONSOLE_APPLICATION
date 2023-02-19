@@ -125,10 +125,10 @@ namespace ATM_CONSOLE_APPLICATION
             Register_Success = "Đăng ký thành công";
             Registration_Failed = "Đăng ký thất bại";
             Error_Invalid_DateOfBirth = "Nhập sai định dạng ngày tháng năm";
-            Error_Email_Already_Exists = "Email này đã được đăng ký trước";
-            Error_Phone_Already_Exists = "Số điện thoại này đã được đăng ký trước";
-            Error_User_Already_Exists = "Tên tài khoản đã được đăng ký trước";
-            Error_CNMD_CCCD_Already_Exists = "CMND hoặc CCCD đã được đăng ký trước";
+            Error_Email_Already_Exists = "Email này đã được sử dụng trước";
+            Error_Phone_Already_Exists = "Số điện thoại này đã được sử dụng trước";
+            Error_User_Already_Exists = "Tên tài khoản đã được sử dụng trước";
+            Error_CNMD_CCCD_Already_Exists = "CMND hoặc CCCD đã được sử dụng trước";
             Error_Limit_User_8_char = "Tên tài khoản phải có tối thiểu 8 chữ số, không được phép có ký tự đặc biệt";
             Error_Re_register = "Nhập sai quá nhiều lần, vui lòng đăng ký lại";
             // Card
