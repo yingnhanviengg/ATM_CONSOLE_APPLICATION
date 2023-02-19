@@ -16,13 +16,13 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 try
                 {
-                    Console.Write(Language.Input_IDUser);
+                    Console.Write(Language.AbstractLanguage.Input_IDUser);
                     int iduser = Convert.ToInt32(Console.ReadLine().Trim());
                     return iduser;
                 }
                 catch (FormatException)
                 {
-                    Common.PrintMessage_Console(Language.Exception_choose, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
                 }               
             }
         }
@@ -30,7 +30,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         {
             while (true)
             {
-                Console.Write(Language.Input_CMND_CCCD);
+                Console.Write(Language.AbstractLanguage.Input_CMND_CCCD);
                 string id = Console.ReadLine().Trim();
                 if (id.Length == 9 || id.Length == 12)
                 {
@@ -39,25 +39,25 @@ namespace ATM_CONSOLE_APPLICATION.View
                         return id;
                     }
                 }
-                Common.PrintMessage_Console(Language.Error_Input_CMND, false);
+                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_CMND, false);
             }
         }
         public static string InputGender()
         {
             while (true)
             {
-                Console.Write(Language.Input_Gender);
+                Console.Write(Language.AbstractLanguage.Input_Gender);
                 string gender = Console.ReadLine().Trim();
                 if (gender.ToLower().Equals("nam") || gender.ToLower().Equals("nữ"))
                 {
                     return char.ToUpper(gender[0]) + gender.Substring(1);
                 }
-                Common.PrintMessage_Console(Language.Error_Input_Gender, false);
+                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Gender, false);
             }
         }
         public static string InputFullName()
         {
-            Console.Write(Language.Input_Fullname);
+            Console.Write(Language.AbstractLanguage.Input_Fullname);
             string fullname = Console.ReadLine();
             return fullname = StandardizeString(fullname);
         }
@@ -65,7 +65,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         {
             do
             {
-                Console.Write(Language.Input_Pass);
+                Console.Write(Language.AbstractLanguage.Input_Pass);
                 string pass = GetPassword();
                 if (pass.Length >= 8)
                 {
@@ -73,7 +73,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Input_Pass, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Pass, false);
                 }
             } while (true);
         }
@@ -82,7 +82,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             string user;
             do
             {
-                Console.Write(Language.Input_User);
+                Console.Write(Language.AbstractLanguage.Input_User);
                 user = Console.ReadLine().Trim();
                 if (IsValidUsername(user))
                 {
@@ -90,13 +90,13 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Limit_User_8_char, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Limit_User_8_char, false);
                 }
             } while (true);
         }
         public static string InputAddress()
         {
-            Console.Write(Language.Input_Address);
+            Console.Write(Language.AbstractLanguage.Input_Address);
             string Address = Console.ReadLine();
             return Address = StandardizeString(Address);
         }
@@ -107,7 +107,7 @@ namespace ATM_CONSOLE_APPLICATION.View
 
             while (!isValidPhoneNumber)
             {
-                Console.Write(Language.Input_Phone);
+                Console.Write(Language.AbstractLanguage.Input_Phone);
                 phoneNumber = Console.ReadLine().Trim();
 
                 if (phoneNumber.StartsWith("0") && phoneNumber.All(char.IsDigit) && phoneNumber.Length >= 9 && phoneNumber.Length <= 11)
@@ -116,7 +116,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Input_Phone, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Phone, false);
                 }
             }
             return phoneNumber;
@@ -126,7 +126,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             string email;
             do
             {
-                Console.Write(Language.Input_Email);
+                Console.Write(Language.AbstractLanguage.Input_Email);
                 email = Console.ReadLine().Trim();
                 if (IsValidEmail(email))
                 {
@@ -134,7 +134,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Input_Email, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Email, false);
                 }
             } while (true);
         }
@@ -153,20 +153,20 @@ namespace ATM_CONSOLE_APPLICATION.View
             string inputDate;
             do
             {
-                Console.Write(Language.Input_DateOfBirth);
+                Console.Write(Language.AbstractLanguage.Input_DateOfBirth);
                 inputDate = Console.ReadLine().Trim();
                 if (DateTime.TryParseExact(inputDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
                     if (date < DateTime.MinValue || date > DateTime.MaxValue)
                     {
-                        Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_Invalid_DateOfBirth, false);
                         continue;
                     }
                     break;
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Invalid_DateOfBirth, false);
                 }
             } while (true);
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
@@ -176,7 +176,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
             else
             {
-                Common.PrintMessage_Console(Language.Error_Invalid_DateOfBirth, false);
+                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Invalid_DateOfBirth, false);
                 return default;
             }
         }

@@ -11,7 +11,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
     {
         public override void Menu()
         {
-            string[] Menu_Admin = { Language.Check_Account_Information_Admin, Language.Transaction_History_Admin, Language.Transaction_Statistics };
+            string[] Menu_Admin = { Language.AbstractLanguage.Check_Account_Information_Admin, Language.AbstractLanguage.Transaction_History_Admin, Language.AbstractLanguage.Transaction_Statistics };
             for (int i = 0; i < Menu_Admin.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Admin[i]}");
@@ -48,7 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
 
                         break;
                     default:
-                        Console.WriteLine(Language.Exception_choose_switch);
+                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
                         break;
                 }
             } while (true);

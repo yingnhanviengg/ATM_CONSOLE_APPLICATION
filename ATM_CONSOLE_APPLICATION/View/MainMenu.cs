@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.Model;
 using ATM_CONSOLE_APPLICATION.View.Menu;
+using static ATM_CONSOLE_APPLICATION.Language.VietNamese;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
@@ -41,8 +43,8 @@ namespace ATM_CONSOLE_APPLICATION.View
             Login_Register.Login_Register login_Register = Login_Register.Login_Register._Login_Register;
             do
             {
-                Console.WriteLine("1: " + Language.Login);
-                Console.WriteLine("2: " + Language.Register);
+                Console.WriteLine("1: " + Language.AbstractLanguage.Login);
+                Console.WriteLine("2: " + Language.AbstractLanguage.Register);
                 switch (Common.Choose())
                 {
                     case 1:
@@ -54,7 +56,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                         login_Register.Register();
                         break;
                     default:
-                        Common.PrintMessage_Console(Language.Exception_choose_switch, false);
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }
             } while (!result);
@@ -62,7 +64,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public void ShowMainMenu()
         {
-            Language._Change_Language();
+            ChangeLanguage.Change_Language();
             Console.Clear();
             if (MenuLogin())
             {

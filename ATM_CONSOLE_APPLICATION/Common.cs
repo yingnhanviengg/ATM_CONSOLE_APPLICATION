@@ -8,13 +8,13 @@
             {
                 try
                 {
-                    Console.Write(Language.Input_choose);
+                    Console.Write(Language.AbstractLanguage.Input_choose);
                     int x = Convert.ToInt32(Console.ReadLine());
                     return x;
                 }
                 catch (FormatException)
                 {
-                    PrintMessage_Console(Language.Exception_choose, false);
+                    PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
                 }
             }
         }
@@ -35,7 +35,7 @@
         {
             while (true)
             {
-                Console.WriteLine(Language.IsUpdate);
+                Console.WriteLine(Language.AbstractLanguage.IsUpdate);
                 string x = Console.ReadLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                 if (x.ToUpper().Equals("Y"))
@@ -46,7 +46,7 @@
                 {
                     return false;
                 }
-                else { Console.WriteLine(Language.IsY_or_N); }
+                else { Console.WriteLine(Language.AbstractLanguage.IsY_or_N); }
             }
         }
         public static bool CreatedCard()
@@ -63,7 +63,7 @@
                 {
                     return false;
                 }
-                else { Console.WriteLine(Language.IsY_or_N); }
+                else { Console.WriteLine(Language.AbstractLanguage.IsY_or_N); }
             }
         }
     }

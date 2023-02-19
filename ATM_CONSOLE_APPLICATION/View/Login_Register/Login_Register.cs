@@ -35,12 +35,12 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             {
                 if (ControllerUser.IsLoggedIn(login))
                 {
-                    Common.PrintMessage_Console(Language.Notification_Login_True, true);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_True, true);
                     return true;
                 }
                 else
                 {
-                    Common.PrintMessage_Console(Language.Notification_Login_Fasle, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
                     return false;
                 }
             }
@@ -66,24 +66,24 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                     templateMail = new TemplateMailRegister_Code();
                     if (templateMail.Mail(register))
                     {
-                        Console.Write(Language.Enter_Code);
+                        Console.Write(Language.AbstractLanguage.Enter_Code);
                         string code = Console.ReadLine().Trim();
                         if (ControllerUser.Register(code, register))
                         {
-                            Common.PrintMessage_Console(Language.Register_Success, true);
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
                         }
                         else
                         {
                             int cout = 3;
                             do
                             {
-                                Common.PrintMessage_Console(Language.Error_Code, false);
-                                Common.PrintMessage_Console(Language.Error_Code_Limit_3 + cout.ToString(), false);
-                                Console.Write(Language.Enter_Code);
+                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code, false);
+                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code_Limit_3 + cout.ToString(), false);
+                                Console.Write(Language.AbstractLanguage.Enter_Code);
                                 code = Console.ReadLine().Trim();
                                 if (ControllerUser.Register(code, register))
                                 {
-                                    Common.PrintMessage_Console(Language.Register_Success, true);
+                                    Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
                                 }
                                 else
                                 {
@@ -92,23 +92,23 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             } while (cout != 0);
                             if (cout == 0)
                             {
-                                Common.PrintMessage_Console(Language.Error_Re_register, false);
+                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Re_register, false);
                             }
                         }
                         break;
                     }
                     else break;
                 case -1:
-                    Common.PrintMessage_Console(Language.Error_User_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_User_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
                 case -2:
-                    Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Email_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
                 case -3:
-                    Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Phone_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
                 case -4:
-                    Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_CNMD_CCCD_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
             }       
         }     

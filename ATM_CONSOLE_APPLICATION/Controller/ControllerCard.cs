@@ -9,7 +9,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
 {
     public class ControllerCard
     {
-        public ControllerCard() { }
+        public ControllerCard() { Card.GetListCard(); }
         private static ControllerCard _ControllerCard;
         public static ControllerCard controllerCard
         {
@@ -30,9 +30,9 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelCard.Card; }
         }
-        public static bool CreateCard(string cardtype)
+        public bool CreateCard()
         {
-            if (ModelCard.CreateCard(ModelBank_Account.UserBank.ID_Bank, GenerateRandomNumberCard(), cardtype, GenerateRandomNumberCVV(), Expiration_Date()))
+            if (Card.CreateCard(new ModelCard(ModelBank_Account.UserBank.ID_Bank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date())))
             {
                 return true;
             }
@@ -41,24 +41,34 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return false;
             }
         }
-        public static string GenerateRandomNumberCard()
+        public string GenerateRandomNumberCard()
         {
             Random random = new Random();
             const string chars = "0123456789";
             return new string(Enumerable.Repeat(chars, 16)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static string GenerateRandomNumberCVV()
+        public string GenerateRandomNumberPass()
         {
             Random random = new Random();
             const string chars = "0123456789";
-            return new string(Enumerable.Repeat(chars, 3)
+            return new string(Enumerable.Repeat(chars, 4)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static DateTime Expiration_Date()
+        public DateTime Expiration_Date()
         {
             DateTime Expiration_Date = DateTime.Now;
             return Expiration_Date.AddYears(5);
+        }
+        public bool GetCard()
+        {
+            var item = ListCard.FirstOrDefault(x => x.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank));
+            if (item != null)
+            {
+                Card.GetCard(item);
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -11,12 +11,11 @@ namespace ATM_CONSOLE_APPLICATION.Model
     {
         public int ID_Card { get; set; }
         public string Number_Card { get; set; }
-        public string Card_Type { get; set; }
-        public string CVV { get; set; }
+        public string Pass_Card { get; set; }
         public DateTime Expiration_Date { get; set; }
         public string Status_Card { get; set; }
         public DateTime Created_at_Card { get; set; }
-        private static ModelCard _Card;
+        private static ModelCard? _Card = null;
         public static ModelCard Card
         {
             get
@@ -46,28 +45,33 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
 
         }
-        public ModelCard(int id_card, int id_bank, string number_card, string card_type, string cvv, DateTime expiration_Date, string status, DateTime created_at_card)
+        public ModelCard(int id_bank, string number_card, string pass_card, DateTime expiration_date)
+        {
+            this.ID_Bank = id_bank;
+            this.Number_Card = number_card;
+            this.Pass_Card = pass_card;
+            this.Expiration_Date = expiration_date;
+        }
+        public ModelCard(int id_card, int id_bank, string number_card, string pass_card, DateTime expiration_Date, string status, DateTime created_at_card)
         {
             this.ID_Card = id_card;
             this.ID_Bank = id_bank;
             this.Number_Card = number_card;
-            this.Card_Type = card_type;
-            this.CVV = cvv;
+            this.Pass_Card = pass_card;
             this.Expiration_Date = expiration_Date;
             this.Status_Card = status;
             this.Created_at_Card = created_at_card;
         }
-        public static bool CreateCard(int id_bank, string number_card, string cardtype, string cvv, DateTime expiration_date)
+        public bool CreateCard(ModelCard modelCard)
         {
             try
             {
-                string query = "INSERT HIGH_PRIORITY INTO card(id_bank_account, number_card, card_type, cvv, expiration_date) VALUES (@id_bank, @number_card, @cardtype, @cvv, @expiration_date);";
+                string query = "INSERT HIGH_PRIORITY INTO card(id_bank_account, number_card, pass_card, expiration_date) VALUES (@id_bank, @number_card, @pass_card, @expiration_date);";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
-                mySqlCommand.Parameters.AddWithValue("@id_bank", id_bank);
-                mySqlCommand.Parameters.AddWithValue("@number_card", number_card);
-                mySqlCommand.Parameters.AddWithValue("@cardtype", cardtype);
-                mySqlCommand.Parameters.AddWithValue("@cvv", cvv);
-                mySqlCommand.Parameters.AddWithValue("@expiration_date", expiration_date);
+                mySqlCommand.Parameters.AddWithValue("@id_bank", modelCard.ID_Bank);
+                mySqlCommand.Parameters.AddWithValue("@number_card", modelCard.Number_Card);
+                mySqlCommand.Parameters.AddWithValue("@pass_card", modelCard.Pass_Card);
+                mySqlCommand.Parameters.AddWithValue("@expiration_date", modelCard.Expiration_Date);
                 if (mySqlCommand.ExecuteNonQuery() != 0)
                 {
                     return true;
@@ -84,24 +88,11 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             finally
             {
+                GetListCard();
                 DBHelper.Close();
             }
         }   
-        public static void GetCard(int id_bank)
-        {
-            string query = "SELECT card.* FROM card WHERE id_bank_account = @id_bank;";
-            using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
-            command.Parameters.AddWithValue("@id_bank", id_bank);
-            using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
-            {
-                while (mySqlDataReader.Read())
-                {
-                    Card = (ObjectCard(mySqlDataReader));
-                }
-            }
-            DBHelper.Close();
-        }
-        public static void GetListCard()
+        public void GetListCard()
         {
             ListCards.Clear();
             string query = "SELECT card.* FROM card;";
@@ -115,14 +106,18 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             DBHelper.Close();
         }
-        public static ModelCard ObjectCard(MySqlDataReader reader)
+        public void GetCard(ModelCard card)
+        {
+            Card = new ModelCard(card.ID_Card, card.ID_Bank, card.Number_Card, card.Pass_Card, card.Expiration_Date, card.Status_Card, card.Created_at_Card);
+        }
+
+        public ModelCard ObjectCard(MySqlDataReader reader)
         {
             ModelCard card = new ModelCard(
                 reader.GetInt32("id_card"),
                 reader.GetInt32("id_bank_account"),
                 reader.GetString("number_card"),
-                reader.GetString("card_type"),
-                reader.GetString("cvv"),
+                reader.GetString("pass_card"),
                 reader.GetDateTime("expiration_date"),
                 reader.GetString("status"),
                 reader.GetDateTime("created_at_card")             

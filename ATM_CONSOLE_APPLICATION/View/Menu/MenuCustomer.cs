@@ -11,7 +11,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
     {
         public override void Menu()
         {
-            string[] Menu_Customer = { Language.Check_Account_Information, Language.Card_Management, Language.Withdraw_Money, Language.Recharge, Language.Tranfer_Money, Language.Bank_Deposit, Language.Transaction_History, Language.Change_Language };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Card_Management, Language.AbstractLanguage.Withdraw_Money, Language.AbstractLanguage.Recharge, Language.AbstractLanguage.Tranfer_Money, Language.AbstractLanguage.Bank_Deposit, Language.AbstractLanguage.Transaction_History, Language.AbstractLanguage.Change_Language };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -26,7 +26,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                 {
                     case 1:
                         Console.Clear();
-                        Information.InformationCustomer customer = InformationCustomer._InformationCustomer;
+                        InformationCustomer customer = InformationCustomer._InformationCustomer;
                         customer.Information_Manager();
                         break;
                     case 2:
@@ -48,7 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
 
                         break;
                     default:
-                        Console.WriteLine(Language.Exception_choose_switch);
+                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
                         break;
                 }
             } while (true);

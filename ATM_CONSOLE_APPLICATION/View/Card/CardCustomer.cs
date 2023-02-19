@@ -29,27 +29,20 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 return _cardCustomer;
             }
         }
+        private ControllerCard controllerCard = ControllerCard.controllerCard;
         public override void Card_Management()
         {
-            if (ControllerBank_User.UserBank.role.Equals("customer"))
+            if (!controllerCard.GetCard())
             {
-                ModelCard.GetCard(ControllerBank_User.UserBank.ID_Bank);
-                if (ControllerCard.Card == null)
+                Common.PrintMessage_Console(Language.AbstractLanguage.No_CardYet, true);
+                if (Common.CreatedCard())
                 {
-                    Common.PrintMessage_Console(Language.No_CardYet, true);
-                    if (Common.CreatedCard())
-                    {
-                        CreateCrad();
-                    }
-                }
-                else
-                {
-                    TableCard();
+                    CreateCrad();
                 }
             }
-            else if (ControllerBank_User.UserBank.role.Equals("admin"))
+            else
             {
-                ModelCard.GetListCard();
+                TableCard();
             }
         }
         public override void TableCard()
@@ -58,11 +51,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             table.Border(TableBorder.AsciiDoubleHead);
             table.Expand();
             table.AddColumn("[springgreen2_1]Số Thẻ ATM[/]");
-            table.AddColumn("[springgreen2_1]Loại Thẻ[/]");
-            table.AddColumn("[springgreen2_1]CVV[/]");
+            table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
             table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
             table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
-            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Card_Type}",$"{ControllerCard.Card.CVV}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}");
+            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Pass_Card}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}");
             AnsiConsole.Write(table);
             table.Rows.Clear();
         }
@@ -72,21 +64,20 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         }
         public void CreateCrad()
         {
-            string CardType = InputCardType();
-            if (ControllerCard.CreateCard(CardType))
+            if (controllerCard.CreateCard())
             {
-                Common.PrintMessage_Console(Language.Created_Card_Success, true);
+                Common.PrintMessage_Console(Language.AbstractLanguage.Created_Card_Success, true);
             }
             else
             {
-                Console.WriteLine(Language.Error_Create_Card, false);
+                Console.WriteLine(Language.AbstractLanguage.Error_Create_Card, false);
             }
         }
         private string InputCardType()
         {
             do
             {
-                Console.Write(Language.Input_Card_Type);
+                Console.Write(Language.AbstractLanguage.Input_Card_Type);
                 string CardType = Console.ReadLine();
                 if (CardType.ToLower().Equals("napas") || CardType.ToLower().Equals("visa") || CardType.ToLower().Equals(""))
                 {

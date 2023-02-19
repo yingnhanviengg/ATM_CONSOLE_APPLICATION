@@ -79,7 +79,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindUser(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.FirstOrDefault(u => u.Username == modelBank_Account.Username) != null)
+            if (ListBank_User.Any(u => u.Username == modelBank_Account.Username))
             {
                 return true; // tài khoản đã tồn tại
             }
@@ -87,7 +87,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindEmail(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.FirstOrDefault(u => u.Email == modelBank_Account.Email) != null)
+            if (ListBank_User.Any(u => u.Email == modelBank_Account.Email))
             {
                 return true; // email đã tồn tại
             }
@@ -95,7 +95,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindPhone(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.FirstOrDefault(u => u.Phone == modelBank_Account.Phone) != null)
+            if (ListBank_User.Any(u => u.Phone == modelBank_Account.Phone))
             {
                 return true; // sdt đã tồn tại
             }
@@ -103,7 +103,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindCMND_CCCD(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.FirstOrDefault(u => u.CMND_CCCD == modelBank_Account.CMND_CCCD) != null)
+            if (ListBank_User.Any(u => u.CMND_CCCD == modelBank_Account.CMND_CCCD))
             {
                 return true; // CMND_CCCD đã tồn tại
             }
@@ -204,16 +204,13 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool IsLoggedIn(ModelBank_Account modelBank_Account)
         {
-            bool result = false;
-            foreach (var item in ListBank_User)
+            var item = ListBank_User.FirstOrDefault(u => u.Username == modelBank_Account.Username && u.Password == modelBank_Account.Password);
+            if (item != null)
             {
-                if (item.Username.Equals(modelBank_Account.Username) && item.Password.Equals(modelBank_Account.Password))
-                {
-                    modelBank_Account.GetBank_User(item);
-                    return result = true;
-                }
+                modelBank_Account.GetBank_User(item);
+                return true;
             }
-            return result;
+            return false;
         }
     }
 }

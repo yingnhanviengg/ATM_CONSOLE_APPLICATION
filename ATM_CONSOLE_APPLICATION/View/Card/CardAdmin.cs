@@ -65,8 +65,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
                 table.AddColumn("[springgreen2_1]Số Thẻ ATM[/]");
-                table.AddColumn("[springgreen2_1]Loại Thẻ[/]");
-                table.AddColumn("[springgreen2_1]CVV[/]");
+                table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
                 table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
                 table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
@@ -79,7 +78,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerCard.ListCard.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.Number_Card}", $"{item.Card_Type}", $"{item.CVV}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}");
+                        table.AddRow($"{item.Number_Card}", $"{item.Pass_Card}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}");
                     }
                 }
                 AnsiConsole.Write(table);

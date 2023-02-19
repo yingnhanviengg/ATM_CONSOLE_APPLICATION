@@ -30,7 +30,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }       
         public override void Information_Manager_Menu()
         {
-            string[] Menu_Customer = { Language.Check_Account_Information, Language.Update_Information };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -91,25 +91,25 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             var item = SearchUserByID(id, ControllerBank_User.ListBank_User);
             if (item != null)
             {
-                Console.WriteLine($"{Language.Name_Current}{item.FullName}");
+                Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{item.FullName}");
                 string fullname = Common.Edit() ? InputisValid.InputFullName() : item.FullName;
 
-                Console.WriteLine($"{Language.DateOfBirth_Current}{DateOfBirthToString(item.DateOfBirth)}");
+                Console.WriteLine($"{Language.AbstractLanguage.DateOfBirth_Current}{DateOfBirthToString(item.DateOfBirth)}");
                 DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : item.DateOfBirth;
 
-                Console.WriteLine($"{Language.Gender_Current}{item.Gender}");
+                Console.WriteLine($"{Language.AbstractLanguage.Gender_Current}{item.Gender}");
                 string gender = Common.Edit() ? InputisValid.InputGender() : item.Gender;
 
-                Console.WriteLine($"{Language.CMND_CCCD_Current}{item.CMND_CCCD}");
+                Console.WriteLine($"{Language.AbstractLanguage.CMND_CCCD_Current}{item.CMND_CCCD}");
                 string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : item.CMND_CCCD;
 
-                Console.WriteLine($"{Language.Address_Current}{item.Address}");
+                Console.WriteLine($"{Language.AbstractLanguage.Address_Current}{item.Address}");
                 string address = Common.Edit() ? InputisValid.InputAddress() : item.Address;
 
-                Console.WriteLine($"{Language.Email_Current}{item.Email}");
+                Console.WriteLine($"{Language.AbstractLanguage.Email_Current}{item.Email}");
                 string email = Common.Edit() ? InputisValid.InputValidEmail() : item.Email;
 
-                Console.WriteLine($"{Language.SDT_Current}{item.Phone}");
+                Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.Phone}");
                 string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.Phone;
 
                 ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
@@ -119,21 +119,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     case 1:
                         if (controllerBank_User.Upate_Information(update))
                         {
-                            Common.PrintMessage_Console(Language.Update_Information_Success, true);
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                         }
                         else
                         {
-                            Common.PrintMessage_Console(Language.Update_Information_Error, false);
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Error, false);
                         }
                         break;
                     case -2:
-                        Common.PrintMessage_Console(Language.Error_Email_Already_Exists + "\n" + Language.Registration_Failed, false);
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_Email_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                         break;
                     case -3:
-                        Common.PrintMessage_Console(Language.Error_Phone_Already_Exists + "\n" + Language.Registration_Failed, false);
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_Phone_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                         break;
                     case -4:
-                        Common.PrintMessage_Console(Language.Error_CNMD_CCCD_Already_Exists + "\n" + Language.Registration_Failed, false);
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_CNMD_CCCD_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                         break;
                 }         
             }    

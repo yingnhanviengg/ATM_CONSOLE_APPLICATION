@@ -15,15 +15,15 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         }
         public override bool Mail(ModelBank_Account modelBank_Account)
         {
-            if (Language.Current_Language.Equals("Vietnamese"))
+            if (Language.AbstractLanguage.Current_Language.Equals("Vietnamese"))
             {
                 Mail_Vietnamese(modelBank_Account);
             }
-            else if (Language.Current_Language.Equals("English"))
+            else if (Language.AbstractLanguage.Current_Language.Equals("English"))
             {
                 Mail_English(modelBank_Account);
             }
-            if (SendMail(Language.Current_Language))
+            if (SendMail(Language.AbstractLanguage.Current_Language))
             {
                 return true;
             }

@@ -14,7 +14,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public double Balance { get; set; }
         public DateTime created_at_bank { get; set; }
         public string status_bank { get; set; }
-        private static ModelBank_Account _UserBank;
+        private static ModelBank_Account? _UserBank;
         public static ModelBank_Account UserBank
         {
             get
