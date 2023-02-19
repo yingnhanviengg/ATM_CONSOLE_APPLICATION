@@ -15,6 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         }
         public override bool Mail(ModelBank_Account modelBank_Account)
         {
+
             if (Language.AbstractLanguage.Current_Language.Equals("Vietnamese"))
             {
                 Mail_Vietnamese(modelBank_Account);
