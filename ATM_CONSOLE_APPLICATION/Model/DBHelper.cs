@@ -27,9 +27,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                         Connection.Open();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Console.WriteLine(ex);
                     Thread.Sleep(3000);
                 }
                 if (Connection.State == ConnectionState.Open)

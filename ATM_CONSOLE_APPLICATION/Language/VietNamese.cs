@@ -77,6 +77,10 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Lock_Account_Success = "Khóa tài khoản thành công";
             NotFind_ID = "Không tìm thấy ID khách hàng";
             Unlock_Account_Success = "Mở khóa tài khoản thành công";
+            // Reacharge
+            Input_Amount = "Nhập số tiền muốn nạp vào tài khoản: ";
+            SendRequire_Racharge_Success = "Gửi yêu cầu nạp tiền thành công\nVui lòng đợi quản trị viên phê duyệt";
+            SendRequire_Racharge_Error = "Gửi yêu nạp tiền thất bại";
         }
     }
 }

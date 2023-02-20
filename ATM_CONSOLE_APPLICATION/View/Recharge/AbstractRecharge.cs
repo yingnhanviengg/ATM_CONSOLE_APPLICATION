@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Recharge
 {
-    internal class AbstractRecharge
+    public abstract class AbstractRecharge
     {
+
     }
 }

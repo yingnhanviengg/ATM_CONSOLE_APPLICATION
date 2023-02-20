@@ -59,6 +59,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 3:
                         break;
                     case 4:
+                        Console.Clear();
+                        Recharge.RechargeCustomer recharge = Recharge.RechargeCustomer._RechargeCustomer;
+                        recharge.Recharge();
                         break;
                     case 5:
                         break;

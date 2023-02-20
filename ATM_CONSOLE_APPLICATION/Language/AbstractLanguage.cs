@@ -77,6 +77,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Lock_Account_Success { get; set; }
         public static string NotFind_ID { get; set; }
         public static string Unlock_Account_Success { get; set; }
-
+        // Reacharge
+        public static string Input_Amount { get; set; }
+        public static string SendRequire_Racharge_Success { get; set; }
+        public static string SendRequire_Racharge_Error { get; set; }
     }
 }

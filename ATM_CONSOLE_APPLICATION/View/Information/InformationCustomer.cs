@@ -12,11 +12,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
 {
     public class InformationCustomer : AbstractInformation
     {
-        private static InformationCustomer? _informationCustomer;
         private InformationCustomer()
         {
-            
+
         }
+        private static InformationCustomer? _informationCustomer;     
         public static InformationCustomer _InformationCustomer
         {
             get

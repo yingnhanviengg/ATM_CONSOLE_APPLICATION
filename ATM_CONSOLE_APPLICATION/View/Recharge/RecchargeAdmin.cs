@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Recharge
 {
-    internal class ReachargeAdmin
+    public class RecchargeAdmin
     {
     }
 }

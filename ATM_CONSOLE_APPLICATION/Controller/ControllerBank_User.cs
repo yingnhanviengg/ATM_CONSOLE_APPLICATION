@@ -54,8 +54,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
             if (userindex != -1)
             {
-                var user = ListBank_User[userindex];
-                user.status_user = modelBank_Account.status_user;
+                var user = ListBank_User[userindex].status_user = "lock";
                 return modelBank_Account.Lock_Account(modelBank_Account);
             }
             else
@@ -67,7 +66,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             if (modelBank_Account.Update_Information(modelBank_Account))
             {
-                if (UserBank.role.Equals("customer") || modelBank_Account.ID_User.Equals(UserBank.ID_User))
+                if (UserBank.role.Equals("customer") && modelBank_Account.ID_User.Equals(UserBank.ID_User))
                 {
                     Update_User(modelBank_Account);
                 }
