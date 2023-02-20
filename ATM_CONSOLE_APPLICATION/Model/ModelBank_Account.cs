@@ -93,6 +93,32 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at_bank = created_at_bank;
             this.status_bank = status_bank;
         }
+        public bool Lock_Account(ModelBank_Account modelBank_Account)
+        {
+            try
+            {
+                string query = "UPDATE user SET status_user = 'lock' WHERE id_user = @iduser;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@id_user", modelBank_Account.ID_User);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
         public bool Create_Bank_Account(int id_user, string number_bank)
         {
             try
@@ -123,7 +149,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public void GetList_All_Bank_User()
         {
             _ListBank_User.Clear();
-            string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user";
+            string query = "SELECT user.*, bank_account.id_bank_account, bank_account.number_bank, bank_account.balance, bank_account.created_at_bank_account, bank_account.status_bank FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user WHERE status_user = 'normal' OR status_user = 'lock' ";
             using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
             using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
             {

@@ -29,6 +29,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Input_Pass = "Nhập mật khẩu: ";
             Notification_Login_True = "Đăng nhập thành công";
             Notification_Login_Fasle = "Đăng nhập ko thành công";
+            Account_Is_Locked = "Tài khoản bị khóa, liên hệ quản trị viên để được hỗ trợ";
             // Register
             Input_Fullname = "Nhập họ và tên: ";
             Input_DateOfBirth = "Nhập ngày/tháng/năm sinh: ";
@@ -69,6 +70,11 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Update_Information_Success = "Cập nhật thông tin tài khoản thành công";
             Update_Information_Error = "Cập nhật thông tin tài khoản thất bại";
             Input_IDUser = "Nhập ID khách hàng: ";
+            //
+            Lock_account = "Tạm khóa tài khoản khách hàng";
+            unLock_account = "Mở khóa tài khoản khách hàng";
+            Lock_Account_Success = "Khóa tài khoản thành công";
+            NotFind_ID = "Không tìm thấy ID khách hàng";
         }
     }
 }

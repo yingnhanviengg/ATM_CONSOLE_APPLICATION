@@ -8,6 +8,7 @@ using ATM_CONSOLE_APPLICATION.Model;
 using MySql.Data.MySqlClient;
 using ATM_CONSOLE_APPLICATION.Controller.email;
 using Microsoft.Win32;
+using Org.BouncyCastle.Math.Field;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -32,6 +33,20 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                     _ControllerUser = new ControllerBank_User();
                 }
                 return _ControllerUser;
+            }
+        }
+        public bool Lock_Account(ModelBank_Account modelBank_Account)
+        {
+            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            if (userindex != -1)
+            {
+                var user = ListBank_User[userindex];
+                user.status_user = modelBank_Account.status_user;
+                return modelBank_Account.Lock_Account(modelBank_Account);
+            }
+            else
+            {
+                return false;
             }
         }
         public bool Upate_Information(ModelBank_Account modelBank_Account)
@@ -202,15 +217,22 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             return new string(Enumerable.Repeat(chars, 10)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public bool IsLoggedIn(ModelBank_Account modelBank_Account)
+        public int IsLoggedIn(ModelBank_Account modelBank_Account)
         {
             var item = ListBank_User.FirstOrDefault(u => u.Username == modelBank_Account.Username && u.Password == modelBank_Account.Password);
-            if (item != null)
+            if (item != null && item.status_user.Equals("normal"))
             {
                 modelBank_Account.GetBank_User(item);
-                return true;
+                return 1;
             }
-            return false;
+            else if (item != null && item.status_user.Equals("lock"))
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

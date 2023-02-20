@@ -1,4 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.Model;
 using Spectre.Console;
 using System;
@@ -11,6 +12,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
 {
     public class InformationAdmin : AbstractInformation
     {
+        ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
         private static InformationAdmin? _informationAdmin;
 
         private InformationAdmin()
@@ -30,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }       
         public override void Information_Manager_Menu()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -52,6 +54,13 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         Update_Information();
                         break;
                     case 3:
+                        Console.Clear();
+                        Lock_Account();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        break;
+                    case 5:
                         Console.Clear();
                         MainMenu.Menu.ShowMenu();
                         break;
@@ -84,6 +93,23 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             }
             return null;
         }
+        public void Lock_Account()
+        {
+            Table_Informatio();
+            int id = InputisValid.InputIDUser();
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_User.Equals(id));
+            if (item != default)
+            {
+                if (controllerBank_User.Lock_Account(item))
+                {                 
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
+                }
+            }
+            else
+            {
+                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
+            }
+        }
         public override void Update_Information()
         {
             Table_Informatio();
@@ -112,7 +138,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.Phone}");
                 string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.Phone;
 
-                ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
                 var update = new ModelBank_Account(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
                 switch (controllerBank_User.IsValidUpdate(update))
                 {
@@ -136,7 +161,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         Common.PrintMessage_Console(Language.AbstractLanguage.Error_CNMD_CCCD_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                         break;
                 }         
-            }    
+            }
+            else
+            {
+                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
+            }
         }
         public override void Table_Informatio()
         {

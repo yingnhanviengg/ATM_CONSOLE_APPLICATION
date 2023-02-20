@@ -27,6 +27,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Input_Pass { get; set; }
         public static string Notification_Login_True { get; set; }
         public static string Notification_Login_Fasle { get; set; }
+        public static string Account_Is_Locked { get; set; }
         // Register
         public static string Input_Fullname { get; set; }
         public static string Input_DateOfBirth { get; set; }
@@ -67,6 +68,11 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Update_Information_Success { get; set; }
         public static string Update_Information_Error { get; set; }
         public static string Input_IDUser { get; set; }
+        //
+        public static string Lock_account { get; set; }
+        public static string unLock_account { get; set; }
+        public static string Lock_Account_Success { get; set; }
+        public static string NotFind_ID { get; set; }
 
     }
 }

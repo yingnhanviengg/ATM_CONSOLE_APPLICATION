@@ -31,20 +31,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             string user = InputisValid.InptUsername();
             string pass = InputisValid.InputPassword();
             var login = new Model.ModelBank_Account(user, pass);
-            if (user != null && pass != null)
+            switch (ControllerUser.IsLoggedIn(login))
             {
-                if (ControllerUser.IsLoggedIn(login))
-                {
+                case 1:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_True, true);
                     return true;
-                }
-                else
-                {
+                case -1:                
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Account_Is_Locked, false);
+                    return false;
+                default:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
                     return false;
-                }
-            }
-            return false;
+            }           
         }
         public void Register()
         {         

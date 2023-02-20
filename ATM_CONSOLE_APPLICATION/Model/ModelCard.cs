@@ -95,7 +95,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public void GetListCard()
         {
             ListCards.Clear();
-            string query = "SELECT card.* FROM card;";
+            string query = "SELECT card.* FROM card WHERE status_card = 'normal' OR status_card = 'lock';";
             using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
             using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
             {
