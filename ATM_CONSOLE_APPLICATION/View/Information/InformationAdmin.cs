@@ -32,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }       
         public override void Information_Manager_Menu()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account, AbstractLanguage.Change_Language };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -59,6 +59,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         break;
                     case 4:
                         Console.Clear();
+
                         break;
                     case 5:
                         Console.Clear();
@@ -68,6 +69,23 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         break;
                 }
             } while (true);
+        }
+        public void Unlock_Account()
+        {
+            Table_Informatio();
+            int id = InputisValid.InputIDUser();
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_User.Equals(id));
+            if (item != default)
+            {
+                if (controllerBank_User.Unlock_Account(item))
+                {
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
+                }
+            }
+            else
+            {
+                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
+            }
         }
         public ModelBank_Account SearchUserByID(int id, List<ModelBank_Account> List)
         {

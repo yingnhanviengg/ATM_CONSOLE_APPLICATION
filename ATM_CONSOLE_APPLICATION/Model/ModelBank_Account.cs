@@ -93,6 +93,32 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.created_at_bank = created_at_bank;
             this.status_bank = status_bank;
         }
+        public bool UnLock_Account(ModelBank_Account modelBank_Account)
+        {
+            try
+            {
+                string query = "UPDATE user SET status_user = 'normal' WHERE id_user = @iduser;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@iduser", modelBank_Account.ID_User);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
         public bool Lock_Account(ModelBank_Account modelBank_Account)
         {
             try

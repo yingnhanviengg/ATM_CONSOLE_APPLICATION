@@ -75,6 +75,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
             unLock_account = "Mở khóa tài khoản khách hàng";
             Lock_Account_Success = "Khóa tài khoản thành công";
             NotFind_ID = "Không tìm thấy ID khách hàng";
+            Unlock_Account_Success = "Mở khóa tài khoản thành công";
         }
     }
 }

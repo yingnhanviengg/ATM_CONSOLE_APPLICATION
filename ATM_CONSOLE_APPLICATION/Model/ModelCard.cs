@@ -119,7 +119,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetString("number_card"),
                 reader.GetString("pass_card"),
                 reader.GetDateTime("expiration_date"),
-                reader.GetString("status"),
+                reader.GetString("status_card"),
                 reader.GetDateTime("created_at_card")             
                 );
             return card;

@@ -35,6 +35,20 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return _ControllerUser;
             }
         }
+        public bool Unlock_Account(ModelBank_Account modelBank_Account)
+        {
+            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            if (userindex != -1)
+            {
+                var user = ListBank_User[userindex];
+                user.status_user = modelBank_Account.status_user;
+                return modelBank_Account.UnLock_Account(user);
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool Lock_Account(ModelBank_Account modelBank_Account)
         {
             var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
