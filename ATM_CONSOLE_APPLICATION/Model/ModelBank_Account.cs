@@ -99,7 +99,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             {
                 string query = "UPDATE user SET status_user = 'lock' WHERE id_user = @iduser;";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
-                mySqlCommand.Parameters.AddWithValue("@id_user", modelBank_Account.ID_User);
+                mySqlCommand.Parameters.AddWithValue("@iduser", modelBank_Account.ID_User);
                 if (mySqlCommand.ExecuteNonQuery() != 0)
                 {
                     return true;

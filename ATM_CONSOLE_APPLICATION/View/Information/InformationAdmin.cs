@@ -221,7 +221,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.ID_User}", $"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}",$"{item.Gender}", $"{item.CMND_CCCD}",$"{item.Number_Bank}", $"{item.Balance}", $"{item.Address}",$"{item.Email}", $"{item.Phone}");
+                        if (item.status_user.Equals("normal"))
+                        {
+                            table.AddRow($"{item.ID_User}", $"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}", $"{item.Gender}", $"{item.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.Address}", $"{item.Email}", $"{item.Phone}");
+
+                        }                     
                     }
                 }
                 AnsiConsole.Write(table);
