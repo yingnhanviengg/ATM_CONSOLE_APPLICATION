@@ -48,6 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         MainMenu.Menu.ShowMenu();
                         break;
                     default:
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }
             } while (true);

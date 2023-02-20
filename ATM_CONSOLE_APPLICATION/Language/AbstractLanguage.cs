@@ -16,7 +16,10 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Error_Code_Limit_3 { get; set; }
         public static string Login { get; set; }
         public static string Register { get; set; }
-        // Menu actor người dùng
+        // Menu customer
+
+        //Menu Admin
+        
         public static string Check_Account_Information { get; set; }
         //Chosse
         public static string Input_choose { get; set; }

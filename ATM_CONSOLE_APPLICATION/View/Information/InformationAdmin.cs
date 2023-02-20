@@ -32,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }       
         public override void Information_Manager_Menu()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account, AbstractLanguage.Change_Language };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -59,13 +59,14 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         break;
                     case 4:
                         Console.Clear();
-
+                        Unlock_Account();
                         break;
                     case 5:
                         Console.Clear();
                         MainMenu.Menu.ShowMenu();
                         break;
                     default:
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }
             } while (true);

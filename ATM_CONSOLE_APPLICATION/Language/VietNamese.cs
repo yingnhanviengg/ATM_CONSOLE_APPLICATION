@@ -19,7 +19,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Register = "Đăng Ký";
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
             Change_Language = "Chuyển ngôn ngữ";
-
+            // menu admin
+            // menu customer
             // Chosse
             Input_choose = "Nhập lựa chọn: ";
             Exception_choose = "Chỉ được nhập số";

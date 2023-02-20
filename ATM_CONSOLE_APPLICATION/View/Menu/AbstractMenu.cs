@@ -15,6 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
         public static string Tranfer_Money_Manager { get; set; }
         public static string Bank_Deposit_Manager { get; set; }
         public static string Transaction_History_Manager { get; set; }
+
         public abstract void Menu();
         public abstract void ShowMenu();
     }

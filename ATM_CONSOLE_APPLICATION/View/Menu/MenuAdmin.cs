@@ -27,7 +27,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                 Recharge_Manager = "Kiểm tra yêu cầu nạp tiền";
                 Transaction_History_Manager = "Lịch sử giao dịch";
             }
-            string[] Menu_Admin = { Information_Manager, Card_Manager, Recharge_Manager, Tranfer_Money_Manager, AbstractLanguage.Change_Language };
+            string[] Menu_Admin = { Information_Manager, Card_Manager, Recharge_Manager, Transaction_History_Manager, AbstractLanguage.Change_Language };
             for (int i = 0; i < Menu_Admin.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Admin[i]}");
