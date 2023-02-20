@@ -17,17 +17,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Login { get; set; }
         public static string Register { get; set; }
         // Menu actor người dùng
-        public static string Card_Management { get; set; }
         public static string Check_Account_Information { get; set; }
-        public static string Withdraw_Money { get; set; }
-        public static string Recharge { get; set; }
-        public static string Tranfer_Money { get; set; }
-        public static string Bank_Deposit { get; set; }
-        public static string Transaction_History { get; set; }
-        // Menu actor Admin
-        public static string Check_Account_Information_Admin { get; set; }
-        public static string Transaction_History_Admin { get; set; }
-        public static string Transaction_Statistics { get; set; }
         //Chosse
         public static string Input_choose { get; set; }
         public static string Exception_choose { get; set; }

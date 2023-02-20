@@ -14,18 +14,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             // Menu actor người dùng
             Login = "Login";
             Register = "Register";
-            Card_Management = "Card Management";
             Check_Account_Information = "Check Account Information";
-            Withdraw_Money = "Withdraw Money";
-            Recharge = "Recharge";
-            Tranfer_Money = "Transfer Money";
-            Bank_Deposit = "Bank Deposit";
-            Transaction_History = "Check Transaction History";
             Change_Language = "Switch Language";
-            // Menu actor Admin
-            Check_Account_Information_Admin = "Check Account Information";
-            Transaction_History_Admin = "Check Transaction History";
-            Transaction_Statistics = "Transaction statistics";
             //Choose
             Input_choose = "Enter account: ";
             Exception_choose = "Only numbers are allowed";

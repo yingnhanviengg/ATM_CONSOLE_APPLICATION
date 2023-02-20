@@ -17,18 +17,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
             // Menu actor người dùng
             Login = "Đăng Nhập";
             Register = "Đăng Ký";
-            Card_Management = "Quản lý thẻ";
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
-            Withdraw_Money = "Rút tiền";
-            Recharge = "Nạp tiền";
-            Tranfer_Money = "Chuyển khoản";
-            Bank_Deposit = "Gửi tiết kiệm";
-            Transaction_History = "Kiểm tra lịch sử giao dịch";
             Change_Language = "Chuyển ngôn ngữ";
-            // Menu actor Admin
-            Check_Account_Information_Admin = "Kiểm tra thông tin tài khoản";
-            Transaction_History_Admin = "Kiểm tra lịch sử giao dịch";
-            Transaction_Statistics = "Thống kê giao dịch";
+
             // Chosse
             Input_choose = "Nhập lựa chọn: ";
             Exception_choose = "Chỉ được nhập số";
