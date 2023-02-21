@@ -14,13 +14,36 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Enter_Code = "Nhập mã xác minh: ";
             Error_Code = "Mã xác minh không chính xác";
             Error_Code_Limit_3 = "Số lần nhập lại ";
-            // Menu actor người dùng
+            // Menu login
             Login = "Đăng Nhập";
-            Register = "Đăng Ký";
-            Check_Account_Information = "Kiểm tra thông tin tài khoản";
+            Register = "Đăng Ký";          
             Change_Language = "Chuyển ngôn ngữ";
             // menu admin
+            Card_Manager_Admin = "Quản lý thẻ ATM ";
+            Information_Manager_Admin = "Quản lý thông tin khách hàng";
+            Recharge_Manager_Admin = "Kiểm tra yêu cầu nạp tiền";
+            Transaction_History_Manager_Admin = "Kiểm tra lịch sử giao dịch";
             // menu customer
+            Card_Customer = "Kiểm tra thẻ ATM";
+            Information_Customer = "Kiểm tra thông tin tài khoản";
+            Withdraw_Money_Customer = "Rút tiền";
+            Recharge_Customer = "Nạp tiền";
+            Tranfer_Money_Customer = "Chuyển khoản";
+            Bank_Deposit_Customer = "Gửi tiết kiệm";
+            Transaction_History_Customer = "Kiểm tra lịch sử giao dịch";
+            // information
+            Check_Account_Information = "Kiểm tra thông tin tài khoản";
+            Update_Information_Success = "Cập nhật thông tin tài khoản thành công";
+            Update_Information_Error = "Cập nhật thông tin tài khoản thất bại";
+            Update_Information = "Cập nhật thông tin tài khoản ";
+            Name_Current = "Họ và tên hiện tại: ";
+            DateOfBirth_Current = "Ngày/Tháng/Năm sinh hiện tại: ";
+            Gender_Current = "Giới tính hiện tại: ";
+            CMND_CCCD_Current = "CMND/CCCD hiện tại: ";
+            Address_Current = "Địa chỉ hiện tại: ";
+            Email_Current = "Email hiện tại: ";
+            SDT_Current = "Số điện thoại hiện tại: ";
+            IsUpdate = "Có muốn sửa giá trị này không? (Y hoặc N)";
             // Chosse
             Input_choose = "Nhập lựa chọn: ";
             Exception_choose = "Chỉ được nhập số";
@@ -31,7 +54,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Notification_Login_True = "Đăng nhập thành công";
             Notification_Login_Fasle = "Đăng nhập ko thành công";
             Account_Is_Locked = "Tài khoản bị khóa, liên hệ quản trị viên để được hỗ trợ";
-            // Register
+            // Input
             Input_Fullname = "Nhập họ và tên: ";
             Input_DateOfBirth = "Nhập ngày/tháng/năm sinh: ";
             Input_Address = "Nhập địa chỉ: ";
@@ -39,6 +62,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Input_Phone = "Nhập số điện thoại: ";
             Input_Gender = "Nhập giới tính (Nam/Nữ): ";
             Input_CMND_CCCD = "Nhập số CMND hoặc CCCD: ";
+            Input_IDUser = "Nhập ID khách hàng: ";
+            // Register
             Error_Input_Gender = "Nhập giới tính không hợp lệ";
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
             Error_Input_Email = "Nhập email không hợp lệ";
@@ -54,23 +79,13 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Error_Limit_User_8_char = "Tên tài khoản phải có tối thiểu 8 chữ số, không được phép có ký tự đặc biệt";
             Error_Re_register = "Nhập sai quá nhiều lần, vui lòng đăng ký lại";
             // Card
-            Input_Card_Type = "Nhập loại thẻ muốn đăng ký (Napas - Visa - Mastercard): ";
             Created_Card_Success = "Tạo thẻ thành công";
             Error_Create_Card = "Tạo thẻ thất bại";
             No_CardYet = "Bạn chưa tạo thẻ ngân hàng.\nCó muốn tạo thẻ ngân hàng ngay không? (Y/N)";
-            Update_Information = "Cập nhật thông tin tài khoản ";
             IsY_or_N = "Chỉ được nhập Y hoặc N";
-            IsUpdate = "Có muốn sửa giá trị này không? (Y hoặc N)";
-            Name_Current = "Họ và tên hiện tại: ";
-            DateOfBirth_Current = "Ngày/Tháng/Năm sinh hiện tại: ";
-            Gender_Current = "Giới tính hiện tại: ";
-            CMND_CCCD_Current = "CMND/CCCD hiện tại: ";
-            Address_Current = "Địa chỉ hiện tại: ";
-            Email_Current = "Email hiện tại: ";
-            SDT_Current = "Số điện thoại hiện tại: ";
-            Update_Information_Success = "Cập nhật thông tin tài khoản thành công";
-            Update_Information_Error = "Cập nhật thông tin tài khoản thất bại";
-            Input_IDUser = "Nhập ID khách hàng: ";
+            Show_All_Card = "Hiển thị tất cả thẻ ATM";
+            Lock_Card = "Tạm khóa thẻ ATM";
+            UnLock_Card = "Mở khóa thẻ ATM";
             //
             Lock_account = "Tạm khóa tài khoản khách hàng";
             unLock_account = "Mở khóa tài khoản khách hàng";

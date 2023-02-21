@@ -25,11 +25,11 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 if (_menu == null)
                 {
-                    if (ControllerBank_User.UserBank.role.Equals("customer"))
+                    if (ControllerBank_User.UserBank.User.role.Equals("customer"))
                     {
                         _menu = new MenuCustomer();
                     }
-                    if (ControllerBank_User.UserBank.role.Equals("admin"))
+                    if (ControllerBank_User.UserBank.User.role.Equals("admin"))
                     {
                         _menu = new MenuAdmin();
                     }
@@ -68,11 +68,11 @@ namespace ATM_CONSOLE_APPLICATION.View
             Console.Clear();
             if (MenuLogin())
             {
-                if (ControllerBank_User.UserBank.role.Equals("customer"))
+                if (ControllerBank_User.UserBank.User.role.Equals("customer"))
                 {
                     Menu.ShowMenu();
                 }
-                if (ControllerBank_User.UserBank.role.Equals("admin"))
+                if (ControllerBank_User.UserBank.User.role.Equals("admin"))
                 {
                     Menu.ShowMenu();
                 }

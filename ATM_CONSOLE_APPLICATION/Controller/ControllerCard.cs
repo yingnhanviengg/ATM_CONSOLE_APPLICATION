@@ -32,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool CreateCard()
         {
-            if (Card.CreateCard(new ModelCard(ModelBank_Account.UserBank.ID_Bank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date())))
+            if (Card.CreateCard(new ModelCard(ModelBank_Account.UserBank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date())))
             {
                 return true;
             }
@@ -62,7 +62,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool GetCard()
         {
-            var item = ListCard.FirstOrDefault(x => x.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank));
+            var item = ListCard.FirstOrDefault(x => x.UserBank.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank));
             if (item != null)
             {
                 Card.GetCard(item);

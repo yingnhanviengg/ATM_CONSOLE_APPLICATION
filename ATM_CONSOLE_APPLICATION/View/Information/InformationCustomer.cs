@@ -64,29 +64,30 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         public override void Update_Information()
         {
             Table_Informatio();
-            Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{ControllerBank_User.UserBank.FullName}");
-            string fullname = Common.Edit() ? InputisValid.InputFullName() : ControllerBank_User.UserBank.FullName;
+            Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{ControllerBank_User.UserBank.User.FullName}");
+            string fullname = Common.Edit() ? InputisValid.InputFullName() : ControllerBank_User.UserBank.User.FullName;
 
-            Console.WriteLine($"{Language.AbstractLanguage.DateOfBirth_Current}{DateOfBirthToString(ControllerBank_User.UserBank.DateOfBirth)}");
-            DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : ControllerBank_User.UserBank.DateOfBirth;
+            Console.WriteLine($"{Language.AbstractLanguage.DateOfBirth_Current}{DateOfBirthToString(ControllerBank_User.UserBank.User.DateOfBirth)}");
+            DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : ControllerBank_User.UserBank.User.DateOfBirth;
 
-            Console.WriteLine($"{Language.AbstractLanguage.Gender_Current}{ControllerBank_User.UserBank.Gender}");
-            string gender = Common.Edit() ? InputisValid.InputGender() : ControllerBank_User.UserBank.Gender;
+            Console.WriteLine($"{Language.AbstractLanguage.Gender_Current}{ControllerBank_User.UserBank.User.Gender}");
+            string gender = Common.Edit() ? InputisValid.InputGender() : ControllerBank_User.UserBank.User.Gender;
 
-            Console.WriteLine($"{Language.AbstractLanguage.CMND_CCCD_Current}{ControllerBank_User.UserBank.CMND_CCCD}");
-            string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : ControllerBank_User.UserBank.CMND_CCCD;
+            Console.WriteLine($"{Language.AbstractLanguage.CMND_CCCD_Current}{ControllerBank_User.UserBank.User.CMND_CCCD}");
+            string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : ControllerBank_User.UserBank.User.CMND_CCCD;
 
-            Console.WriteLine($"{Language.AbstractLanguage.Address_Current}{ControllerBank_User.UserBank.Address}");
-            string address = Common.Edit() ? InputisValid.InputAddress() : ControllerBank_User.UserBank.Address;
+            Console.WriteLine($"{Language.AbstractLanguage.Address_Current}{ControllerBank_User.UserBank.User.Address}");
+            string address = Common.Edit() ? InputisValid.InputAddress() : ControllerBank_User.UserBank.User.Address;
 
-            Console.WriteLine($"{Language.AbstractLanguage.Email_Current}{ControllerBank_User.UserBank.Email}");
-            string email = Common.Edit() ? InputisValid.InputValidEmail() : ControllerBank_User.UserBank.Email;
+            Console.WriteLine($"{Language.AbstractLanguage.Email_Current}{ControllerBank_User.UserBank.User.Email}");
+            string email = Common.Edit() ? InputisValid.InputValidEmail() : ControllerBank_User.UserBank.User.Email;
 
-            Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{ControllerBank_User.UserBank.Phone}");
-            string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.Phone;
+            Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{ControllerBank_User.UserBank.User.Phone}");
+            string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.User.Phone;
 
             ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
-            var update = new Model.ModelBank_Account(ControllerBank_User.UserBank.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+            var user = new Model.ModelUser(ControllerBank_User.UserBank.User.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+            var update = new Model.ModelBank_Account(user);
             switch (controllerBank_User.IsValidUpdate(update))
             {
                 case 1:
@@ -124,10 +125,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
             table.AddColumn("[springgreen2_1]Email[/]");
             table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-            table.AddRow($"{ControllerBank_User.UserBank.FullName}", $"{DateOfBirthToString(ControllerBank_User.UserBank.DateOfBirth)}",
-                $"{ControllerBank_User.UserBank.Gender}", $"{ControllerBank_User.UserBank.CMND_CCCD}",
-                $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance}", $"{ControllerBank_User.UserBank.Address}",
-                $"{ControllerBank_User.UserBank.Email}", $"{ControllerBank_User.UserBank.Phone}");
+            table.AddRow($"{ControllerBank_User.UserBank.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.UserBank.User.DateOfBirth)}",
+                $"{ControllerBank_User.UserBank.User.Gender}", $"{ControllerBank_User.UserBank.User.CMND_CCCD}",
+                $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance}", $"{ControllerBank_User.UserBank.User.Address}",
+                $"{ControllerBank_User.UserBank.User.Email}", $"{ControllerBank_User.UserBank.User.Phone}");
             AnsiConsole.Write(table);
             table.Rows.Clear();
         }

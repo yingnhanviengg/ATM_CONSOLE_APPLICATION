@@ -30,7 +30,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         {
             string user = InputisValid.InptUsername();
             string pass = InputisValid.InputPassword();
-            var login = new Model.ModelBank_Account(user, pass);
+            var login = new Model.ModelUser(user, pass);
             switch (ControllerUser.IsLoggedIn(login))
             {
                 case 1:
@@ -55,7 +55,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             string cmnd_cccd = InputisValid.InputCMND_CCCD();
             string email = InputisValid.InputValidEmail();
             string phone = InputisValid.InputPhoneNumber();
-            var register = new Model.ModelBank_Account(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone, number_bank: string.Empty);
+            var user = new Model.ModelUser(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone);
+            var register = new Model.ModelBank_Account(user, number_bank: string.Empty);
             int result = ControllerUser.IsRegister(register);
             switch (result)
             {

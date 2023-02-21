@@ -37,11 +37,11 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Unlock_Account(ModelBank_Account modelBank_Account)
         {
-            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            var userindex = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
             if (userindex != -1)
             {
                 var user = ListBank_User[userindex];
-                user.status_user = modelBank_Account.status_user;
+                user.User.status_user = modelBank_Account.User.status_user;
                 return modelBank_Account.UnLock_Account(user);
             }
             else
@@ -51,10 +51,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Lock_Account(ModelBank_Account modelBank_Account)
         {
-            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            var userindex = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
             if (userindex != -1)
             {
-                var user = ListBank_User[userindex].status_user = "lock";
+                var user = ListBank_User[userindex].User.status_user = "lock";
                 return modelBank_Account.Lock_Account(modelBank_Account);
             }
             else
@@ -66,7 +66,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             if (modelBank_Account.Update_Information(modelBank_Account))
             {
-                if (UserBank.role.Equals("customer") && modelBank_Account.ID_User.Equals(UserBank.ID_User))
+                if (UserBank.User.role.Equals("customer") && modelBank_Account.User.ID_User.Equals(UserBank.User.ID_User))
                 {
                     Update_User(modelBank_Account);
                 }
@@ -80,23 +80,23 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public int IsValidUpdate(ModelBank_Account modelBank_Account)
         {
-            var index = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            var index = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
             var valid = ListBank_User[index];
-            if (!modelBank_Account.CMND_CCCD.Equals(valid.CMND_CCCD))
+            if (!modelBank_Account.User.CMND_CCCD.Equals(valid.User.CMND_CCCD))
             {
                 if (FindCMND_CCCD(modelBank_Account))
                 {
                     return -4;
                 }
             }
-            if (!modelBank_Account.Phone.Equals(valid.Phone))
+            if (!modelBank_Account.User.ID_User.Equals(valid.User.ID_User))
             {
                 if (FindPhone(modelBank_Account))
                 {
                     return -3;
                 }
             }
-            if (!modelBank_Account.Email.Equals(valid.Email))
+            if (!modelBank_Account.User.ID_User.Equals(valid.User.ID_User))
             {
                 if (FindEmail(modelBank_Account))
                 {
@@ -107,7 +107,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindUser(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.Any(u => u.Username == modelBank_Account.Username))
+            if (ListBank_User.Any(u => u.User.ID_User == modelBank_Account.User.ID_User))
             {
                 return true; // tài khoản đã tồn tại
             }
@@ -115,7 +115,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindEmail(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.Any(u => u.Email == modelBank_Account.Email))
+            if (ListBank_User.Any(u => u.User.Email == modelBank_Account.User.Email))
             {
                 return true; // email đã tồn tại
             }
@@ -123,7 +123,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindPhone(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.Any(u => u.Phone == modelBank_Account.Phone))
+            if (ListBank_User.Any(u => u.User.Phone == modelBank_Account.User.Phone))
             {
                 return true; // sdt đã tồn tại
             }
@@ -131,7 +131,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool FindCMND_CCCD(ModelBank_Account modelBank_Account)
         {
-            if (ListBank_User.Any(u => u.CMND_CCCD == modelBank_Account.CMND_CCCD))
+            if (ListBank_User.Any(u => u.User.CMND_CCCD == modelBank_Account.User.CMND_CCCD))
             {
                 return true; // CMND_CCCD đã tồn tại
             }
@@ -159,31 +159,31 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public void UpdateList_User(ModelBank_Account modelBank_Account)
         {
-            var userindex = ListBank_User.FindIndex(x => x.ID_User.Equals(modelBank_Account.ID_User));
+            var userindex = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
             if (userindex != -1)
             {
                 var user = ListBank_User[userindex];
                 if (user != null)
                 {
-                    user.FullName = modelBank_Account.FullName;
-                    user.DateOfBirth = modelBank_Account.DateOfBirth;
-                    user.Gender = modelBank_Account.Gender;
-                    user.CMND_CCCD = modelBank_Account.CMND_CCCD;
-                    user.Address = modelBank_Account.Address;
-                    user.Email = modelBank_Account.Email;
-                    user.Password = modelBank_Account.Password;
+                    user.User.FullName = modelBank_Account.User.FullName;
+                    user.User.DateOfBirth = modelBank_Account.User.DateOfBirth;
+                    user.User.Gender = modelBank_Account.User.Gender;
+                    user.User.CMND_CCCD = modelBank_Account.User.CMND_CCCD;
+                    user.User.Address = modelBank_Account.User.Address;
+                    user.User.Email = modelBank_Account.User.Email;
+                    user.User.Password = modelBank_Account.User.Password;
                 }    
             }    
         }
         public void Update_User(ModelBank_Account modelBank_Account)
         {
-            UserBank.FullName = modelBank_Account.FullName;
-            UserBank.DateOfBirth = modelBank_Account.DateOfBirth;
-            UserBank.Gender = modelBank_Account.Gender;
-            UserBank.CMND_CCCD = modelBank_Account.CMND_CCCD;
-            UserBank.Address = modelBank_Account.Address;
-            UserBank.Email = modelBank_Account.Email;
-            UserBank.Phone = modelBank_Account.Phone;
+            UserBank.User.FullName = modelBank_Account.User.FullName;
+            UserBank.User.DateOfBirth = modelBank_Account.User.DateOfBirth;
+            UserBank.User.Gender = modelBank_Account.User.Gender;
+            UserBank.User.CMND_CCCD = modelBank_Account.User.CMND_CCCD;
+            UserBank.User.Address = modelBank_Account.User.Address;
+            UserBank.User.Email = modelBank_Account.User.Email;
+            UserBank.User.Phone = modelBank_Account.User.Phone;
         }
         public int SearchUserIndexByID(int id)
         {
@@ -194,11 +194,11 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 int midIndex = (minIndex + maxIndex) / 2;
                 var item = ListBank_User[midIndex];
 
-                if (item.ID_User < id)
+                if (item.User.ID_User < id)
                 {
                     minIndex = midIndex + 1;
                 }
-                else if (item.ID_User > id)
+                else if (item.User.ID_User > id)
                 {
                     maxIndex = midIndex - 1;
                 }
@@ -214,9 +214,9 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             if (Email.code == null || !Email.code.Equals(code))
             {
                 return false;
-            }           
+            }
             bool isUserRegistered = modelBank_Account.IsRegister(modelBank_Account);
-            bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(modelBank_Account.Select_ID_User(modelBank_Account), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
+            bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(modelBank_Account.Select_ID_User(modelBank_Account.User), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
             modelBank_Account.GetList_All_Bank_User();
             Email templateMail = new TempMailRegister_Success();
             bool isMailSent = templateMail.Mail(modelBank_Account);
@@ -230,15 +230,15 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             return new string(Enumerable.Repeat(chars, 10)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public int IsLoggedIn(ModelBank_Account modelBank_Account)
+        public int IsLoggedIn(ModelUser user)
         {
-            var item = ListBank_User.FirstOrDefault(u => u.Username == modelBank_Account.Username && u.Password == modelBank_Account.Password);
-            if (item != null && item.status_user.Equals("normal"))
+            var item = ListBank_User.FirstOrDefault(u => u.User.Username == user.Username && u.User.Password == user.Password);
+            if (item != null && item.User.status_user.Equals("normal"))
             {
-                modelBank_Account.GetBank_User(item);
+                item.GetBank_User(item);
                 return 1;
             }
-            else if (item != null && item.status_user.Equals("lock"))
+            else if (item != null && item.User.status_user.Equals("lock"))
             {
                 return -1;
             }

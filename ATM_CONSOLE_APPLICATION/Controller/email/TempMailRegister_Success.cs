@@ -19,7 +19,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             {
                 Mail_English(modelBank_Account);
             }
-            if (SendMail(modelBank_Account.Email))
+            if (SendMail(modelBank_Account.User.Email))
             {
                 return true;
             }
@@ -33,12 +33,12 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Đăng ký tài khoản thành công";
-            body = $"Xin chào {modelBank_Account.FullName}<br/>" +
+            body = $"Xin chào {modelBank_Account.User.FullName}<br/>" +
                 $"Cảm ơn bạn đã tạo tài khoản ATM CONSOLE APPLICATION<br/>" +
                 $"Email này chứa toàn bộ thông tin quan trọng của bạn<br/>" +
-                $"Tài khỏa đăng nhập: {modelBank_Account.Username}<br/>" +
-                $"Mật khẩu: {modelBank_Account.Password}<br/>" +
-                $"Số tài khoản ngân hàng: {modelBank_Account.Number_Bank}.";
+                $"Tài khỏa đăng nhập: {modelBank_Account.User.Username}<br/>" +
+                $"Mật khẩu: {modelBank_Account.User.Password}<br/>" +
+                $"Số tài khoản ngân hàng: {modelBank_Account.Number_Bank}";
         }
         public override void Mail_English(ModelBank_Account modelBank_Account)
         {

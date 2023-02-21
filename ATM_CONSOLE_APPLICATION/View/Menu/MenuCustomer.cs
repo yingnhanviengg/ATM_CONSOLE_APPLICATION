@@ -11,29 +11,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
     public class MenuCustomer : AbstractMenu
     {
         public override void Menu()
-        {
-            if (AbstractLanguage.Current_Language.Equals("Vietnamese"))
-            {
-                Information_Manager = "Thông tin tài khoản";
-                Card_Manager = "Thông tin thẻ ATM";
-                Withdraw_Money_Manager = "Rút tiền";
-                Recharge_Manager = "Nạp tiền";
-                Tranfer_Money_Manager = "Chuyển khoản";
-                Bank_Deposit_Manager = "Gửi tiết kiệm";
-                Transaction_History_Manager = "Lịch sử giao dịch";
-            }
-            else
-            {
-                // menu customer english
-                Information_Manager = "Thông tin tài khoản";
-                Card_Manager = "Thông tin thẻ ATM";
-                Withdraw_Money_Manager = "Rút tiền";
-                Recharge_Manager = "Nạp tiền";
-                Tranfer_Money_Manager = "Chuyển khoản";
-                Bank_Deposit_Manager = "Gửi tiết kiệm";
-                Transaction_History_Manager = "Lịch sử giao dịch";
-            }          
-            string[] Menu_Customer = { Information_Manager, Card_Manager, Withdraw_Money_Manager, Recharge_Manager, Tranfer_Money_Manager, Bank_Deposit_Manager, Tranfer_Money_Manager, AbstractLanguage.Change_Language };
+        {        
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Withdraw_Money_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");

@@ -1,4 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
 using Spectre.Console;
 using System;
@@ -27,12 +28,37 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 return _cardAdmin;
             }
         }
+        private ControllerCard controllerCard = ControllerCard.controllerCard;
+        public void Card_Management_Menu()
+        {
+            string[] Menu = {AbstractLanguage.Show_All_Card, AbstractLanguage.Lock_Card, AbstractLanguage.UnLock_Card};
+            for (int i = 0; i < Menu.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}: {Menu[i]}");
+            }
+        }
         public override void Card_Management()
         {
-
+            do
+            {
+                Card_Management_Menu();
+                switch (Common.Choose())
+                {
+                    case 1:
+                        TableCard();
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }             
+            } while (true);
         }
         public override void TableCard()
         {
+            Console.WriteLine(ControllerCard.ListCard.Count);
             int pageNumber = 1;
             int pageCount = (ControllerCard.ListCard.Count + 10 - 1) / 10;
             int pageSize = 10;
@@ -68,6 +94,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
                 table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
                 table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
+                table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
+                table.AddColumn("[springgreen2_1]Tên Khách Hàng[/]");
+                table.AddColumn("[springgreen2_1]CMND/CCCD Khách Hàng[/]");
+                table.AddColumn("[springgreen2_1]Email Khách Hàng[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
                     Console.WriteLine("Số trang không hợp lệ.");
@@ -78,7 +108,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerCard.ListCard.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.Number_Card}", $"{item.Pass_Card}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}");
+                        table.AddRow($"{item.Number_Card}", $"{item.Pass_Card}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}", $"{item.Status_Card}", $"{item.UserBank.User.FullName}", $"{item.UserBank.User.CMND_CCCD}", $"{item.UserBank.User.Email}");
                     }
                 }
                 AnsiConsole.Write(table);

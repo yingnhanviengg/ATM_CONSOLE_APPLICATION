@@ -27,7 +27,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool IsRechaerge(ModelBank_Account user)
         {
-            var index = ControllerBank_User.ListBank_User.FindIndex(x => x.ID_User.Equals(user.ID_User));
+            var index = ControllerBank_User.ListBank_User.FindIndex(x => x.User.ID_User.Equals(user.User.ID_User));
             if (index != -1)
             {
                 var valid = ControllerBank_User.ListBank_User[index];

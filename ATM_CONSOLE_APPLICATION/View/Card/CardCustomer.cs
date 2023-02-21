@@ -54,7 +54,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
             table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
             table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
-            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Pass_Card}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}");
+            table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
+            table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Pass_Card}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}", $"{ControllerCard.Card.Status_Card}");
             AnsiConsole.Write(table);
             table.Rows.Clear();
         }

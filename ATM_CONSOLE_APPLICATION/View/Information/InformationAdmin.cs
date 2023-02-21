@@ -75,7 +75,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_User.Equals(id));
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
             if (item != default)
             {
                 if (controllerBank_User.Unlock_Account(item))
@@ -97,11 +97,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 int midIndex = (minIndex + maxIndex) / 2;
                 var item = List[midIndex];
 
-                if (item.ID_User < id)
+                if (item.User.ID_User < id)
                 {
                     minIndex = midIndex + 1;
                 }
-                else if (item.ID_User > id)
+                else if (item.User.ID_User > id)
                 {
                     maxIndex = midIndex - 1;
                 }
@@ -116,7 +116,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_User.Equals(id));
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
             if (item != default)
             {
                 if (controllerBank_User.Lock_Account(item))
@@ -136,28 +136,28 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             var item = SearchUserByID(id, ControllerBank_User.ListBank_User);
             if (item != null)
             {
-                Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{item.FullName}");
-                string fullname = Common.Edit() ? InputisValid.InputFullName() : item.FullName;
+                Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{item.User.FullName}");
+                string fullname = Common.Edit() ? InputisValid.InputFullName() : item.User.FullName;
 
-                Console.WriteLine($"{Language.AbstractLanguage.DateOfBirth_Current}{DateOfBirthToString(item.DateOfBirth)}");
-                DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : item.DateOfBirth;
+                Console.WriteLine($"{Language.AbstractLanguage.DateOfBirth_Current}{DateOfBirthToString(item.User.DateOfBirth)}");
+                DateTime dateofbirth = Common.Edit() ? InputisValid.InputDateTime() : item.User.DateOfBirth;
 
-                Console.WriteLine($"{Language.AbstractLanguage.Gender_Current}{item.Gender}");
-                string gender = Common.Edit() ? InputisValid.InputGender() : item.Gender;
+                Console.WriteLine($"{Language.AbstractLanguage.Gender_Current}{item.User.Gender}");
+                string gender = Common.Edit() ? InputisValid.InputGender() : item.User.Gender;
 
-                Console.WriteLine($"{Language.AbstractLanguage.CMND_CCCD_Current}{item.CMND_CCCD}");
-                string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : item.CMND_CCCD;
+                Console.WriteLine($"{Language.AbstractLanguage.CMND_CCCD_Current}{item.User.CMND_CCCD}");
+                string cmnd_cccd = Common.Edit() ? InputisValid.InputCMND_CCCD() : item.User.CMND_CCCD;
 
-                Console.WriteLine($"{Language.AbstractLanguage.Address_Current}{item.Address}");
-                string address = Common.Edit() ? InputisValid.InputAddress() : item.Address;
+                Console.WriteLine($"{Language.AbstractLanguage.Address_Current}{item.User.Address}");
+                string address = Common.Edit() ? InputisValid.InputAddress() : item.User.Address;
 
-                Console.WriteLine($"{Language.AbstractLanguage.Email_Current}{item.Email}");
-                string email = Common.Edit() ? InputisValid.InputValidEmail() : item.Email;
+                Console.WriteLine($"{Language.AbstractLanguage.Email_Current}{item.User.Email}");
+                string email = Common.Edit() ? InputisValid.InputValidEmail() : item.User.Email;
 
-                Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.Phone}");
-                string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.Phone;
-
-                var update = new ModelBank_Account(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+                Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.User.Phone}");
+                string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.User.Phone;
+                var user = new ModelUser(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+                var update = new ModelBank_Account(user);
                 switch (controllerBank_User.IsValidUpdate(update))
                 {
                     case 1:
@@ -240,9 +240,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        if (item.status_user.Equals("normal"))
+                        if (item.User.status_user.Equals("normal"))
                         {
-                            table.AddRow($"{item.ID_User}", $"{item.FullName}", $"{DateOfBirthToString(item.DateOfBirth)}", $"{item.Gender}", $"{item.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.Address}", $"{item.Email}", $"{item.Phone}");
+                            table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}");
 
                         }                     
                     }
