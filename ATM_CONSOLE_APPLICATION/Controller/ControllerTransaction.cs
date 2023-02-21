@@ -76,6 +76,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                     }
                     itembank.Balance += user.amount;
                     itemTransaction.status_transaction = "complete";
+                    email.Email email = new email.TemplateMailRecharge();
+                    email.Mail(user);
                     return true;
                 }
                 else

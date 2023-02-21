@@ -9,17 +9,17 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
     public class TempMailRegister_Success : Email
     {
-        public override bool Mail(ModelBank_Account modelBank_Account)
+        public override bool Mail(object model)
         {
             if (Language.AbstractLanguage.Current_Language.Equals("Vietnamese"))
             {
-                Mail_Vietnamese(modelBank_Account);
+                Mail_Vietnamese(model);
             }
             else if (Language.AbstractLanguage.Current_Language.Equals("English"))
             {
-                Mail_English(modelBank_Account);
+                Mail_English(model);
             }
-            if (SendMail(modelBank_Account.User.Email))
+            if (SendMail(((ModelBank_Account)model).User.Email))
             {
                 return true;
             }
@@ -28,19 +28,19 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
                 return false;
             }
         }
-        public override void Mail_Vietnamese(ModelBank_Account modelBank_Account)
+        public override void Mail_Vietnamese(object model)
         {
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Đăng ký tài khoản thành công";
-            body = $"Xin chào {modelBank_Account.User.FullName}<br/>" +
+            body = $"Xin chào {((ModelBank_Account)model).User.FullName}<br/>" +
                 $"Cảm ơn bạn đã tạo tài khoản ATM CONSOLE APPLICATION<br/>" +
                 $"Email này chứa toàn bộ thông tin quan trọng của bạn<br/>" +
-                $"Tài khỏa đăng nhập: {modelBank_Account.User.Username}<br/>" +
-                $"Mật khẩu: {modelBank_Account.User.Password}<br/>" +
-                $"Số tài khoản ngân hàng: {modelBank_Account.Number_Bank}";
+                $"Tài khỏa đăng nhập: {((ModelBank_Account)model).User.Username}<br/>" +
+                $"Mật khẩu: {((ModelBank_Account)model).User.Password}<br/>" +
+                $"Số tài khoản ngân hàng: {((ModelBank_Account)model).Number_Bank}";
         }
-        public override void Mail_English(ModelBank_Account modelBank_Account)
+        public override void Mail_English(object model )
         {
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";

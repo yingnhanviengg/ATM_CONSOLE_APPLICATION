@@ -21,9 +21,9 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public static string code { get; set; }
         public static string signature { get; set; }
         public Email() {    }
-        public abstract bool Mail(ModelBank_Account modelBank_Account);
-        public abstract void Mail_Vietnamese(ModelBank_Account modelBank_Account);
-        public abstract void Mail_English(ModelBank_Account modelBank_Account);
+        public abstract bool Mail(object model);
+        public abstract void Mail_Vietnamese(object model);
+        public abstract void Mail_English(object model);
         public bool SendMail(string to)
         {
             bool success = false;

@@ -176,7 +176,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 mySqlCommand.Parameters.AddWithValue("@fullname", modelBank_Account.User.FullName);
                 mySqlCommand.Parameters.AddWithValue("@dateofbirth", modelBank_Account.User.DateOfBirth);
                 mySqlCommand.Parameters.AddWithValue("@gender", modelBank_Account.User.Gender);
-                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", modelBank_Account.User.ID_User);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", modelBank_Account.User.CMND_CCCD);
                 mySqlCommand.Parameters.AddWithValue("@address", modelBank_Account.User.Address);
                 mySqlCommand.Parameters.AddWithValue("@email", modelBank_Account.User.Email);
                 mySqlCommand.Parameters.AddWithValue("@numberphone", modelBank_Account.User.Phone);
