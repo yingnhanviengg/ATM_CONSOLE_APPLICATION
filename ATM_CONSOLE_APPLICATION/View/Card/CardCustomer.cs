@@ -74,17 +74,5 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 Console.WriteLine(Language.AbstractLanguage.Error_Create_Card, false);
             }
         }
-        private string InputCardType()
-        {
-            do
-            {
-                Console.Write(Language.AbstractLanguage.Input_Card_Type);
-                string CardType = Console.ReadLine();
-                if (CardType.ToLower().Equals("napas") || CardType.ToLower().Equals("visa") || CardType.ToLower().Equals(""))
-                {
-                    return CardType;
-                }
-            } while (true);
-        }
     }
 }

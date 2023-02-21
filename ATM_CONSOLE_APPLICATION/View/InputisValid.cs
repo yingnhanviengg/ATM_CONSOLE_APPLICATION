@@ -180,6 +180,22 @@ namespace ATM_CONSOLE_APPLICATION.View
                 return default;
             }
         }
+        public static int InputIDTransaction()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write(Language.AbstractLanguage.Input_ID_Transaction);
+                    int idBank = Convert.ToInt32(Console.ReadLine().Trim());
+                    return idBank;
+                }
+                catch (FormatException)
+                {
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
+                }
+            }
+        }
         public static string StandardizeString(string str)
         {
             str = str.Trim();

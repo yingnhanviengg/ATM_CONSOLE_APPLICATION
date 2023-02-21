@@ -96,8 +96,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
                 table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
                 table.AddColumn("[springgreen2_1]Tên Khách Hàng[/]");
-                table.AddColumn("[springgreen2_1]CMND/CCCD Khách Hàng[/]");
-                table.AddColumn("[springgreen2_1]Email Khách Hàng[/]");
+                table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
+                table.AddColumn("[springgreen2_1]Email[/]");
+                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
                     Console.WriteLine("Số trang không hợp lệ.");
@@ -108,7 +109,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerCard.ListCard.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.Number_Card}", $"{item.Pass_Card}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}", $"{item.Status_Card}", $"{item.UserBank.User.FullName}", $"{item.UserBank.User.CMND_CCCD}", $"{item.UserBank.User.Email}");
+                        table.AddRow($"{item.Number_Card}", $"{item.Pass_Card}", $"{DateOfBirthToString(item.Created_at_Card)}", $"{DateOfBirthToString(item.Expiration_Date)}", $"{item.Status_Card}", $"{item.UserBank.User.FullName}", $"{item.UserBank.User.CMND_CCCD}", $"{item.UserBank.User.Email}", $"{item.UserBank.User.Phone}");
                     }
                 }
                 AnsiConsole.Write(table);

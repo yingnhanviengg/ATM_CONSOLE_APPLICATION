@@ -23,12 +23,12 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 return _rechargeCustomer;
             }
         }
-        ControllerRecharge controllerRecharge = ControllerRecharge._ControllerRecharge;
+        ControllerTransaction controllerRecharge = ControllerTransaction._ControllerRecharge;
         public void Recharge()
         {
             Console.WriteLine(Language.AbstractLanguage.Input_Amount);
             double amount = Convert.ToDouble(Console.ReadLine());
-            var rechager = new Model.ModelTransaction(ControllerBank_User.UserBank.ID_Bank, type: string.Empty, amount, status_transaction: string.Empty);
+            var rechager = new Model.ModelTransaction(ControllerBank_User.UserBank, type: string.Empty, amount, status_transaction: string.Empty);
             if (controllerRecharge.RequireReachaerge(rechager))
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Success, true);

@@ -76,11 +76,12 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.role = role;
             this.status_user = status_user;
         }
-        public ModelUser(string fullname, string cmnd_cccd, string email)
+        public ModelUser(string fullname, string cmnd_cccd, string email, string phone)
         {
             this.FullName = fullname;
             this.CMND_CCCD = cmnd_cccd;
             this.Email= email;
+            this.Phone = phone;
         }
         public ModelUser GetUser(MySqlDataReader reader)
         {

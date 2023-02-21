@@ -36,17 +36,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         cardAdmin.Card_Management();
                         break;
                     case 3:
+                        Console.Clear();
+                        Recharge.RecchargeAdmin recchargeAdmin = Recharge.RecchargeAdmin._RecchargeAdmin;
+                        recchargeAdmin.Confirm_Reccharge();
                         break;
                     case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-
                         break;
                     default:
                         Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);

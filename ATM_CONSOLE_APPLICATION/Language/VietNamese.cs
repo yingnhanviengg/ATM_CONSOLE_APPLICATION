@@ -63,6 +63,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Input_Gender = "Nhập giới tính (Nam/Nữ): ";
             Input_CMND_CCCD = "Nhập số CMND hoặc CCCD: ";
             Input_IDUser = "Nhập ID khách hàng: ";
+            Input_ID_Transaction = "Nhập ID giao dịch: ";
             // Register
             Error_Input_Gender = "Nhập giới tính không hợp lệ";
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
@@ -96,6 +97,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Input_Amount = "Nhập số tiền muốn nạp vào tài khoản: ";
             SendRequire_Racharge_Success = "Gửi yêu cầu nạp tiền thành công\nVui lòng đợi quản trị viên phê duyệt";
             SendRequire_Racharge_Error = "Gửi yêu nạp tiền thất bại";
+            NotFind_Transaction = "Không tìm thấy giao dịch";
+            Confirm_Recharge_Error = "Giao dịch này đã được xác nhận từ trước";
+            Confirm_Reacharge_Success = "Xác nhận nạp tiền, cập nhật số dư thành công";
         }
     }
 }

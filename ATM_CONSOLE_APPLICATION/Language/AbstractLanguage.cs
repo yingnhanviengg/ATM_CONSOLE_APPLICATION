@@ -61,6 +61,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Input_Phone { get; set; }
         public static string Input_Gender { get; set; }
         public static string Input_CMND_CCCD { get; set; }
+        public static string Input_ID_Transaction { get; set; }
         // Register
         public static string Error_Input_Gender { get; set; }
         public static string Error_Input_CMND { get; set; }
@@ -95,5 +96,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Input_Amount { get; set; }
         public static string SendRequire_Racharge_Success { get; set; }
         public static string SendRequire_Racharge_Error { get; set; }
+        public static string NotFind_Transaction { get; set; }
+        public static string Confirm_Recharge_Error { get; set; }
+        public static string Confirm_Reacharge_Success { get; set; }
     }
 }

@@ -133,7 +133,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            var item = SearchUserByID(id, ControllerBank_User.ListBank_User);
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.ID_User.Equals(id));
             if (item != null)
             {
                 Console.WriteLine($"{Language.AbstractLanguage.Name_Current}{item.User.FullName}");
