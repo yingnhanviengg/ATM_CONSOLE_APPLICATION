@@ -19,14 +19,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             {
                 Mail_English(model);
             }
-            if (SendMail(((ModelBank_Account)model).User.Email))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return SendMail(((ModelBank_Account)model).User.Email);
         }
         public override void Mail_Vietnamese(object model)
         {

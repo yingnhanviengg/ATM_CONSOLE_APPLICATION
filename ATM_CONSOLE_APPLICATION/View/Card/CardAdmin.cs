@@ -51,11 +51,28 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                         LockCard();
                         break;
                     case 3:
+                        UnLockCard();
                         break;
                     default:
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }             
             } while (true);
+        }
+        public void UnLockCard()
+        {
+            TableCard();
+            string card = InputisValid.InputNumberCarb();
+            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
+            if (item != default && controllerCard.UnLockCard(item))
+            {
+
+                Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Success, true);
+            }
+            else
+            {
+                Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Error, false);
+            }
         }
         public void LockCard()
         {
@@ -65,7 +82,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             if (item != default && controllerCard.LockCard(item))
             {
 
-                Common.PrintMessage_Console(AbstractLanguage.Lock_Account_Success,true);            }
+                Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Success,true);            }
             else
             {
                 Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Error, false);

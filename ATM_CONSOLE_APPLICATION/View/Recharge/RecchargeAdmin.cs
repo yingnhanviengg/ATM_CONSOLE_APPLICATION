@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Recharge
 {
-    public class RecchargeAdmin
+    public class RecchargeAdmin : AbstractRecharge
     {
         private static RecchargeAdmin? _recchargeAdmin;
         private RecchargeAdmin()
@@ -50,7 +50,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 Common.PrintMessage_Console(AbstractLanguage.NotFind_Transaction,false);
             }
         }
-        public void Table_Recharge()
+        public override void Table_Recharge()
         {
             int pageNumber = 1;
             int pageCount = (ControllerTransaction.List_Transactions.Count + 10 - 1) / 10;

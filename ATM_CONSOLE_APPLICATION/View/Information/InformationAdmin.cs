@@ -88,30 +88,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
             }
         }
-        public ModelBank_Account SearchUserByID(int id, List<ModelBank_Account> List)
-        {
-            int minIndex = 0;
-            int maxIndex = List.Count - 1;
-            while (minIndex <= maxIndex)
-            {
-                int midIndex = (minIndex + maxIndex) / 2;
-                var item = List[midIndex];
-
-                if (item.User.ID_User < id)
-                {
-                    minIndex = midIndex + 1;
-                }
-                else if (item.User.ID_User > id)
-                {
-                    maxIndex = midIndex - 1;
-                }
-                else
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
         public void Lock_Account()
         {
             Table_Informatio();

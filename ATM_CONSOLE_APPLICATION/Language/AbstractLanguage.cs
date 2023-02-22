@@ -89,6 +89,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string UnLock_Card { get; set; }
         public static string Lock_Card_Success { get; set; }
         public static string Lock_Card_Error { get; set; }
+        public static string UnLock_Card_Success { get; set; }
+        public static string UnLock_Card_Error { get; set; }
         
         //
         public static string Lock_account { get; set; }

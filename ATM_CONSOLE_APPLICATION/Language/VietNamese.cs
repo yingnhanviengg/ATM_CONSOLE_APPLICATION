@@ -91,6 +91,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             UnLock_Card = "Mở khóa thẻ ATM";
             Lock_Card_Success = "Khóa thẻ thành công";
             Lock_Card_Error = "Khóa thẻ thất bại kiểm tra nhập lại số thẻ";
+            UnLock_Card_Success = "Mở khóa thẻ thành công";
+            UnLock_Card_Error = "Mở khóa thẻ thất bại";
             //
             Lock_account = "Tạm khóa tài khoản khách hàng";
             unLock_account = "Mở khóa tài khoản khách hàng";

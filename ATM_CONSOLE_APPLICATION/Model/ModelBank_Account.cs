@@ -80,6 +80,14 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Number_Bank = number_bank;
             this.Balance = balance;
         }
+        public ModelBank_Account(int id_bank, string number_bank, double balance, string status_bank, ModelUser user)
+        {
+            this.ID_Bank = id_bank;
+            this.Number_Bank = number_bank;
+            this.Balance = balance;
+            this.status_bank = status_bank;
+            this.User = user;
+        }
         public bool UnLock_Account(ModelBank_Account modelBank_Account)
         {
             try
@@ -268,8 +276,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
             }
             DBHelper.Close();
-        }
-        
+        }   
         public int Select_ID_User(ModelUser modelBank_Account)
         {
             try

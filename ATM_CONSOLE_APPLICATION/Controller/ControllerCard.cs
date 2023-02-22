@@ -30,9 +30,21 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelCard.Card; }
         }
+        public bool UnLockCard(ModelCard card)
+        {
+            if (card.Status_Card.Equals("lock") && card.UnLockCard(card))
+            {
+                card.Status_Card = "normal";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool LockCard(ModelCard card)
         {
-            if (card.LockCard(card))
+            if (card.LockCard(card) && card.Status_Card.Equals("normal"))
             {
                 card.Status_Card = "lock";
                 return true;

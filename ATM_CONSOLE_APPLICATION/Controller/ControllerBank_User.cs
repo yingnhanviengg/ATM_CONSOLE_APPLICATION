@@ -37,12 +37,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Unlock_Account(ModelBank_Account modelBank_Account)
         {
-            var userindex = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
-            if (userindex != -1)
+            if (modelBank_Account.UnLock_Account(modelBank_Account))
             {
-                var user = ListBank_User[userindex];
-                user.User.status_user = modelBank_Account.User.status_user;
-                return modelBank_Account.UnLock_Account(user);
+                modelBank_Account.User.status_user = "normal";
+                return true;
             }
             else
             {
@@ -51,11 +49,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Lock_Account(ModelBank_Account modelBank_Account)
         {
-            var userindex = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
-            if (userindex != -1)
+            if (modelBank_Account.Lock_Account(modelBank_Account))
             {
-                var user = ListBank_User[userindex].User.status_user = "lock";
-                return modelBank_Account.Lock_Account(modelBank_Account);
+                modelBank_Account.User.status_user = "lock";
+                return true;
             }
             else
             {
@@ -184,30 +181,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             UserBank.User.Address = modelBank_Account.User.Address;
             UserBank.User.Email = modelBank_Account.User.Email;
             UserBank.User.Phone = modelBank_Account.User.Phone;
-        }
-        public int SearchUserIndexByID(int id)
-        {
-            int minIndex = 0;
-            int maxIndex = ListBank_User.Count - 1;
-            while (minIndex <= maxIndex)
-            {
-                int midIndex = (minIndex + maxIndex) / 2;
-                var item = ListBank_User[midIndex];
-
-                if (item.User.ID_User < id)
-                {
-                    minIndex = midIndex + 1;
-                }
-                else if (item.User.ID_User > id)
-                {
-                    maxIndex = midIndex - 1;
-                }
-                else
-                {
-                    return midIndex;
-                }
-            }
-            return -1;
         }
         public bool Register(string code, ModelBank_Account modelBank_Account)
         {
