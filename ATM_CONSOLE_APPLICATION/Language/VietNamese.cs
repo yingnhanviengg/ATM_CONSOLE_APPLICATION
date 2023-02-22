@@ -64,6 +64,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Input_CMND_CCCD = "Nhập số CMND hoặc CCCD: ";
             Input_IDUser = "Nhập ID khách hàng: ";
             Input_ID_Transaction = "Nhập ID giao dịch: ";
+            Input_Card = "Nhập số thẻ: ";
+            Input_Card_Error = "Sô thẻ có 16 chữ số và không chứa ký tự đặc biệt";
             // Register
             Error_Input_Gender = "Nhập giới tính không hợp lệ";
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
@@ -87,6 +89,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Show_All_Card = "Hiển thị tất cả thẻ ATM";
             Lock_Card = "Tạm khóa thẻ ATM";
             UnLock_Card = "Mở khóa thẻ ATM";
+            Lock_Card_Success = "Khóa thẻ thành công";
+            Lock_Card_Error = "Khóa thẻ thất bại kiểm tra nhập lại số thẻ";
             //
             Lock_account = "Tạm khóa tài khoản khách hàng";
             unLock_account = "Mở khóa tài khoản khách hàng";

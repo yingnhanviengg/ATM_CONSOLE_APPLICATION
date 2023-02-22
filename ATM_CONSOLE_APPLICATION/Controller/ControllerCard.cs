@@ -30,6 +30,18 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelCard.Card; }
         }
+        public bool LockCard(ModelCard card)
+        {
+            if (card.LockCard(card))
+            {
+                card.Status_Card = "lock";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool CreateCard()
         {
             if (Card.CreateCard(new ModelCard(ModelBank_Account.UserBank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date())))

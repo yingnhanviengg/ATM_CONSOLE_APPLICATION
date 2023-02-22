@@ -10,6 +10,22 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class InputisValid
     {
+        public static string InputNumberCarb()
+        {
+            while (true)
+            {
+                Console.Write(Language.AbstractLanguage.Input_Card);
+                string card = Console.ReadLine().Trim();
+                if (card.All(char.IsDigit) && card.Length == 16)
+                {
+                    return card;
+                }
+                else
+                {
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Input_Card_Error, false);
+                }
+            }
+        }
         public static int InputIDUser()
         {
             while (true)

@@ -48,6 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                         TableCard();
                         break;
                     case 2:
+                        LockCard();
                         break;
                     case 3:
                         break;
@@ -56,9 +57,22 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 }             
             } while (true);
         }
+        public void LockCard()
+        {
+            TableCard();    
+            string card = InputisValid.InputNumberCarb();
+            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
+            if (item != default && controllerCard.LockCard(item))
+            {
+
+                Common.PrintMessage_Console(AbstractLanguage.Lock_Account_Success,true);            }
+            else
+            {
+                Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Error, false);
+            }
+        }
         public override void TableCard()
         {
-            Console.WriteLine(ControllerCard.ListCard.Count);
             int pageNumber = 1;
             int pageCount = (ControllerCard.ListCard.Count + 10 - 1) / 10;
             int pageSize = 10;

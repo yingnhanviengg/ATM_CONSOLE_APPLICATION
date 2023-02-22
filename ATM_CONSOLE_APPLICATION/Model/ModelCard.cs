@@ -63,6 +63,32 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Created_at_Card = created_at_card;
             this.UserBank = bank_Account;
         }
+        public bool LockCard(ModelCard card)
+        {
+            try
+            {
+                string query1 = "UPDATE card SET status_card = 'lock' WHERE id_bank_account = @id_bank_account;";
+                using MySqlCommand cm1 = new MySqlCommand(query1, DBHelper.Open());
+                cm1.Parameters.AddWithValue("@id_bank_account", card.UserBank.ID_Bank);
+                if (cm1.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                DBHelper.Close();
+            }
+        }
         public bool CreateCard(ModelCard modelCard)
         {
             try

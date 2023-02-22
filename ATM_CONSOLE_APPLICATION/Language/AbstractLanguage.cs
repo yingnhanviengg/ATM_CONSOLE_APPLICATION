@@ -62,6 +62,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Input_Gender { get; set; }
         public static string Input_CMND_CCCD { get; set; }
         public static string Input_ID_Transaction { get; set; }
+        public static string Input_Card { get; set; }
+        public static string Input_Card_Error { get; set; }
         // Register
         public static string Error_Input_Gender { get; set; }
         public static string Error_Input_CMND { get; set; }
@@ -85,6 +87,8 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Show_All_Card { get; set; }
         public static string Lock_Card { get; set; }
         public static string UnLock_Card { get; set; }
+        public static string Lock_Card_Success { get; set; }
+        public static string Lock_Card_Error { get; set; }
         
         //
         public static string Lock_account { get; set; }
