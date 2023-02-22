@@ -106,6 +106,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
             NotFind_Transaction = "Không tìm thấy giao dịch";
             Confirm_Recharge_Error = "Giao dịch này đã được xác nhận từ trước";
             Confirm_Reacharge_Success = "Xác nhận nạp tiền, cập nhật số dư thành công";
+            Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";
+            Input_NumberBank_Recipient_Error = "Số tài khoản không hợp lệ, số tài khoản có 10 chữ số và không có ký tự đặc biệt";
+
         }
     }
 }

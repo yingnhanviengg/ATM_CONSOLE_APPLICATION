@@ -88,6 +88,14 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.status_bank = status_bank;
             this.User = user;
         }
+        public ModelBank_Account(int id_bank)
+        {
+            this.ID_Bank = id_bank;
+        }
+        public ModelBank_Account(string number_bank)
+        {
+            this.Number_Bank = number_bank;
+        }
         public bool UnLock_Account(ModelBank_Account modelBank_Account)
         {
             try

@@ -105,5 +105,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string NotFind_Transaction { get; set; }
         public static string Confirm_Recharge_Error { get; set; }
         public static string Confirm_Reacharge_Success { get; set; }
+        // Tranfer Money
+        public static string Input_NumberBank_Recipient { get; set; }
+        public static string Input_NumberBank_Recipient_Error { get; set; }
+        public static string Input_Amount_Tranfer { get; set; }
     }
 }

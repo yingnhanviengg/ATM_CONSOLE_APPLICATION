@@ -30,6 +30,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return _controllerTranfer;
             }
         }
-
+        public bool Tranfer_Money(ModelTranferMoney tranfer)
+        {
+            var bank_recipient = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.Number_Bank.Equals(tranfer.Bank_Recipient.Number_Bank));
+            var bank_sender = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(tranfer.Bank_Sender.ID_Bank));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATM_CONSOLE_APPLICATION.Language;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +11,38 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class InputisValid
     {
+        public static double InputDeposits()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write(Language.AbstractLanguage.Input_Amount_Tranfer);
+                    double money = Convert.ToDouble(Console.ReadLine().Trim());
+                    return money;
+                }
+                catch (FormatException)
+                {
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
+                }
+            }
+        }
+        public static string InputNumberBank_Recipient()
+        {
+            while (true)
+            {
+                Console.Write(AbstractLanguage.Input_NumberBank_Recipient);
+                string numberbank_recipient = Console.ReadLine();
+                if (numberbank_recipient.All(char.IsDigit) && numberbank_recipient.Length == 10)
+                {
+                    return numberbank_recipient;
+                }
+                else
+                {
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Input_NumberBank_Recipient_Error, false);
+                }
+            }
+        }
         public static string InputNumberCarb()
         {
             while (true)

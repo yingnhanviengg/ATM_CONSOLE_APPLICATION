@@ -52,6 +52,12 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Bank_Sender = bank_Sender;
             this.Bank_Recipient = bank_Recipient;
         }
+        public ModelTranferMoney(double amount, ModelBank_Account bank_Sender, ModelBank_Account bank_Recipient)
+        {
+            this.amount = amount;
+            this.Bank_Sender = bank_Sender;
+            this.Bank_Recipient = bank_Recipient;
+        }
         public void GetListTranfer()
         {
             List_TranferMoney.Clear();
