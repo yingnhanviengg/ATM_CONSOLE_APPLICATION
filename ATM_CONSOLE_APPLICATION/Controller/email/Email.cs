@@ -22,6 +22,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public static string signature { get; set; }
         public Email() {    }
         public abstract bool Mail(object model);
+        //update
         public abstract void Mail_Vietnamese(object model);
         public abstract void Mail_English(object model);
         public bool SendMail(string to)
