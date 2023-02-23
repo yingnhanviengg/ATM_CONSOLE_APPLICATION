@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATM_CONSOLE_APPLICATION.Controller.email;
 using ATM_CONSOLE_APPLICATION.Model;
-using MySql.Data.MySqlClient;
-using ATM_CONSOLE_APPLICATION.Controller.email;
-using Microsoft.Win32;
-using Org.BouncyCastle.Math.Field;
+using ATM_CONSOLE_APPLICATION.View;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
     public class ControllerBank_User
     {
-        private ControllerBank_User() { UserBank.GetList_All_Bank_User(); }     
+        private ControllerBank_User() { UserBank.GetList_All_Bank_User(); }
         public static List<ModelBank_Account> ListBank_User
         {
             get { return ModelBank_Account._ListBank_User; }
         }
         public static ModelBank_Account UserBank
         {
-            get { return ModelBank_Account.UserBank;}
+            get { return ModelBank_Account.UserBank; }
         }
-        private static ControllerBank_User _ControllerUser;      
+        private static ControllerBank_User _ControllerUser;
         public static ControllerBank_User ControllerUser
         {
             get
@@ -35,39 +27,45 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return _ControllerUser;
             }
         }
-        public bool Unlock_Account(ModelBank_Account modelBank_Account)
+        public bool Unlock_Account(int id)
         {
-            if (modelBank_Account.UnLock_Account(modelBank_Account))
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
+            if (item == default && item.User.status_user.Equals("lock"))
             {
-                modelBank_Account.User.status_user = "normal";
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool Lock_Account(ModelBank_Account modelBank_Account)
-        {
-            if (modelBank_Account.Lock_Account(modelBank_Account))
-            {
-                modelBank_Account.User.status_user = "lock";
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool Upate_Information(ModelBank_Account modelBank_Account)
-        {
-            if (modelBank_Account.Update_Information(modelBank_Account))
-            {
-                if (UserBank.User.role.Equals("customer") && modelBank_Account.User.ID_User.Equals(UserBank.User.ID_User))
+                if (item.UnLock_Account(item))
                 {
-                    Update_User(modelBank_Account);
+                    item.User.status_user = "normal";
+                    return true;
                 }
-                UpdateList_User(modelBank_Account);
+                else { return false; }
+            }
+            else { return false; }
+        }
+        public bool Lock_Account(int id)
+        {
+            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
+            if (item == default && item.User.status_user.Equals("normal"))
+            {
+                if (item.Lock_Account(item))
+                {
+                    item.User.status_user = "lock";
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
+        public bool Upate_Information(int iduser, string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string email, string phone)
+        {
+            var user = new Model.ModelUser(iduser, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
+            var update = new Model.ModelBank_Account(user);
+            if (update.Update_Information(update))
+            {
+                if (UserBank.User.role.Equals("customer") && update.User.ID_User.Equals(UserBank.User.ID_User))
+                {
+                    Update_User(update);
+                }
+                UpdateList_User(update);
                 return true;
             }
             else
@@ -75,80 +73,80 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 return false;
             }
         }
-        public int IsValidUpdate(ModelBank_Account modelBank_Account)
+        public int IsValidUpdate(int iduser, string cmnd_cccd, string email, string phone)
         {
-            var index = ListBank_User.FindIndex(x => x.User.ID_User.Equals(modelBank_Account.User.ID_User));
+            var index = ListBank_User.FindIndex(x => x.User.ID_User.Equals(iduser));
             var valid = ListBank_User[index];
-            if (!modelBank_Account.User.CMND_CCCD.Equals(valid.User.CMND_CCCD))
+            if (!cmnd_cccd.Equals(valid.User.CMND_CCCD))
             {
-                if (FindCMND_CCCD(modelBank_Account))
+                if (FindCMND_CCCD(cmnd_cccd))
                 {
                     return -4;
                 }
             }
-            if (!modelBank_Account.User.ID_User.Equals(valid.User.ID_User))
+            if (!phone.Equals(valid.User.Phone))
             {
-                if (FindPhone(modelBank_Account))
+                if (FindPhone(phone))
                 {
                     return -3;
                 }
             }
-            if (!modelBank_Account.User.ID_User.Equals(valid.User.ID_User))
+            if (!email.Equals(valid.User.Email))
             {
-                if (FindEmail(modelBank_Account))
+                if (FindEmail(email))
                 {
                     return -2;
                 }
             }
             return 1;
         }
-        public bool FindUser(ModelBank_Account modelBank_Account)
+        public bool FindUser(string user)
         {
-            if (ListBank_User.Any(u => u.User.ID_User == modelBank_Account.User.ID_User))
+            if (ListBank_User.Any(u => u.User.Username == user))
             {
                 return true; // tài khoản đã tồn tại
             }
             return false;
         }
-        public bool FindEmail(ModelBank_Account modelBank_Account)
+        public bool FindEmail(string email)
         {
-            if (ListBank_User.Any(u => u.User.Email == modelBank_Account.User.Email))
+            if (ListBank_User.Any(u => u.User.Email == email))
             {
                 return true; // email đã tồn tại
             }
             return false;
         }
-        public bool FindPhone(ModelBank_Account modelBank_Account)
+        public bool FindPhone(string phone)
         {
-            if (ListBank_User.Any(u => u.User.Phone == modelBank_Account.User.Phone))
+            if (ListBank_User.Any(u => u.User.Phone == phone))
             {
                 return true; // sdt đã tồn tại
             }
             return false;
         }
-        public bool FindCMND_CCCD(ModelBank_Account modelBank_Account)
+        public bool FindCMND_CCCD(string cmnd_cccd)
         {
-            if (ListBank_User.Any(u => u.User.CMND_CCCD == modelBank_Account.User.CMND_CCCD))
+            if (ListBank_User.Any(u => u.User.CMND_CCCD == cmnd_cccd))
             {
                 return true; // CMND_CCCD đã tồn tại
             }
             return false;
         }
-        public int IsRegister(ModelBank_Account modelBank_Account)
+        public int IsRegister(string cmnd_cccd, string username, string email, string phone)
         {
-            if (FindUser(modelBank_Account))
+            if (FindUser(username))
             {
                 return -1; // tài khoản đã tồn tại
             }
-            if (FindEmail(modelBank_Account))
+            if (FindEmail(email))
             {
                 return -2; // email đã tồn tại
             }
-            if (FindPhone(modelBank_Account))
+            if (FindPhone(phone))
             {
                 return -3; // sdt đã tồn tại
             }
-            if (FindCMND_CCCD(modelBank_Account))
+            if (FindCMND_CCCD(cmnd_cccd))
             {
                 return -4; // CMND_CCCD đã tồn tại
             }
@@ -169,8 +167,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                     user.User.Address = modelBank_Account.User.Address;
                     user.User.Email = modelBank_Account.User.Email;
                     user.User.Password = modelBank_Account.User.Password;
-                }    
-            }    
+                }
+            }
         }
         public void Update_User(ModelBank_Account modelBank_Account)
         {
@@ -182,18 +180,35 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             UserBank.User.Email = modelBank_Account.User.Email;
             UserBank.User.Phone = modelBank_Account.User.Phone;
         }
-        public bool Register(string code, ModelBank_Account modelBank_Account)
+        public bool Register(string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string username, string password, string email, string phone)
         {
-            if (Email.code == null || !Email.code.Equals(code))
+            var user = new Model.ModelUser(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone);
+            var register = new Model.ModelBank_Account(user, number_bank: string.Empty);
+            bool result = false;
+            Email templateMail;
+            templateMail = new TemplateMailRegister_Code();
+            templateMail.Mail(register);
+            int cout = 3;
+            do
             {
-                return false;
-            }
-            bool isUserRegistered = modelBank_Account.IsRegister(modelBank_Account);
-            bool isBankAccountCreated = modelBank_Account.Create_Bank_Account(modelBank_Account.Select_ID_User(modelBank_Account.User), (modelBank_Account.Number_Bank = GenerateRandomNumberBank()));
-            modelBank_Account.GetList_All_Bank_User();
-            Email templateMail = new TempMailRegister_Success();
-            bool isMailSent = templateMail.Mail(modelBank_Account);
-            return isUserRegistered && isBankAccountCreated && isMailSent;
+                if (Email.code == InputisValid.InputCode())
+                {
+                    bool isUserRegistered = register.IsRegister(register);
+                    bool isBankAccountCreated = register.Create_Bank_Account(register.Select_ID_User(register.User), (register.Number_Bank = GenerateRandomNumberBank()));
+                    register.GetList_All_Bank_User();
+                    templateMail = new TempMailRegister_Success();
+                    bool isMailSent = templateMail.Mail(register);
+                    result = isUserRegistered && isBankAccountCreated && isMailSent;
+                    break;
+                }
+                else
+                {
+                    cout--;
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code, false);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code_Limit_3 + cout.ToString(), false);
+                }
+            } while (cout != 0);
+            return result;
         }
 
         public string GenerateRandomNumberBank()
@@ -203,9 +218,9 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             return new string(Enumerable.Repeat(chars, 10)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public int IsLoggedIn(ModelUser user)
+        public int IsLoggedIn(string user, string pass)
         {
-            var item = ListBank_User.FirstOrDefault(u => u.User.Username == user.Username && u.User.Password == user.Password);
+            var item = ListBank_User.FirstOrDefault(u => u.User.Username == user && u.User.Password == pass);
             if (item != null && item.User.status_user.Equals("normal"))
             {
                 item.GetBank_User(item);
@@ -215,10 +230,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 return -1;
             }
-            else
-            {
-                return 0;
-            }
+            else { return 0; }
         }
     }
 }

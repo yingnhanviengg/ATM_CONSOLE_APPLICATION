@@ -1,12 +1,4 @@
-﻿using ATM_CONSOLE_APPLICATION.Controller;
-using ATM_CONSOLE_APPLICATION.View.Information;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -23,15 +15,15 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime created_at { get; set; }
-        public string role { get; set; }    
+        public string role { get; set; }
         public string status_user { get; set; }
         public ModelUser()
         {
-            
-        }       
+
+        }
         public ModelUser(string username, string password)
         {
-            this.Username = username;   
+            this.Username = username;
             this.Password = password;
         }
         public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD, string address, string email, string phone)
@@ -80,7 +72,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
             this.FullName = fullname;
             this.CMND_CCCD = cmnd_cccd;
-            this.Email= email;
+            this.Email = email;
             this.Phone = phone;
         }
         public ModelUser GetUser(MySqlDataReader reader)

@@ -1,16 +1,17 @@
 ﻿using ATM_CONSOLE_APPLICATION.Language;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
     public class InputisValid
     {
+        public static string InputCode()
+        {
+            Console.Write(Language.AbstractLanguage.Enter_Code);
+            string code = Console.ReadLine().Trim();
+            return code;
+        }
         public static double InputDeposits()
         {
             while (true)
@@ -32,7 +33,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             while (true)
             {
                 Console.Write(AbstractLanguage.Input_NumberBank_Recipient);
-                string numberbank_recipient = Console.ReadLine();
+                string numberbank_recipient = Console.ReadLine().Trim();
                 if (numberbank_recipient.All(char.IsDigit) && numberbank_recipient.Length == 10)
                 {
                     return numberbank_recipient;
@@ -72,7 +73,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 catch (FormatException)
                 {
                     Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
-                }               
+                }
             }
         }
         public static string InputCMND_CCCD()

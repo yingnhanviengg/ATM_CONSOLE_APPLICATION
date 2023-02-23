@@ -1,9 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
@@ -33,7 +28,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
                 $"Mật khẩu: {((ModelBank_Account)model).User.Password}<br/>" +
                 $"Số tài khoản ngân hàng: {((ModelBank_Account)model).Number_Bank}";
         }
-        public override void Mail_English(object model )
+        public override void Mail_English(object model)
         {
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";

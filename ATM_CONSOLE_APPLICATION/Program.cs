@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ATM_CONSOLE_APPLICATION.View;
 using System.Text;
-using System.Threading.Tasks;
-using ATM_CONSOLE_APPLICATION.View;
 
 namespace ATM_CONSOLE_APPLICATION
 {

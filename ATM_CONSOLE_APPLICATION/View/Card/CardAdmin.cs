@@ -1,12 +1,6 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
-using ATM_CONSOLE_APPLICATION.View.Information;
 using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Card
 {
@@ -31,7 +25,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         private ControllerCard controllerCard = ControllerCard.controllerCard;
         public void Card_Management_Menu()
         {
-            string[] Menu = {AbstractLanguage.Show_All_Card, AbstractLanguage.Lock_Card, AbstractLanguage.UnLock_Card};
+            string[] Menu = { AbstractLanguage.Show_All_Card, AbstractLanguage.Lock_Card, AbstractLanguage.UnLock_Card };
             for (int i = 0; i < Menu.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu[i]}");
@@ -56,15 +50,14 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     default:
                         Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
-                }             
+                }
             } while (true);
         }
         public void UnLockCard()
         {
             TableCard();
             string card = InputisValid.InputNumberCarb();
-            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
-            if (item != default && controllerCard.UnLockCard(item))
+            if (controllerCard.UnLockCard(card))
             {
 
                 Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Success, true);
@@ -76,13 +69,13 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         }
         public void LockCard()
         {
-            TableCard();    
+            TableCard();
             string card = InputisValid.InputNumberCarb();
-            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
-            if (item != default && controllerCard.LockCard(item))
+            if (controllerCard.LockCard(card))
             {
 
-                Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Success,true);            }
+                Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Success, true);
+            }
             else
             {
                 Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Error, false);

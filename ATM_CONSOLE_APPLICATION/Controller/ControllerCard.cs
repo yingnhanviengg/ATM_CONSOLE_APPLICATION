@@ -1,9 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -30,40 +25,37 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelCard.Card; }
         }
-        public bool UnLockCard(ModelCard card)
+        public bool UnLockCard(string card)
         {
-            if (card.Status_Card.Equals("lock") && card.UnLockCard(card))
+            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
+            if (item != default && item.Status_Card.Equals("lock"))
             {
-                card.Status_Card = "normal";
-                return true;
+                if (item.UnLockCard(item))
+                {
+                    item.Status_Card = "normal";
+                    return true;
+                }
+                else { return false; }
             }
-            else
-            {
-                return false;
-            }
+            else { return false; }
         }
-        public bool LockCard(ModelCard card)
+        public bool LockCard(string card)
         {
-            if (card.LockCard(card) && card.Status_Card.Equals("normal"))
+            var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
+            if (item != default && item.Status_Card.Equals("normal"))
             {
-                card.Status_Card = "lock";
-                return true;
+                if (item.LockCard(item))
+                {
+                    item.Status_Card = "lock";
+                    return true;
+                }
+                else { return false; }
             }
-            else
-            {
-                return false;
-            }
+            else { return false; }
         }
         public bool CreateCard()
         {
-            if (Card.CreateCard(new ModelCard(ModelBank_Account.UserBank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date())))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Card.CreateCard(new ModelCard(ModelBank_Account.UserBank, GenerateRandomNumberCard(), GenerateRandomNumberPass(), Expiration_Date()));
         }
         public string GenerateRandomNumberCard()
         {

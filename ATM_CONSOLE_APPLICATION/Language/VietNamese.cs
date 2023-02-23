@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_CONSOLE_APPLICATION.Language
+﻿namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class VietNamese : AbstractLanguage
     {
@@ -16,7 +10,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Error_Code_Limit_3 = "Số lần nhập lại ";
             // Menu login
             Login = "Đăng Nhập";
-            Register = "Đăng Ký";          
+            Register = "Đăng Ký";
             Change_Language = "Chuyển ngôn ngữ";
             // menu admin
             Card_Manager_Admin = "Quản lý thẻ ATM ";
@@ -108,7 +102,11 @@ namespace ATM_CONSOLE_APPLICATION.Language
             Confirm_Reacharge_Success = "Xác nhận nạp tiền, cập nhật số dư thành công";
             Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";
             Input_NumberBank_Recipient_Error = "Số tài khoản không hợp lệ, số tài khoản có 10 chữ số và không có ký tự đặc biệt";
-
+            Input_Amount_Tranfer = "Nhập số tiền cần chuyển: ";
+            NumberBank_NotExist = "Số tài khoản người nhận không tồn tại";
+            NumberBank_Lock = "Tài khoản người nhận đang bị khóa";
+            Tranfer_Success = "Chuyển khoản thành công";
+            Tranfer_Error = "Chuyển khoản thất bại";
         }
     }
 }

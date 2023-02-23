@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using ATM_CONSOLE_APPLICATION.Controller;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
-using ATM_CONSOLE_APPLICATION.Model;
 using ATM_CONSOLE_APPLICATION.View.Menu;
-using static ATM_CONSOLE_APPLICATION.Language.VietNamese;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
@@ -16,7 +8,7 @@ namespace ATM_CONSOLE_APPLICATION.View
     {
         public MainMenu()
         {
-            
+
         }
         private static AbstractMenu _menu;
         public static AbstractMenu Menu
@@ -77,6 +69,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                     Menu.ShowMenu();
                 }
             }
-        }       
+        }
     }
 }

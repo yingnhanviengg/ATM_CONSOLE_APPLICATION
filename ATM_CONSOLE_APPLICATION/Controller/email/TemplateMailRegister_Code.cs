@@ -1,9 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
@@ -41,6 +36,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Account registration confirmation code";
             body = "This is your account registration verification code";
-        }       
+        }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_CONSOLE_APPLICATION.Language
+﻿namespace ATM_CONSOLE_APPLICATION.Language
 {
     public abstract class AbstractLanguage
     {
@@ -82,7 +76,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         // Card
         public static string Created_Card_Success { get; set; }
         public static string Error_Create_Card { get; set; }
-        public static string No_CardYet { get; set; }      
+        public static string No_CardYet { get; set; }
         public static string IsY_or_N { get; set; }
         public static string Show_All_Card { get; set; }
         public static string Lock_Card { get; set; }
@@ -91,7 +85,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Lock_Card_Error { get; set; }
         public static string UnLock_Card_Success { get; set; }
         public static string UnLock_Card_Error { get; set; }
-        
+
         //
         public static string Lock_account { get; set; }
         public static string unLock_account { get; set; }
@@ -109,5 +103,9 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string Input_NumberBank_Recipient { get; set; }
         public static string Input_NumberBank_Recipient_Error { get; set; }
         public static string Input_Amount_Tranfer { get; set; }
+        public static string NumberBank_NotExist { get; set; }
+        public static string NumberBank_Lock { get; set; }
+        public static string Tranfer_Success { get; set; }
+        public static string Tranfer_Error { get; set; }
     }
 }

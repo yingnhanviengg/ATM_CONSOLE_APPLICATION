@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
-using ATM_CONSOLE_APPLICATION.Controller;
-using ATM_CONSOLE_APPLICATION.View.Information;
-using ATM_CONSOLE_APPLICATION.Controller.email;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
 
 namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
@@ -30,22 +26,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         {
             string user = InputisValid.InptUsername();
             string pass = InputisValid.InputPassword();
-            var login = new Model.ModelUser(user, pass);
-            switch (ControllerUser.IsLoggedIn(login))
+            switch (ControllerUser.IsLoggedIn(user, pass))
             {
                 case 1:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_True, true);
                     return true;
-                case -1:                
+                case -1:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Account_Is_Locked, false);
                     return false;
                 default:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
                     return false;
-            }           
+            }
         }
         public void Register()
-        {         
+        {
             string fullname = InputisValid.InputFullName();
             string gender = InputisValid.InputGender();
             DateTime dateofbirth = InputisValid.InputDateTime();
@@ -55,48 +50,19 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
             string cmnd_cccd = InputisValid.InputCMND_CCCD();
             string email = InputisValid.InputValidEmail();
             string phone = InputisValid.InputPhoneNumber();
-            var user = new Model.ModelUser(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone);
-            var register = new Model.ModelBank_Account(user, number_bank: string.Empty);
-            int result = ControllerUser.IsRegister(register);
+            int result = ControllerUser.IsRegister(cmnd_cccd, username, email, phone);
             switch (result)
             {
                 case 1:
-                    Email templateMail;
-                    templateMail = new TemplateMailRegister_Code();
-                    if (templateMail.Mail(register))
+                    if (ControllerUser.Register(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone))
                     {
-                        Console.Write(Language.AbstractLanguage.Enter_Code);
-                        string code = Console.ReadLine().Trim();
-                        if (ControllerUser.Register(code, register))
-                        {
-                            Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
-                        }
-                        else
-                        {
-                            int cout = 3;
-                            do
-                            {
-                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code, false);
-                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Code_Limit_3 + cout.ToString(), false);
-                                Console.Write(Language.AbstractLanguage.Enter_Code);
-                                code = Console.ReadLine().Trim();
-                                if (ControllerUser.Register(code, register))
-                                {
-                                    Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
-                                }
-                                else
-                                {
-                                    cout--;
-                                }
-                            } while (cout != 0);
-                            if (cout == 0)
-                            {
-                                Common.PrintMessage_Console(Language.AbstractLanguage.Error_Re_register, false);
-                            }
-                        }
-                        break;
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
                     }
-                    else break;
+                    else
+                    {
+                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_Re_register, false);
+                    }
+                    break;
                 case -1:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Error_User_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
@@ -109,7 +75,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 case -4:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Error_CNMD_CCCD_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                     break;
-            }       
-        }     
+            }
+        }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -40,22 +35,14 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 var valid = ControllerBank_User.ListBank_User[index];
                 ControllerBank_User.ListBank_User[index].Balance = user.Balance;
-            }              
+            }
             ControllerBank_User.UserBank.Balance = user.Balance;
             return true;
         }
-        public bool RequireReachaerge(ModelTransaction user)
+        public bool RequireReachaerge(double amount)
         {
-            user.Type_Tracsaction = "recharge";
-            user.status_transaction = "processing";
-            if (user.RequireReachaerge(user))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var rechager = new Model.ModelTransaction(ControllerBank_User.UserBank, type: "recharge", amount, status_transaction: "processing");
+            return rechager.RequireReachaerge(rechager);
         }
         public bool Confirm_Reccharge(ModelTransaction user)
         {

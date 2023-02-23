@@ -1,13 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
-    public class ModelCard 
+    public class ModelCard
     {
         public int ID_Card { get; set; }
         public string Number_Card { get; set; }
@@ -144,7 +139,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 GetListCard();
                 DBHelper.Close();
             }
-        }   
+        }
         public void GetListCard()
         {
             ListCards.Clear();

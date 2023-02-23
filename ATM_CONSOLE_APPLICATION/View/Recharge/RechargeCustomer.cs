@@ -1,11 +1,4 @@
-﻿using ATM_CONSOLE_APPLICATION.View.Information;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ATM_CONSOLE_APPLICATION.Controller;
-using Org.BouncyCastle.Math.Field;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
 
 namespace ATM_CONSOLE_APPLICATION.View.Recharge
 {
@@ -28,8 +21,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
         {
             Console.Write(Language.AbstractLanguage.Input_Amount);
             double amount = Convert.ToDouble(Console.ReadLine());
-            var rechager = new Model.ModelTransaction(ControllerBank_User.UserBank, type: string.Empty, amount, status_transaction: string.Empty);
-            if (controllerRecharge.RequireReachaerge(rechager))
+            if (controllerRecharge.RequireReachaerge(amount))
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Success, true);
             }

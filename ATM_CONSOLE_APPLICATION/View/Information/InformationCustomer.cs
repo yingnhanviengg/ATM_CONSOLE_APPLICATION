@@ -1,10 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
-using MySqlX.XDevAPI.Relational;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Spectre.Console;
 using Table = Spectre.Console.Table;
 
@@ -16,7 +10,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
 
         }
-        private static InformationCustomer? _informationCustomer;     
+        private static InformationCustomer? _informationCustomer;
         public static InformationCustomer _InformationCustomer
         {
             get
@@ -26,10 +20,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     _informationCustomer = new InformationCustomer();
                 }
                 return _informationCustomer;
-            }           
+            }
         }
         public override void Information_Manager()
-        {         
+        {
             do
             {
                 Information_Manager_Menu();
@@ -55,7 +49,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }
         public override void Information_Manager_Menu()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information,  Language.AbstractLanguage.Update_Information };
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
@@ -86,12 +80,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.User.Phone;
 
             ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
-            var user = new Model.ModelUser(ControllerBank_User.UserBank.User.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
-            var update = new Model.ModelBank_Account(user);
-            switch (controllerBank_User.IsValidUpdate(update))
+            switch (controllerBank_User.IsValidUpdate(ControllerBank_User.UserBank.User.ID_User, cmnd_cccd, email, phone))
             {
                 case 1:
-                    if (controllerBank_User.Upate_Information(update))
+                    if (controllerBank_User.Upate_Information(ControllerBank_User.UserBank.User.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
                     {
                         Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                     }
@@ -135,6 +127,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         public override string DateOfBirthToString(DateTime item)
         {
             return item.Date.ToString("dd/MM/yyyy");
-        }      
+        }
     }
 }

@@ -1,12 +1,4 @@
-﻿using ATM_CONSOLE_APPLICATION.Model;
-using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
-using Org.BouncyCastle.Asn1.Ocsp;
+﻿using MimeKit;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
@@ -20,7 +12,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         public string? body { get; set; }
         public static string code { get; set; }
         public static string signature { get; set; }
-        public Email() {    }
+        public Email() { }
         public abstract bool Mail(object model);
         //update
         public abstract void Mail_Vietnamese(object model);

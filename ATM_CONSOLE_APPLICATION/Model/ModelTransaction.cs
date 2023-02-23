@@ -1,11 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -48,7 +41,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
 
         }
-        public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction ,string type, double amount, DateTime created_at_tracsaction, string status_transaction)
+        public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
         {
             this.Bank_Account = Bank_Account;
             this.User = user;
@@ -71,7 +64,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             {
                 string query1 = "UPDATE transaction SET status_transaction = 'complete' WHERE id_transaction = @id_transaction;";
                 using MySqlCommand cm1 = new MySqlCommand(query1, DBHelper.Open());
-                cm1.Parameters.AddWithValue("@id_transaction", Rechager.ID_Transaction);               
+                cm1.Parameters.AddWithValue("@id_transaction", Rechager.ID_Transaction);
                 string query2 = "UPDATE bank_account SET balance = @balance + @amount WHERE id_bank_account = @id_bank_account;";
                 using MySqlCommand cm2 = new MySqlCommand(query2, DBHelper.Open());
                 cm2.Parameters.AddWithValue("@balance", Rechager.Bank_Account.Balance);
@@ -156,7 +149,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             ModelTransaction transaction = new ModelTransaction(
                 new ModelBank_Account(reader.GetInt32("id_bank_account"), reader.GetString("number_bank"), reader.GetDouble("balance")),
                 new ModelUser(reader.GetString("full_name"), reader.GetString("cmnd_cccd"), reader.GetString("email"), reader.GetString("number_phone")),
-                reader.GetInt32("id_transaction"),               
+                reader.GetInt32("id_transaction"),
                 reader.GetString("type"),
                 reader.GetDouble("amount"),
                 reader.GetDateTime("created_at_transaction"),

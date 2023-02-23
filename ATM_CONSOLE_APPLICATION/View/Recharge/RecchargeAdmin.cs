@@ -1,12 +1,6 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
-using ATM_CONSOLE_APPLICATION.View.Card;
 using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Recharge
 {
@@ -47,7 +41,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
             }
             else
             {
-                Common.PrintMessage_Console(AbstractLanguage.NotFind_Transaction,false);
+                Common.PrintMessage_Console(AbstractLanguage.NotFind_Transaction, false);
             }
         }
         public override void Table_Recharge()

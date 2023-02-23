@@ -1,9 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -49,7 +44,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }
         public ModelBank_Account()
         {
-            
+
         }
         public ModelBank_Account(int id_bank, ModelUser user)
         {
@@ -243,7 +238,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 DBHelper.Close();
             }
         }
-        
+
         public bool Create_Bank_Account(int id_user, string number_bank)
         {
             try
@@ -251,7 +246,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 string query = "INSERT HIGH_PRIORITY INTO bank_account(id_user, number_bank) VALUES (@id_user, @number_bank);";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
                 mySqlCommand.Parameters.AddWithValue("@id_user", id_user);
-                mySqlCommand.Parameters.AddWithValue("@number_bank",number_bank);
+                mySqlCommand.Parameters.AddWithValue("@number_bank", number_bank);
                 if (mySqlCommand.ExecuteNonQuery() != 0)
                 {
                     return true;
@@ -284,7 +279,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
             }
             DBHelper.Close();
-        }   
+        }
         public int Select_ID_User(ModelUser modelBank_Account)
         {
             try
@@ -318,9 +313,9 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }
         public void GetBank_User(ModelBank_Account user)
         {
-            UserBank = new ModelBank_Account(user.ID_Bank,user.Number_Bank, user.Balance, user.created_at_bank, user.status_bank, user.User);
+            UserBank = new ModelBank_Account(user.ID_Bank, user.Number_Bank, user.Balance, user.created_at_bank, user.status_bank, user.User);
         }
-        
+
         public ModelBank_Account GetBank_UserMysql(MySqlDataReader reader)
         {
             ModelBank_Account bank = new ModelBank_Account(
@@ -329,7 +324,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetDouble("balance"),
                 reader.GetDateTime("created_at_bank_account"),
                 reader.GetString("status_bank"),
-                new ModelUser (
+                new ModelUser(
                     reader.GetInt32("id_user"),
                     reader.GetString("full_name"),
                     reader.GetDateTime("Date_Of_Birth"),

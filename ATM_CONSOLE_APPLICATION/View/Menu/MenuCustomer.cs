@@ -1,17 +1,12 @@
 ﻿using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Menu
 {
     public class MenuCustomer : AbstractMenu
     {
         public override void Menu()
-        {        
+        {
             string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Withdraw_Money_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
             for (int i = 0; i < Menu_Customer.Length; i++)
             {
@@ -43,6 +38,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         recharge.Recharge();
                         break;
                     case 5:
+                        Console.Clear();
+                        TranferMoney.TranferCustomer tranfer = TranferMoney.TranferCustomer._TranferCustomer;
+                        tranfer.Tranfer();
                         break;
                     case 6:
                         break;

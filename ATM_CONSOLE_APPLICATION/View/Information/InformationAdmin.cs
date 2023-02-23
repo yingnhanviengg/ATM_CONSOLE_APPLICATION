@@ -1,12 +1,6 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
-using ATM_CONSOLE_APPLICATION.Model;
 using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Information
 {
@@ -29,7 +23,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 }
                 return _informationAdmin;
             }
-        }       
+        }
         public override void Information_Manager_Menu()
         {
             string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account };
@@ -75,13 +69,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
-            if (item != default)
+            if (controllerBank_User.Unlock_Account(id))
             {
-                if (controllerBank_User.Unlock_Account(item))
-                {
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
-                }
+                Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
             }
             else
             {
@@ -92,13 +82,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            var item = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.User.status_user.Equals(id));
-            if (item != default)
+            if (controllerBank_User.Lock_Account(id))
             {
-                if (controllerBank_User.Lock_Account(item))
-                {                 
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
-                }
+                Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
             }
             else
             {
@@ -132,12 +118,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
 
                 Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.User.Phone}");
                 string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.User.Phone;
-                var user = new ModelUser(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone);
-                var update = new ModelBank_Account(user);
-                switch (controllerBank_User.IsValidUpdate(update))
+
+                switch (controllerBank_User.IsValidUpdate(id, cmnd_cccd, email, phone))
                 {
                     case 1:
-                        if (controllerBank_User.Upate_Information(update))
+                        if (controllerBank_User.Upate_Information(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
                         {
                             Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                         }
@@ -155,7 +140,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     case -4:
                         Common.PrintMessage_Console(Language.AbstractLanguage.Error_CNMD_CCCD_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
                         break;
-                }         
+                }
             }
             else
             {
@@ -220,7 +205,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         {
                             table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}");
 
-                        }                     
+                        }
                     }
                 }
                 AnsiConsole.Write(table);

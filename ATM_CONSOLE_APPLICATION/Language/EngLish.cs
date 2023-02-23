@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_CONSOLE_APPLICATION.Language
+﻿namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class English : AbstractLanguage
     {

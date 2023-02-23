@@ -1,12 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
-using ATM_CONSOLE_APPLICATION.Model;
 using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.View.Card
 {
