@@ -56,7 +56,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         break;
                     case 6:
                         Console.Clear();
-                        Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
+                        Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer(); //updTE
                         transactionCustomer.MenuTransaction();
                         break;
                     case 7:
