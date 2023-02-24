@@ -29,7 +29,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         }
         public void MenuTransaction()
         {
-            string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.unLock_account, Language.AbstractLanguage.BackMenu };
+            string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
             {
@@ -47,6 +47,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                         Table_HistoryTranfer();
                         break;
                     case 1:
+                        Table_HistoryRecharge();
                         break;
                     case 2:
                         Console.Clear();
@@ -55,18 +56,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 }
             } while (true);
         }
-        public void Table_HistoryTranfer()
+        public void Table_HistoryRecharge()
         {
             int pageNumber = 1;
-            int pageCount = (ControllerBank_User.ListBank_User.Count + 10 - 1) / 10;
+            int pageCount = (ControllerTransaction.List_Transactions.Count + 10 - 1) / 10;
             int pageSize = 10;
-            if (ControllerBank_User.ListBank_User.Count > 10)
+            if (ControllerTransaction.List_Transactions.Count > 10)
             {
                 while (true)
                 {
                     try
                     {
-                        Console.WriteLine($"Giao dịch chuyển tiền {pageCount} trang, {ControllerBank_User.ListBank_User.Count} giao dịch ");
+                        Console.WriteLine($"Giao dịch {pageCount} trang, {ControllerTransaction.List_Transactions.Count} giao dịch ");
                         Console.Write("Nhập số trang: ");
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
@@ -78,7 +79,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     }
                 }
             }
-            if (ControllerBank_User.ListBank_User.Count == 0)
+            if (ControllerTransaction.List_Transactions.Count == 0)
             {
                 Console.WriteLine("Ko có dữ liệu");
                 return;
@@ -88,31 +89,28 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]Người Chuyển[/]");
-                table.AddColumn("[springgreen2_1]Người Nhận[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên Người Chuyển[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản Người Chuyển[/]");
-                table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
+                table.AddColumn("[springgreen2_1]ID Giao Dịch[/]");
+                table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
                 table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
-                table.AddColumn("[springgreen2_1]Số Dư[/]");
-                table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
                 table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+                table.AddColumn("[springgreen2_1]Loại Giao Dịch[/]");
+                table.AddColumn("[springgreen2_1]Số Tiền Giao Dịch[/]");
+                table.AddColumn("[springgreen2_1]Thời Gian Giao Dịch[/]");
+                table.AddColumn("[springgreen2_1]Trạng Thái Giao Dịch[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
                     Console.WriteLine("Số trang không hợp lệ.");
                     return;
                 }
-
                 else
                 {
                     int startIndex = (pageNumber - 1) * pageSize;
-                    foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
+                    foreach (var item in ControllerTransaction.List_Transactions.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        if (item.User.status_user.Equals("normal"))
+                        if (item.Bank_Account.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
                         {
-                            table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{item.User.DateOfBirth}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}");
-
+                            table.AddRow($"{item.ID_Transaction}", $"{item.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{DateOfBirthToString(item.created_at_transaction)}", $"{item.status_transaction}");
                         }
                     }
                 }
@@ -120,6 +118,78 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 Console.WriteLine($"Trang {pageNumber}/{pageCount}");
                 table.Rows.Clear();
             }
+        }
+        public void Table_HistoryTranfer()
+        {
+            Console.WriteLine(ControllerBank_User.UserBank.ID_Bank);
+            int pageNumber = 1;
+            int pageCount = (ControllerTranfer.List_TranferMoney.Count + 10 - 1) / 10;
+            int pageSize = 10;
+            if (ControllerTranfer.List_TranferMoney.Count > 10)
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Giao dịch chuyển tiền {pageCount} trang, {ControllerTranfer.List_TranferMoney.Count} giao dịch ");
+                        Console.Write("Nhập số trang: ");
+                        pageNumber = Convert.ToInt32(Console.ReadLine());
+                        Console.Clear();
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Nhập sai định dạng");
+                    }
+                }
+            }
+            if (ControllerTranfer.List_TranferMoney.Count == 0)
+            {
+                Console.WriteLine("Ko có dữ liệu");
+                return;
+            }
+            else
+            {
+                Table table = new Table();
+                table.Border(TableBorder.AsciiDoubleHead);
+                table.Expand();
+                table.AddColumn("[springgreen2_1]ID Giao Dịch[/]");
+                table.AddColumn("[springgreen2_1]Họ Và Tên Người Chuyển[/]");
+                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+                table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
+                table.AddColumn("[springgreen2_1]Email[/]");
+                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+                table.AddColumn("[springgreen2_1]Số Tiền Chuyển[/]");
+                table.AddColumn("[springgreen2_1]Họ Và Tên Người Nhận[/]");
+                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+                table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
+                table.AddColumn("[springgreen2_1]Email[/]");
+                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+                table.AddColumn("[springgreen2_1]Thời Gian Chuyển[/]");
+                if (pageNumber < 1 || pageNumber > pageCount)
+                {
+                    Console.WriteLine("Số trang không hợp lệ.");
+                    return;
+                }
+                else
+                {
+                    int startIndex = (pageNumber - 1) * pageSize;
+                    foreach (var item in ControllerTranfer.List_TranferMoney.Skip(startIndex).Take(pageSize).ToList())
+                    {
+                        if (item.Bank_Sender.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank) || item.Bank_Recipient.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
+                        {
+                            table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{DateOfBirthToString(item.created_at_tranfer)}");
+                        }
+                    }
+                }
+                AnsiConsole.Write(table);
+                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                table.Rows.Clear();
+            }
+        }
+        public string DateOfBirthToString(DateTime item)
+        {
+            return item.Date.ToString("dd/MM/yyyy");
         }
     }
 }

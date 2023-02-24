@@ -83,6 +83,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.status_bank = status_bank;
             this.User = user;
         }
+
         public ModelBank_Account(int id_bank)
         {
             this.ID_Bank = id_bank;

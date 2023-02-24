@@ -55,11 +55,12 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 5:
                         break;
                     case 6:
-                        break;
-                    case 7:
                         Console.Clear();
                         Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
-                        transactionCustomer.Table_HistoryTranfer();
+                        transactionCustomer.MenuTransaction();
+                        break;
+                    case 7:
+                        ChangeLanguage.Change_Language();
                         break;
                 }
             } while (true);
