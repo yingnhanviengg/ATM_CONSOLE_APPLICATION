@@ -111,7 +111,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     {
                         if (item.Bank_Account.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
                         {
-                            table.AddRow($"{item.ID_Transaction}", $"{item.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{DateOfBirthToString(item.created_at_transaction)}", $"{item.status_transaction}");
+                            table.AddRow($"{item.ID_Transaction}", $"{item.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{item.created_at_transaction}", $"{item.status_transaction}");
                         }
                     }
                 }
@@ -178,7 +178,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     {
                         if (item.Bank_Sender.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank) || item.Bank_Recipient.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
                         {
-                            table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{DateOfBirthToString(item.created_at_tranfer)}");
+                            table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{item.created_at_tranfer}");
                         }
                     }
                 }
