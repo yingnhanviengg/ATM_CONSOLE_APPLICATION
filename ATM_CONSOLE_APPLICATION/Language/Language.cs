@@ -1,13 +1,12 @@
-﻿using ATM_CONSOLE_APPLICATION.View.Login_Register;
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class ChangeLanguage
     {
         public static void Change_Language()
-        {           
-            string[] Menu_Customer = { "English", "Vietnamese" };              
+        {
+            string[] Menu_Customer = { "English", "Vietnamese" };
             while (true)
             {
                 Common.UI();

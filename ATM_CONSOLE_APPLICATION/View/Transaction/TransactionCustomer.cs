@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ATM_CONSOLE_APPLICATION.Controller;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
 using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View.Transaction
 {
     public class TransactionCustomer
-    {     
+    {
         private static TransactionCustomer? _transactionCustomer;
         public static TransactionCustomer _TransactionCustomer
         {
@@ -37,7 +32,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
             string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.unLock_account, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
-            {                            
+            {
                 var menuSelection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("")
@@ -94,7 +89,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
                 table.AddColumn("[springgreen2_1]Người Chuyển[/]");
-                table.AddColumn("[springgreen2_1]Người Nhận[/]" );
+                table.AddColumn("[springgreen2_1]Người Nhận[/]");
                 table.AddColumn("[springgreen2_1]Họ Và Tên Người Chuyển[/]");
                 table.AddColumn("[springgreen2_1]Số Tài Khoản Người Chuyển[/]");
                 table.AddColumn("[springgreen2_1]CMND/CCCD[/]");

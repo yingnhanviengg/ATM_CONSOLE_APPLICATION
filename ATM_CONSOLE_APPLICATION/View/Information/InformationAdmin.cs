@@ -28,7 +28,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
-            {                                        
+            {
                 var menuSelection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("")

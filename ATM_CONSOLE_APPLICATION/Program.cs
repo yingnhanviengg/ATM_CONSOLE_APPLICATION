@@ -26,7 +26,7 @@ namespace ATM_CONSOLE_APPLICATION
                 Console.Title = "ATM CONSOLE APPLICATION";
                 MainMenu mainMenu = new MainMenu();
                 mainMenu.ShowMainMenu();
-            }            
+            }
         }
     }
 }

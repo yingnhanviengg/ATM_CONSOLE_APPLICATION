@@ -23,7 +23,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
             string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language };
             Common.UI();
             do
-            {               
+            {
                 var menuSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("")

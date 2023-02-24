@@ -5,7 +5,7 @@ using Spectre.Console;
 namespace ATM_CONSOLE_APPLICATION.View.Card
 {
     public class CardAdmin : AbstractCard
-    {        
+    {
         private static CardAdmin? _cardAdmin;
         private CardAdmin()
         {
@@ -36,7 +36,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
-            {               
+            {
                 var menuSelection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                         .Title("")

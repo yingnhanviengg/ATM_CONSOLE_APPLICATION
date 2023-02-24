@@ -27,12 +27,12 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
-            {                         
-                    var menuSelection = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                        .Title("")
-                        .PageSize(10)
-                        .AddChoices(Menu_Customer));
+            {
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("")
+                    .PageSize(10)
+                    .AddChoices(Menu_Customer));
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
                 switch (selectedIndex)
                 {

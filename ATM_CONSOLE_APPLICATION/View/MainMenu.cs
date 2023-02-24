@@ -7,7 +7,7 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class MainMenu
     {
-        public MainMenu() { }      
+        public MainMenu() { }
         private static AbstractMenu _menu;
         public static AbstractMenu Menu
         {
