@@ -113,9 +113,9 @@ namespace ATM_CONSOLE_APPLICATION.Model
 
                 throw;
             }
-            finally { UpdateData(); }
+            finally { UpdateDataSender_Recipient(); }
         }
-        public void UpdateData()
+        public void UpdateDataSender_Recipient()
         {
             foreach (var item in List_TranferMoney)
             {
@@ -135,7 +135,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     if (reader.Read())
                     {
-                        //var item = List_TranferMoney.FirstOrDefault(x => x.ID_Tranfer.Equals(reader.GetInt32("id_tranfer")));
                         tranferMoney.Bank_Sender.ID_Bank = reader.GetInt32("id_bank_sender");
                         tranferMoney.Bank_Sender.Number_Bank = reader.GetString("number_bank");
                         tranferMoney.Bank_Sender.Balance = reader.GetDouble("balance");
@@ -169,7 +168,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     while (reader.Read())
                     {
-                        //var item = List_TranferMoney.FirstOrDefault(x => x.ID_Tranfer.Equals(reader.GetInt32("id_tranfer")));
                         tranferMoney.Bank_Recipient.ID_Bank = reader.GetInt32("id_bank_recipient");
                         tranferMoney.Bank_Recipient.Number_Bank = reader.GetString("number_bank");
                         tranferMoney.Bank_Recipient.Balance = reader.GetDouble("balance");
