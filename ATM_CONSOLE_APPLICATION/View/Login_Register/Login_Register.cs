@@ -26,6 +26,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         {
             string user = InputisValid.InptUsername();
             string pass = InputisValid.InputPassword();
+            Console.Clear();
             switch (ControllerUser.IsLoggedIn(user, pass))
             {
                 case 1:

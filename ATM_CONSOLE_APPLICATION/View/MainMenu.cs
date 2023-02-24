@@ -1,6 +1,7 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Menu;
+using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
@@ -30,20 +31,28 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
         }
         public bool MenuLogin()
-        {
+        {           
+            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register};
+            
             bool result = false;
             Login_Register.Login_Register login_Register = Login_Register.Login_Register._Login_Register;
             do
             {
-                Console.WriteLine("1: " + Language.AbstractLanguage.Login);
-                Console.WriteLine("2: " + Language.AbstractLanguage.Register);
-                switch (Common.Choose())
+                Common.UI();
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("")
+                    .PageSize(10)
+                    .AddChoices(Menu_Customer));
+
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+                switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         Console.Clear();
                         result = login_Register.Login();
                         break;
-                    case 2:
+                    case 1:
                         Console.Clear();
                         login_Register.Register();
                         break;

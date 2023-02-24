@@ -1,7 +1,16 @@
-﻿namespace ATM_CONSOLE_APPLICATION
+﻿using Spectre.Console;
+
+namespace ATM_CONSOLE_APPLICATION
 {
     public class Common
     {
+        public static void UI()
+        {
+            AnsiConsole.Write(
+                new FigletText("ATM CONSOLE APPLICATION")
+                    .LeftJustified()
+                    .Color(Color.Red));
+        }
         public static int Choose()
         {
             while (true)

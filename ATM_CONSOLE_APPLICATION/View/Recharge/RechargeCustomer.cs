@@ -16,7 +16,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 return _rechargeCustomer;
             }
         }
-        ControllerTransaction controllerRecharge = ControllerTransaction._ControllerRecharge;
+        ControllerTransaction controllerRecharge = ControllerTransaction._ControllerTransaction;
         public void Recharge()
         {
             Console.Write(Language.AbstractLanguage.Input_Amount);

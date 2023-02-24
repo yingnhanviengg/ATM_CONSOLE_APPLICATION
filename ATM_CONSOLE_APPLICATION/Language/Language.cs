@@ -1,22 +1,32 @@
-﻿namespace ATM_CONSOLE_APPLICATION.Language
+﻿using ATM_CONSOLE_APPLICATION.View.Login_Register;
+using Spectre.Console;
+
+namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class ChangeLanguage
     {
         public static void Change_Language()
-        {
+        {           
+            string[] Menu_Customer = { "English", "Vietnamese" };
+               
             while (true)
             {
-                int x;
+                Common.UI();
                 AbstractLanguage language;
-                Console.WriteLine("1: English");
-                Console.WriteLine("2: Vietnamese");
-                switch (x = Common.Choose())
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("")
+                    .PageSize(10)
+                    .AddChoices(Menu_Customer));
+
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+                switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         language = new English();
                         language.ChangeLanguage();
                         break;
-                    case 2:
+                    case 1:
                         language = new VietNamese();
                         language.ChangeLanguage();
                         break;
@@ -24,7 +34,7 @@
                         Common.PrintMessage_Console("Error", false);
                         break;
                 }
-                if (x == 1 || x == 2)
+                if (selectedIndex == 0 || selectedIndex == 1)
                 {
                     break;
                 }

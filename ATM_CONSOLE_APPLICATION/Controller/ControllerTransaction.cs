@@ -8,16 +8,16 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             Transaction.GetListTransaction();
         }
-        private static ControllerTransaction _controllerRecharge;
-        public static ControllerTransaction _ControllerRecharge
+        private static ControllerTransaction _controllerTransaction;
+        public static ControllerTransaction _ControllerTransaction
         {
             get
             {
-                if (_controllerRecharge == null)
+                if (_controllerTransaction == null)
                 {
-                    _controllerRecharge = new ControllerTransaction();
+                    _controllerTransaction = new ControllerTransaction();
                 }
-                return _controllerRecharge;
+                return _controllerTransaction;
             }
         }
         public static List<ModelTransaction> List_Transactions

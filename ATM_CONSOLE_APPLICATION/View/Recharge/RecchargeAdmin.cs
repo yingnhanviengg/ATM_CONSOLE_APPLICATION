@@ -22,7 +22,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 return _recchargeAdmin;
             }
         }
-        ControllerTransaction controllerTransaction = ControllerTransaction._ControllerRecharge;
+        ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
         public void Confirm_Reccharge()
         {
             Table_Recharge();

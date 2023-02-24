@@ -25,6 +25,8 @@
             Tranfer_Money_Customer = "Chuyển khoản";
             Bank_Deposit_Customer = "Gửi tiết kiệm";
             Transaction_History_Customer = "Kiểm tra lịch sử giao dịch";
+            History_Tranfer = "Lịch sử chuyển tiền";
+            History_Withdraw_Recharge = "Lịch sử nạp tiền / rút tiền";
             // information
             Check_Account_Information = "Kiểm tra thông tin tài khoản";
             Update_Information_Success = "Cập nhật thông tin tài khoản thành công";

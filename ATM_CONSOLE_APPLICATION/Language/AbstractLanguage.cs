@@ -18,6 +18,8 @@
         public static string Tranfer_Money_Customer { get; set; }
         public static string Bank_Deposit_Customer { get; set; }
         public static string Transaction_History_Customer { get; set; }
+        public static string History_Tranfer { get; set; }
+        public static string History_Withdraw_Recharge { get; set; }
         //Menu Admin
         public static string Card_Manager_Admin { get; set; }
         public static string Information_Manager_Admin { get; set; }
