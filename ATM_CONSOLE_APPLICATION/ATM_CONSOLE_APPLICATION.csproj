@@ -24,7 +24,6 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.32" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
-    <PackageReference Include="Sentry" Version="3.28.1" />
     <PackageReference Include="Spectre.Console" Version="0.46.0" />
   </ItemGroup>
 

@@ -19,6 +19,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
             }
         }
         private ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
+        private ControllerTranfer controllerTranfer = ControllerTranfer._ControllerTranfer;
         public void ShowMenuTransaction()
         {
             string[] Menu = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.BackMenu };
@@ -121,7 +122,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         }
         public void Table_HistoryTranfer()
         {
-            Console.WriteLine(ControllerBank_User.UserBank.ID_Bank);
             int pageNumber = 1;
             int pageCount = (ControllerTranfer.List_TranferMoney.Count + 10 - 1) / 10;
             int pageSize = 10;
