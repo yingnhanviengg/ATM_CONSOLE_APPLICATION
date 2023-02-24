@@ -110,7 +110,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally { UpdateDataSender_Recipient(); }
