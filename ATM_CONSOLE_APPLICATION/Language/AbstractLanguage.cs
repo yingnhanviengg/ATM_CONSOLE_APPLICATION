@@ -25,6 +25,7 @@
         public static string Information_Manager_Admin { get; set; }
         public static string Recharge_Manager_Admin { get; set; }
         public static string Transaction_History_Manager_Admin { get; set; }
+        public static string BackMenu { get; set; }
         // information
         public static string Check_Account_Information { get; set; }
         public static string Update_Information { get; set; }
@@ -41,7 +42,6 @@
         //Chosse
         public static string Input_choose { get; set; }
         public static string Exception_choose { get; set; }
-        public static string Exception_choose_switch { get; set; }
         // Login
         public static string Input_User { get; set; }
         public static string Input_Pass { get; set; }

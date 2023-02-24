@@ -17,6 +17,7 @@
             Information_Manager_Admin = "Quản lý thông tin khách hàng";
             Recharge_Manager_Admin = "Kiểm tra yêu cầu nạp tiền";
             Transaction_History_Manager_Admin = "Kiểm tra lịch sử giao dịch";
+            BackMenu = "Quay trở về";
             // menu customer
             Card_Customer = "Kiểm tra thẻ ATM";
             Information_Customer = "Kiểm tra thông tin tài khoản";
@@ -43,7 +44,6 @@
             // Chosse
             Input_choose = "Nhập lựa chọn: ";
             Exception_choose = "Chỉ được nhập số";
-            Exception_choose_switch = "Nhập sai lựa chọn";
             // Login
             Input_User = "Nhập tài khoản: ";
             Input_Pass = "Nhập mật khẩu: ";

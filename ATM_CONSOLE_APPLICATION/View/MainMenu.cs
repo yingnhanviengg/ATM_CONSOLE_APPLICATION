@@ -7,10 +7,7 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class MainMenu
     {
-        public MainMenu()
-        {
-
-        }
+        public MainMenu() { }      
         private static AbstractMenu _menu;
         public static AbstractMenu Menu
         {
@@ -31,9 +28,8 @@ namespace ATM_CONSOLE_APPLICATION.View
             }
         }
         public bool MenuLogin()
-        {           
-            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register};
-            
+        {
+            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register };
             bool result = false;
             Login_Register.Login_Register login_Register = Login_Register.Login_Register._Login_Register;
             do
@@ -44,7 +40,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                     .Title("")
                     .PageSize(10)
                     .AddChoices(Menu_Customer));
-
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
                 switch (selectedIndex)
                 {
@@ -55,9 +50,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                     case 1:
                         Console.Clear();
                         login_Register.Register();
-                        break;
-                    default:
-                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }
             } while (!result);

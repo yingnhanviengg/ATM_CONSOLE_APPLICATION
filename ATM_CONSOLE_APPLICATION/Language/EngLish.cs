@@ -13,7 +13,6 @@
             //Choose
             Input_choose = "Enter account: ";
             Exception_choose = "Only numbers are allowed";
-            Exception_choose_switch = "Enter the wrong choice";
             // Login
             Input_User = "Enter account: ";
             Input_Pass = "Enter password: ";

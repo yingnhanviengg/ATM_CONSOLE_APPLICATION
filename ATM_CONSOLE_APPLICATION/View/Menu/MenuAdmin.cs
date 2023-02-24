@@ -20,11 +20,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
         }
         public override void ShowMenu()
         {
+            string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language };
+            Common.UI();
             do
-            {
-                Common.UI();
-
-                string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language };
+            {               
                 var menuSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("")
@@ -52,9 +51,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         break;
                     case 3:
                         break;
-                    default:
-                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
-                        break;
                 }
             } while (true);
         }
@@ -81,9 +77,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         recchargeAdmin.Confirm_Reccharge();
                         break;
                     case 4:
-                        break;
-                    default:
-                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
                         break;
                 }
             } while (true);

@@ -8,7 +8,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
     {
         ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
         private static InformationAdmin? _informationAdmin;
-
         private InformationAdmin()
         {
 
@@ -24,43 +23,40 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 return _informationAdmin;
             }
         }
-        public override void Information_Manager_Menu()
-        {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account };
-            for (int i = 0; i < Menu_Customer.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
-            }
-        }
         public override void Information_Manager()
         {
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, AbstractLanguage.Lock_account, AbstractLanguage.unLock_account, Language.AbstractLanguage.BackMenu };
+            Common.UI();
             do
-            {
-                Information_Manager_Menu();
-                switch (Common.Choose())
+            {                                        
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("")
+                    .PageSize(10)
+                    .AddChoices(Menu_Customer));
+
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+                switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         Console.Clear();
                         Table_Informatio();
                         break;
-                    case 2:
+                    case 1:
                         Console.Clear();
                         Update_Information();
                         break;
-                    case 3:
+                    case 2:
                         Console.Clear();
                         Lock_Account();
                         break;
-                    case 4:
+                    case 3:
                         Console.Clear();
                         Unlock_Account();
                         break;
-                    case 5:
+                    case 4:
                         Console.Clear();
                         MainMenu.Menu.ShowMenu();
-                        break;
-                    default:
-                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
                         break;
                 }
             } while (true);

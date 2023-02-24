@@ -3,7 +3,6 @@ using ATM_CONSOLE_APPLICATION.View.Information;
 using Google.Protobuf.WellKnownTypes;
 using Spectre.Console;
 using System.ComponentModel;
-using System.ComponentModel;
 using System.Reflection;
 
 namespace ATM_CONSOLE_APPLICATION.View.Menu
@@ -21,11 +20,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
 
         public override void ShowMenu()
         {
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Withdraw_Money_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
+            Common.UI();
             do
-            {
-                Common.UI();
-
-                string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Withdraw_Money_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
+            {              
                 var menuSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("")
@@ -33,7 +31,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         .AddChoices(Menu_Customer));
 
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
-
                 switch (selectedIndex)
                 {
                     case 0:
@@ -66,9 +63,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         Console.Clear();
                         Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
                         transactionCustomer.Table_HistoryTranfer();
-                        break;
-                    default:
-                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
                         break;
                 }
             } while (true);
@@ -114,9 +108,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         Console.Clear();
                         Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
                         transactionCustomer.Table_HistoryTranfer();
-                        break;
-                    default:
-                        Console.WriteLine(Language.AbstractLanguage.Exception_choose_switch);
                         break;
                 }
             } while (true);

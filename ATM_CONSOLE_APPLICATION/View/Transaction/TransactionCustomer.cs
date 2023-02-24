@@ -10,7 +10,7 @@ using Spectre.Console;
 namespace ATM_CONSOLE_APPLICATION.View.Transaction
 {
     public class TransactionCustomer
-    {
+    {     
         private static TransactionCustomer? _transactionCustomer;
         public static TransactionCustomer _TransactionCustomer
         {
@@ -26,7 +26,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         private ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
         public void ShowMenuTransaction()
         {
-            string[] Menu = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge };
+            string[] Menu = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.BackMenu };
             for (int i = 0; i < Menu.Length; i++)
             {
                 Console.WriteLine($"{i + 1}: {Menu[i]}");
@@ -34,17 +34,28 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         }
         public void MenuTransaction()
         {
+            string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.unLock_account, Language.AbstractLanguage.BackMenu };
+            Common.UI();
             do
-            {
-                ShowMenuTransaction();
-                switch (Common.Choose())
+            {                            
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("")
+                    .PageSize(10)
+                    .AddChoices(Menu_Customer));
+
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+
+                switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         Table_HistoryTranfer();
                         break;
-                    case 2:
+                    case 1:
                         break;
-                    default:
+                    case 2:
+                        Console.Clear();
+                        MainMenu.Menu.ShowMenu();
                         break;
                 }
             } while (true);

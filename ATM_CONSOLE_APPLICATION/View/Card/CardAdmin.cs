@@ -5,7 +5,7 @@ using Spectre.Console;
 namespace ATM_CONSOLE_APPLICATION.View.Card
 {
     public class CardAdmin : AbstractCard
-    {
+    {        
         private static CardAdmin? _cardAdmin;
         private CardAdmin()
         {
@@ -33,10 +33,17 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         }
         public override void Card_Management()
         {
+            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register, Language.AbstractLanguage.BackMenu };
+            Common.UI();
             do
-            {
-                Card_Management_Menu();
-                switch (Common.Choose())
+            {               
+                var menuSelection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                        .Title("")
+                        .PageSize(10)
+                        .AddChoices(Menu_Customer));
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+                switch (selectedIndex)
                 {
                     case 1:
                         TableCard();
@@ -47,8 +54,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     case 3:
                         UnLockCard();
                         break;
-                    default:
-                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
+                    case 4:
+                        MainMenu.Menu.ShowMenu();
                         break;
                 }
             } while (true);

@@ -7,8 +7,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
     {
         public static void Change_Language()
         {           
-            string[] Menu_Customer = { "English", "Vietnamese" };
-               
+            string[] Menu_Customer = { "English", "Vietnamese" };              
             while (true)
             {
                 Common.UI();

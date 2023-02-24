@@ -24,36 +24,32 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         }
         public override void Information_Manager()
         {
+            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information, Language.AbstractLanguage.BackMenu };
+            Common.UI();
             do
-            {
-                Information_Manager_Menu();
-                switch (Common.Choose())
+            {                         
+                    var menuSelection = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("")
+                        .PageSize(10)
+                        .AddChoices(Menu_Customer));
+                int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
+                switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         Console.Clear();
                         Table_Informatio();
                         break;
-                    case 2:
+                    case 1:
                         Console.Clear();
                         Update_Information();
                         break;
-                    case 3:
+                    case 2:
                         Console.Clear();
                         MainMenu.Menu.ShowMenu();
                         break;
-                    default:
-                        Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose_switch, false);
-                        break;
                 }
             } while (true);
-        }
-        public override void Information_Manager_Menu()
-        {
-            string[] Menu_Customer = { Language.AbstractLanguage.Check_Account_Information, Language.AbstractLanguage.Update_Information };
-            for (int i = 0; i < Menu_Customer.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: {Menu_Customer[i]}");
-            }
         }
         public override void Update_Information()
         {
