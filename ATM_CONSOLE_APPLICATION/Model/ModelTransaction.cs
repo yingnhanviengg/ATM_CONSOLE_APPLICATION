@@ -1,6 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -46,7 +45,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             {
                 if (_listRequireRecharge == null)
                 {
-                    _listRequireRecharge  = List_Transactions.Where(item => item.Type_Tracsaction.Equals("recharge") && item.status_transaction.Equals("processing")).ToList();
+                    _listRequireRecharge = List_Transactions.Where(item => item.Type_Tracsaction.Equals("recharge") && item.status_transaction.Equals("processing")).ToList();
                 }
                 return _listRequireRecharge;
             }

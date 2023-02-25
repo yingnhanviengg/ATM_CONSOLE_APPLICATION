@@ -62,7 +62,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.role = role;
             this.status_user = status_user;
         }
-        public ModelUser( int id, string fullname, string cmnd_cccd, string email, string phone, string status_user)
+        public ModelUser(int id, string fullname, string cmnd_cccd, string email, string phone, string status_user)
         {
             this.ID_User = id;
             this.FullName = fullname;

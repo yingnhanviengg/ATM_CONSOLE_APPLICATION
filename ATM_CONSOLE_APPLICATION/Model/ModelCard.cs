@@ -107,7 +107,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 else { return false; }
             }
             catch (Exception) { throw; }
-            finally { GetListCard(); DBHelper.Close();}
+            finally { GetListCard(); DBHelper.Close(); }
         }
         public void GetListCard()
         {
@@ -137,7 +137,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetDateTime("expiration_date"),
                 reader.GetString("status_card"),
                 reader.GetDateTime("created_at_card"),
-                new ModelBank_Account(reader.GetInt32("id_bank_account"), 
+                new ModelBank_Account(reader.GetInt32("id_bank_account"),
                 new ModelUser(reader.GetInt32("id_user"), reader.GetString("full_name"), reader.GetString("cmnd_cccd"), reader.GetString("email"), reader.GetString("number_phone"), reader.GetString("status_user")))
                 );
             return card;

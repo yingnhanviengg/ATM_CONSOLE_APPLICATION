@@ -103,7 +103,7 @@
             Confirm_Reacharge_Success = "Xác nhận nạp tiền, cập nhật số dư thành công";
             IsConfirm_Recharge = "Có đồng ý xác nhận giao dịch này không (Y/N)?";
             // tranfer
-            Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";          
+            Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";
             Input_NumberBank_Recipient_Error = "Số tài khoản không hợp lệ, số tài khoản có 10 chữ số và không có ký tự đặc biệt";
             NumberBank_NotExist = "Số tài khoản người nhận không tồn tại";
             NumberBank_Lock = "Tài khoản người nhận đang bị khóa";

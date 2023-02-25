@@ -1,7 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller.email;
 using ATM_CONSOLE_APPLICATION.Model;
-using Mysqlx.Crud;
-using Spectre.Console.Rendering;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -30,7 +28,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public static ModelTransaction Transaction
         {
             get { return ModelTransaction.Transaction; }
-        }       
+        }
         public static List<ModelTransaction> ListRequireRecharge
         {
             get { return ModelTransaction.ListRequireRecharge; }
@@ -43,10 +41,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             bool result;
             var itemcard = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
-            var itembank = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(itemcard.UserBank.ID_Bank));           
+            var itembank = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(itemcard.UserBank.ID_Bank));
             if (itembank != null && itembank.Balance >= amount)
             {
-                var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");                
+                var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");
                 if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
                 {
                     itembank.Balance -= amount;
@@ -67,7 +65,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 var valid = ControllerBank_User.ListBank_User[index];
                 ControllerBank_User.ListBank_User[index].Balance = user.Balance;
                 ControllerBank_User.UserBank.Balance = user.Balance;
-            }           
+            }
             return true;
         }
         public bool RequireReachaerge(double amount)
@@ -81,10 +79,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             if (itemTransacton != default && itemTransacton.status_transaction.Equals("processing"))
             {
                 var indexbank = ControllerBank_User.ListBank_User.FindIndex(x => x.ID_Bank.Equals(itemTransacton.Bank_Account.ID_Bank));
-                var itembank = ControllerBank_User.ListBank_User[indexbank];              
+                var itembank = ControllerBank_User.ListBank_User[indexbank];
                 if (itembank != null && itemTransacton.Confirm_Reccharge(itemTransacton))
                 {
-                    itemTransacton.Bank_Account.Balance += itemTransacton.amount;                   
+                    itemTransacton.Bank_Account.Balance += itemTransacton.amount;
                     itembank.Balance += itemTransacton.amount;
                     itemTransacton.status_transaction = "complete";
                     email.Email email = new email.TemplateMailRecharge();

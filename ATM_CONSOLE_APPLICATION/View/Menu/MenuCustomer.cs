@@ -52,6 +52,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         break;
                 }
             } while (true);
-        }       
+        }
     }
 }

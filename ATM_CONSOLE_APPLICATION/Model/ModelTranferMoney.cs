@@ -49,7 +49,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             set { _list_TranferMoney_user = value; }
         }
-        public ModelTranferMoney() {  }
+        public ModelTranferMoney() { }
         public ModelTranferMoney(int iD_Tranfer, double amount, DateTime created_at_tranfer, ModelBank_Account bank_Sender, ModelBank_Account bank_Recipient)
         {
             this.ID_Tranfer = iD_Tranfer;
@@ -106,14 +106,14 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
             }
             DBHelper.Close();
-        }     
+        }
         public ModelTranferMoney GetTranfer(MySqlDataReader reader)
         {
             ModelTranferMoney tranferMoney = new ModelTranferMoney(
                 reader.GetInt32("id_tranfer"),
                 reader.GetDouble("amount"),
                 reader.GetDateTime("created_at_tranfer"),
-                new ModelBank_Account(reader.GetInt32("id_bank_sender"), reader.GetString("number_bank_sender") , reader.GetDouble("balance_sender"), reader.GetString("status_bank_sender"), new ModelUser(reader.GetInt32("id_user_sender"), reader.GetString("full_name_sender"), reader.GetString("cmnd_cccd_sender"), reader.GetString("email_sender"), reader.GetString("number_phone_sender"), reader.GetString("status_user_sender"))),
+                new ModelBank_Account(reader.GetInt32("id_bank_sender"), reader.GetString("number_bank_sender"), reader.GetDouble("balance_sender"), reader.GetString("status_bank_sender"), new ModelUser(reader.GetInt32("id_user_sender"), reader.GetString("full_name_sender"), reader.GetString("cmnd_cccd_sender"), reader.GetString("email_sender"), reader.GetString("number_phone_sender"), reader.GetString("status_user_sender"))),
                 new ModelBank_Account(reader.GetInt32("id_bank_recipient"), reader.GetString("number_bank_recipient"), reader.GetDouble("balance_recipient"), reader.GetString("status_bank_recipient"), new ModelUser(reader.GetInt32("id_user_recipient"), reader.GetString("full_name_recipient"), reader.GetString("cmnd_cccd_recipient"), reader.GetString("email_recipient"), reader.GetString("number_phone_recipient"), reader.GetString("status_user_recipient")))
                 );
             return tranferMoney;

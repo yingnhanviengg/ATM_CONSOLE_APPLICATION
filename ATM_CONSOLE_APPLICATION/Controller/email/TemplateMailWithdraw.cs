@@ -1,5 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Model;
-using System;
 
 namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
