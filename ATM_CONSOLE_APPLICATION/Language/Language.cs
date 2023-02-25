@@ -26,9 +26,6 @@ namespace ATM_CONSOLE_APPLICATION.Language
                     language = new VietNamese();
                     language.ChangeLanguage();
                     break;
-                default:
-                    Common.PrintMessage_Console("Error", false);
-                    break;
             }
         }
     }
