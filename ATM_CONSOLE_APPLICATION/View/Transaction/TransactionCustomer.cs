@@ -38,7 +38,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                         Table_HistoryTranfer();
                         break;
                     case 1:
-                        Table_HistoryRecharge();
+                        Table_HistoryRecharge_Withdraw();
                         break;
                     case 2:
                         Console.Clear();
@@ -47,18 +47,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 }
             } while (true);
         }
-        public void Table_HistoryRecharge()
+        public void Table_HistoryRecharge_Withdraw()
         {
             int pageNumber = 1;
-            int pageCount = (ControllerTransaction.List_Transactions.Count + 10 - 1) / 10;
+            int pageCount = (ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count + 10 - 1) / 10;
             int pageSize = 10;
-            if (ControllerTransaction.List_Transactions.Count > 10)
+            if (ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count > 10)
             {
                 while (true)
                 {
                     try
                     {
-                        Console.WriteLine($"Giao dịch {pageCount} trang, {ControllerTransaction.List_Transactions.Count} giao dịch ");
+                        Console.WriteLine($"Giao dịch {pageCount} trang, {ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count} giao dịch ");
                         Console.Write("Nhập số trang: ");
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
@@ -70,7 +70,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     }
                 }
             }
-            if (ControllerTransaction.List_Transactions.Count == 0)
+            if (ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count == 0)
             {
                 Console.WriteLine("Ko có dữ liệu");
                 return;
@@ -97,12 +97,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 else
                 {
                     int startIndex = (pageNumber - 1) * pageSize;
-                    foreach (var item in ControllerTransaction.List_Transactions.Skip(startIndex).Take(pageSize).ToList())
+                    foreach (var item in ControllerTransaction.ListHistoryRecharge_Withdraw_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        if (item.Bank_Account.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
-                        {
-                            table.AddRow($"{item.ID_Transaction}", $"{item.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{item.created_at_transaction}", $"{item.status_transaction}");
-                        }
+                        table.AddRow($"{item.ID_Transaction}", $"{item.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{item.created_at_transaction}", $"{item.status_transaction}");
                     }
                 }
                 AnsiConsole.Write(table);

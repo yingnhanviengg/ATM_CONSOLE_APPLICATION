@@ -28,10 +28,14 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public static ModelTransaction Transaction
         {
             get { return ModelTransaction.Transaction; }
-        }
+        }       
         public static List<ModelTransaction> ListRequireRecharge
         {
             get { return ModelTransaction.ListRequireRecharge; }
+        }
+        public static List<ModelTransaction> ListHistoryRecharge_Withdraw_User
+        {
+            get { return ModelTransaction.ListHistoryRecharge_Withdraw_User; }
         }
         public bool IsRechaerge(ModelBank_Account user)
         {

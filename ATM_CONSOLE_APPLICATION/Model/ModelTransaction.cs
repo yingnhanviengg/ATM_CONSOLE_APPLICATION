@@ -52,6 +52,19 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             set { _listRequireRecharge = value; }
         }
+        private static List<ModelTransaction> _listHistoryRecharge_Withdraw_User;
+        public static List<ModelTransaction> ListHistoryRecharge_Withdraw_User
+        {
+            get
+            {
+                if (_listHistoryRecharge_Withdraw_User == null)
+                {
+                    _listHistoryRecharge_Withdraw_User = List_Transactions.Where(item => item.Bank_Account.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank)).ToList();
+                }
+                return _listHistoryRecharge_Withdraw_User;
+            }
+            set { _listHistoryRecharge_Withdraw_User = value; }
+        }
         public ModelTransaction() { }
         public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
         {
