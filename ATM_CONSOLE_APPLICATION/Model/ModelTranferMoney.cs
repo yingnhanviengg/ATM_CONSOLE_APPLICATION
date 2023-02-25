@@ -105,78 +105,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
             }
             DBHelper.Close();
-        }
-        public void UpdateDataSender_Recipient()
-        {
-            foreach (var item in List_TranferMoney)
-            {
-                GetSender(item);
-                GetRecipient(item);
-            }
-        }
-
-        public void GetSender(ModelTranferMoney tranferMoney)
-        {
-            try
-            {
-                string query = "SELECT  history_tranfer.id_tranfer,  history_tranfer.id_bank_sender, bank_account.number_bank, bank_account.balance,  bank_account.status_bank, user.full_name, user.cmnd_cccd,  user.email, user.number_phone FROM history_tranfer  INNER JOIN bank_account   ON history_tranfer.id_bank_sender = bank_account.id_bank_account INNER JOIN user  ON bank_account.id_user = user.id_user AND history_tranfer.id_tranfer = @id_tranfer;";
-                using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
-                command.Parameters.AddWithValue("@id_tranfer", tranferMoney.ID_Tranfer);
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        tranferMoney.Bank_Sender.ID_Bank = reader.GetInt32("id_bank_sender");
-                        tranferMoney.Bank_Sender.Number_Bank = reader.GetString("number_bank");
-                        tranferMoney.Bank_Sender.Balance = reader.GetDouble("balance");
-                        tranferMoney.Bank_Sender.status_bank = reader.GetString("status_bank");
-                        tranferMoney.Bank_Sender.User.FullName = reader.GetString("full_name");
-                        tranferMoney.Bank_Sender.User.CMND_CCCD = reader.GetString("cmnd_cccd");
-                        tranferMoney.Bank_Sender.User.Email = reader.GetString("email");
-                        tranferMoney.Bank_Sender.User.Phone = reader.GetString("number_phone");
-                    }
-                    else
-                    {
-                        throw new Exception("Cannot find sender information.");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally { DBHelper.Close(); }
-        }
-        public void GetRecipient(ModelTranferMoney tranferMoney)
-        {
-            try
-            {
-                string query = "SELECT bank_account.number_bank, bank_account.balance,  bank_account.status_bank, user.full_name,  user.cmnd_cccd,  user.email,  user.number_phone,  history_tranfer.id_bank_recipient, history_tranfer.id_tranfer FROM history_tranfer INNER JOIN bank_account  ON history_tranfer.id_bank_recipient = bank_account.id_bank_account INNER JOIN user  ON bank_account.id_user = user.id_user WHERE history_tranfer.id_tranfer = @id_tranfer";
-                using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
-                command.Parameters.AddWithValue("@id_tranfer", tranferMoney.ID_Tranfer);
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        tranferMoney.Bank_Recipient.ID_Bank = reader.GetInt32("id_bank_recipient");
-                        tranferMoney.Bank_Recipient.Number_Bank = reader.GetString("number_bank");
-                        tranferMoney.Bank_Recipient.Balance = reader.GetDouble("balance");
-                        tranferMoney.Bank_Recipient.status_bank = reader.GetString("status_bank");
-                        tranferMoney.Bank_Recipient.User.FullName = reader.GetString("full_name");
-                        tranferMoney.Bank_Recipient.User.CMND_CCCD = reader.GetString("cmnd_cccd");
-                        tranferMoney.Bank_Recipient.User.Email = reader.GetString("email");
-                        tranferMoney.Bank_Recipient.User.Phone = reader.GetString("number_phone");
-                    }    
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally { DBHelper.Close(); }
-        }
+        }     
         public ModelTranferMoney GetTranfer(MySqlDataReader reader)
         {
 
