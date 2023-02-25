@@ -20,14 +20,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         }
         private ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
         private ControllerTranfer controllerTranfer = ControllerTranfer._ControllerTranfer;
-        public void ShowMenuTransaction()
-        {
-            string[] Menu = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, AbstractLanguage.BackMenu };
-            for (int i = 0; i < Menu.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: {Menu[i]}");
-            }
-        }
         public void MenuTransaction()
         {
             string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, Language.AbstractLanguage.BackMenu };
@@ -39,9 +31,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     .Title("")
                     .PageSize(10)
                     .AddChoices(Menu_Customer));
-
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
-
                 switch (selectedIndex)
                 {
                     case 0:

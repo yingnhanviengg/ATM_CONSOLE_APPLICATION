@@ -103,20 +103,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool Lock_Account(ModelBank_Account modelBank_Account)
         {
@@ -129,20 +119,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool IsRegister(ModelBank_Account modelBank_Account)
         {
@@ -168,15 +148,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                     return false;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool Update_Information(ModelBank_Account modelBank_Account)
         {
@@ -196,21 +169,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception ex)
-
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool Rechager(ModelBank_Account modelBank_Account)
         {
@@ -224,20 +186,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
 
         public bool Create_Bank_Account(int id_user, string number_bank)
@@ -252,20 +204,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public void GetList_All_Bank_User()
         {
@@ -296,27 +238,16 @@ namespace ATM_CONSOLE_APPLICATION.Model
                     {
                         return mySqlDataReader.GetInt32("id_user");
                     }
-                    else
-                    {
-                        return 0;
-                    }
+                    else { return 0; }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public void GetBank_User(ModelBank_Account user)
         {
             UserBank = new ModelBank_Account(user.ID_Bank, user.Number_Bank, user.Balance, user.created_at_bank, user.status_bank, user.User);
         }
-
         public ModelBank_Account GetBank_UserMysql(MySqlDataReader reader)
         {
             ModelBank_Account bank = new ModelBank_Account(

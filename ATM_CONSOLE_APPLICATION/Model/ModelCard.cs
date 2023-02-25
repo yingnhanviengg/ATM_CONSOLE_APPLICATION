@@ -69,20 +69,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool LockCard(ModelCard card)
         {
@@ -95,20 +85,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool CreateCard(ModelCard modelCard)
         {
@@ -124,21 +104,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-            finally
-            {
-                GetListCard();
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { GetListCard(); DBHelper.Close();}
         }
         public void GetListCard()
         {

@@ -8,7 +8,7 @@ namespace ATM_CONSOLE_APPLICATION.View
     public class MainMenu
     {
         public MainMenu() { }
-        private static AbstractMenu _menu;
+        private static AbstractMenu? _menu = null;
         public static AbstractMenu Menu
         {
             get
@@ -61,14 +61,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             Console.Clear();
             if (MenuLogin())
             {
-                if (ControllerBank_User.UserBank.User.role.Equals("customer"))
-                {
-                    Menu.ShowMenu();
-                }
-                if (ControllerBank_User.UserBank.User.role.Equals("admin"))
-                {
-                    Menu.ShowMenu();
-                }
+                Menu.ShowMenu();
             }
         }
     }

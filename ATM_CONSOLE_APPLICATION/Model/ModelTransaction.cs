@@ -74,20 +74,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool RequireReachaerge(ModelTransaction Rechager)
         {
@@ -103,20 +93,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public void GetListTransaction()
         {
@@ -134,15 +114,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
                 DBHelper.Close();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public ModelTransaction GetTransaction(MySqlDataReader reader)
         {

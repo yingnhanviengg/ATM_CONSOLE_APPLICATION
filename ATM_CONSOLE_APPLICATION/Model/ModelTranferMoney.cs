@@ -35,10 +35,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             set { _list_TranferMoney = value; }
         }
-        public ModelTranferMoney()
-        {
-
-        }
+        public ModelTranferMoney() {  }
         public ModelTranferMoney(int iD_Tranfer, double amount, DateTime created_at_tranfer, ModelBank_Account bank_Sender, ModelBank_Account bank_Recipient)
         {
             this.ID_Tranfer = iD_Tranfer;
@@ -77,20 +74,10 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                else { return false; }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                DBHelper.Close();
-            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public void GetListTranfer()
         {
@@ -108,7 +95,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }     
         public ModelTranferMoney GetTranfer(MySqlDataReader reader)
         {
-
             ModelTranferMoney tranferMoney = new ModelTranferMoney(
                 reader.GetInt32("id_tranfer"),
                 reader.GetDouble("amount"),

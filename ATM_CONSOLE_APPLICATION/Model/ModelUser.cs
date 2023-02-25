@@ -17,10 +17,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at { get; set; }
         public string role { get; set; }
         public string status_user { get; set; }
-        public ModelUser()
-        {
-
-        }
+        public ModelUser() { }
         public ModelUser(string username, string password)
         {
             this.Username = username;
@@ -49,7 +46,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Email = email;
             this.Phone = phone;
         }
-        public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD, string address, string user, string password, string email, string phone)
+        public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD, string address, string user, string password, string email, string phone, DateTime created_at, string role, string status_user)
         {
             this.ID_User = id_user;
             this.FullName = fullname;
@@ -61,9 +58,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Password = password;
             this.Email = email;
             this.Phone = phone;
-        }
-        public ModelUser(int iD_User, string fullName, DateTime dateOfBirth, string gender, string cMND_CCCD, string address, string username, string password, string email, string phone, DateTime created_at, string role, string status_user) : this(iD_User, fullName, dateOfBirth, gender, cMND_CCCD, address, username, password, email, phone)
-        {
             this.created_at = created_at;
             this.role = role;
             this.status_user = status_user;
