@@ -45,9 +45,9 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             if (itembank != null && itembank.Balance >= amount)
             {
                 var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");
+                itembank.Balance -= amount;
                 if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
-                {
-                    itembank.Balance -= amount;
+                {                   
                     Email email = new TemplateMailWithdraw();
                     email.Mail(whithdraw);
                     result = true;
