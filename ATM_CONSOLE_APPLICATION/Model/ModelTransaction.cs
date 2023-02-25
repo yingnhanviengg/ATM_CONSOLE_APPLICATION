@@ -122,7 +122,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
             try
             {
-                string query = "SELECT transaction.*, user.full_name, user.cmnd_cccd, user.email, bank_account.number_bank, bank_account.balance, user.number_phone FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user INNER JOIN transaction ON transaction.id_bank_account = bank_account.id_bank_account;";
+                string query = "SELECT transaction.*, user.id_user, user.full_name, user.cmnd_cccd, user.email, bank_account.number_bank, bank_account.balance, user.number_phone, user.status_user FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user INNER JOIN transaction ON transaction.id_bank_account = bank_account.id_bank_account;";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
                 using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
                 using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
@@ -148,7 +148,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
             ModelTransaction transaction = new ModelTransaction(
                 new ModelBank_Account(reader.GetInt32("id_bank_account"), reader.GetString("number_bank"), reader.GetDouble("balance")),
-                new ModelUser(reader.GetString("full_name"), reader.GetString("cmnd_cccd"), reader.GetString("email"), reader.GetString("number_phone")),
+                new ModelUser(reader.GetInt32("id_user"), reader.GetString("full_name"), reader.GetString("cmnd_cccd"), reader.GetString("email"), reader.GetString("number_phone"), reader.GetString("status_user")),
                 reader.GetInt32("id_transaction"),
                 reader.GetString("type"),
                 reader.GetDouble("amount"),
