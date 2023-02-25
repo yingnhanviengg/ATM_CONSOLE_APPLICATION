@@ -11,7 +11,6 @@
             Check_Account_Information = "Check Account Information";
             Change_Language = "Switch Language";
             //Choose
-            Input_choose = "Enter account: ";
             Exception_choose = "Only numbers are allowed";
             // Login
             Input_User = "Enter account: ";

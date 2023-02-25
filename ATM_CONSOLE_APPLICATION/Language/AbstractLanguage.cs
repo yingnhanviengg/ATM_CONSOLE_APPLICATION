@@ -39,9 +39,6 @@
         public static string Email_Current { get; set; }
         public static string SDT_Current { get; set; }
         public static string IsUpdate { get; set; }
-        //Chosse
-        public static string Input_choose { get; set; }
-        public static string Exception_choose { get; set; }
         // Login
         public static string Input_User { get; set; }
         public static string Input_Pass { get; set; }
@@ -60,6 +57,7 @@
         public static string Input_ID_Transaction { get; set; }
         public static string Input_Card { get; set; }
         public static string Input_Card_Error { get; set; }
+        public static string Exception_choose { get; set; }
         // Register
         public static string Error_Input_Gender { get; set; }
         public static string Error_Input_CMND { get; set; }
@@ -99,8 +97,8 @@
         public static string SendRequire_Racharge_Success { get; set; }
         public static string SendRequire_Racharge_Error { get; set; }
         public static string NotFind_Transaction { get; set; }
-        public static string Confirm_Recharge_Error { get; set; }
         public static string Confirm_Reacharge_Success { get; set; }
+        public static string IsConfirm_Recharge { get; set; }
         // Tranfer Money
         public static string Input_NumberBank_Recipient { get; set; }
         public static string Input_NumberBank_Recipient_Error { get; set; }

@@ -6,11 +6,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
     public class CardCustomer : AbstractCard
     {
         private static CardCustomer? _cardCustomer;
-
-        private CardCustomer()
-        {
-
-        }
+        private CardCustomer() { }
         public static CardCustomer _CardCustomer
         {
             get
@@ -28,15 +24,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             if (!controllerCard.GetCard())
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.No_CardYet, true);
-                if (Common.CreatedCard())
-                {
-                    CreateCrad();
-                }
+                if (Common.CreatedCard()) { CreateCrad(); }
             }
-            else
-            {
-                TableCard();
-            }
+            else { TableCard(); }
         }
         public override void TableCard()
         {
@@ -58,14 +48,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         }
         public void CreateCrad()
         {
-            if (controllerCard.CreateCard())
-            {
-                Common.PrintMessage_Console(Language.AbstractLanguage.Created_Card_Success, true);
-            }
-            else
-            {
-                Console.WriteLine(Language.AbstractLanguage.Error_Create_Card, false);
-            }
+            if (controllerCard.CreateCard()) { Common.PrintMessage_Console(Language.AbstractLanguage.Created_Card_Success, true); }
+            else { Console.WriteLine(Language.AbstractLanguage.Error_Create_Card, false); }
         }
     }
 }

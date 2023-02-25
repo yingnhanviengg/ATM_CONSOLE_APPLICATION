@@ -11,32 +11,28 @@ namespace ATM_CONSOLE_APPLICATION
                     .LeftJustified()
                     .Color(Color.Red));
         }
-        public static int Choose()
+        public static bool IsConfirm_Recharge()
         {
             while (true)
             {
-                try
+                Console.WriteLine(Language.AbstractLanguage.IsConfirm_Recharge);
+                string x = Console.ReadLine();
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                if (x.ToUpper().Equals("Y"))
                 {
-                    Console.Write(Language.AbstractLanguage.Input_choose);
-                    int x = Convert.ToInt32(Console.ReadLine());
-                    return x;
+                    return true;
                 }
-                catch (FormatException)
+                else if (x.ToUpper().Equals("N"))
                 {
-                    PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
+                    return false;
                 }
+                else { Console.WriteLine(Language.AbstractLanguage.IsY_or_N); }
             }
         }
         public static void PrintMessage_Console(string str, bool status)
         {
-            if (status)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
+            if (status) { Console.ForegroundColor = ConsoleColor.Green; }
+            else { Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine(str);
             Console.ResetColor();
         }

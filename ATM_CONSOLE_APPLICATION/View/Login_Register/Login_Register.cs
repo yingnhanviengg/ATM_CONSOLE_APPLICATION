@@ -4,12 +4,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
     public class Login_Register : ILogin_Register
     {
-        public static Login_Register? _login_Register;
-
-        public Login_Register()
-        {
-
-        }
+        private static Login_Register? _login_Register;
+        public Login_Register() { }
         public static Login_Register _Login_Register
         {
             get
@@ -21,7 +17,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 return _login_Register;
             }
         }
-        public ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
+        private ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
         public bool Login()
         {
             string user = InputisValid.InptUsername();
@@ -59,10 +55,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                     {
                         Common.PrintMessage_Console(Language.AbstractLanguage.Register_Success, true);
                     }
-                    else
-                    {
-                        Common.PrintMessage_Console(Language.AbstractLanguage.Error_Re_register, false);
-                    }
+                    else { Common.PrintMessage_Console(Language.AbstractLanguage.Error_Re_register, false); }
                     break;
                 case -1:
                     Common.PrintMessage_Console(Language.AbstractLanguage.Error_User_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);

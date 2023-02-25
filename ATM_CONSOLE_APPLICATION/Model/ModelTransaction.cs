@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -37,10 +39,20 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             set { _list_transactions = value; }
         }
-        public ModelTransaction()
+        private static List<ModelTransaction> _listRequireRecharge;
+        public static List<ModelTransaction> ListRequireRecharge
         {
-
+            get
+            {
+                if (_listRequireRecharge == null)
+                {
+                    _listRequireRecharge  = List_Transactions.Where(item => item.Type_Tracsaction.Equals("recharge") && item.status_transaction.Equals("processing")).ToList();
+                }
+                return _listRequireRecharge;
+            }
+            set { _listRequireRecharge = value; }
         }
+        public ModelTransaction() { }
         public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
         {
             this.Bank_Account = Bank_Account;

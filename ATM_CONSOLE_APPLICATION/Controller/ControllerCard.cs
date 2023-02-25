@@ -79,11 +79,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public bool GetCard()
         {
             var item = ListCard.FirstOrDefault(x => x.UserBank.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank));
-            if (item != null)
-            {
-                Card.GetCard(item);
-                return true;
-            }
+            if (item != null) { Card.GetCard(item); return true; }
             return false;
         }
     }

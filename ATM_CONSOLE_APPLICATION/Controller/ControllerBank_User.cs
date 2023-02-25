@@ -68,10 +68,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 UpdateList_User(update);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            else { return false; }
         }
         public int IsValidUpdate(int iduser, string cmnd_cccd, string email, string phone)
         {
@@ -79,77 +76,44 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             var valid = ListBank_User[index];
             if (!cmnd_cccd.Equals(valid.User.CMND_CCCD))
             {
-                if (FindCMND_CCCD(cmnd_cccd))
-                {
-                    return -4;
-                }
+                if (FindCMND_CCCD(cmnd_cccd)) { return -4; }
             }
             if (!phone.Equals(valid.User.Phone))
             {
-                if (FindPhone(phone))
-                {
-                    return -3;
-                }
+                if (FindPhone(phone)) { return -3; }
             }
             if (!email.Equals(valid.User.Email))
             {
-                if (FindEmail(email))
-                {
-                    return -2;
-                }
+                if (FindEmail(email)) { return -2; }
             }
             return 1;
         }
         public bool FindUser(string user)
         {
-            if (ListBank_User.Any(u => u.User.Username == user))
-            {
-                return true; // tài khoản đã tồn tại
-            }
+            if (ListBank_User.Any(u => u.User.Username == user)) { return true; } // tài khoản đã tồn tại
             return false;
         }
         public bool FindEmail(string email)
         {
-            if (ListBank_User.Any(u => u.User.Email == email))
-            {
-                return true; // email đã tồn tại
-            }
+            if (ListBank_User.Any(u => u.User.Email == email)) { return true; } // email đã tồn tại
             return false;
         }
         public bool FindPhone(string phone)
         {
-            if (ListBank_User.Any(u => u.User.Phone == phone))
-            {
-                return true; // sdt đã tồn tại
-            }
+            if (ListBank_User.Any(u => u.User.Phone == phone)) { return true; } // sdt đã tồn tại
             return false;
         }
         public bool FindCMND_CCCD(string cmnd_cccd)
         {
-            if (ListBank_User.Any(u => u.User.CMND_CCCD == cmnd_cccd))
-            {
-                return true; // CMND_CCCD đã tồn tại
-            }
+            if (ListBank_User.Any(u => u.User.CMND_CCCD == cmnd_cccd)) { return true; } //cmnd_cccd đã tồn tại
             return false;
         }
         public int IsRegister(string cmnd_cccd, string username, string email, string phone)
         {
-            if (FindUser(username))
-            {
-                return -1; // tài khoản đã tồn tại
-            }
-            if (FindEmail(email))
-            {
-                return -2; // email đã tồn tại
-            }
-            if (FindPhone(phone))
-            {
-                return -3; // sdt đã tồn tại
-            }
-            if (FindCMND_CCCD(cmnd_cccd))
-            {
-                return -4; // CMND_CCCD đã tồn tại
-            }
+            if (FindUser(username)) { return -1; }
+            if (FindEmail(email)) { return -2; }
+            if (FindPhone(phone)) { return -3; }
+            if (FindCMND_CCCD(cmnd_cccd)) { return -4; }
             return 1;
         }
         public void UpdateList_User(ModelBank_Account modelBank_Account)
@@ -221,15 +185,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public int IsLoggedIn(string user, string pass)
         {
             var item = ListBank_User.FirstOrDefault(u => u.User.Username == user && u.User.Password == pass);
-            if (item != null && item.User.status_user.Equals("normal"))
-            {
-                item.GetBank_User(item);
-                return 1;
-            }
-            else if (item != null && item.User.status_user.Equals("lock"))
-            {
-                return -1;
-            }
+            if (item != null && item.User.status_user.Equals("normal")) { item.GetBank_User(item); return 1; }
+            else if (item != null && item.User.status_user.Equals("lock")) { return -1; }
             else { return 0; }
         }
     }

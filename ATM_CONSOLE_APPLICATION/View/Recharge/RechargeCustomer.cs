@@ -25,10 +25,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Success, true);
             }
-            else
-            {
-                Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Error, false);
-            }
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Error, false); }
         }
     }
 }

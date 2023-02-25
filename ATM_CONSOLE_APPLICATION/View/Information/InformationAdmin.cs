@@ -122,10 +122,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         {
                             Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                         }
-                        else
-                        {
-                            Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Error, false);
-                        }
+                        else { Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Error, false); }
                         break;
                     case -2:
                         Common.PrintMessage_Console(Language.AbstractLanguage.Error_Email_Already_Exists + "\n" + Language.AbstractLanguage.Registration_Failed, false);
@@ -138,10 +135,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                         break;
                 }
             }
-            else
-            {
-                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
-            }
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false); }
         }
         public override void Table_Informatio()
         {
@@ -186,6 +180,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
                 table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+                table.AddColumn("[springgreen2_1]Trạng Thái[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
                     Console.WriteLine("Số trang không hợp lệ.");
@@ -197,11 +192,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        if (item.User.status_user.Equals("normal"))
-                        {
-                            table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}");
-
-                        }
+                        table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.User.status_user}");
                     }
                 }
                 AnsiConsole.Write(table);

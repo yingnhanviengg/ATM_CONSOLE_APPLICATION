@@ -190,10 +190,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public static bool IsValidEmail(string email)
         {
-            if (string.IsNullOrEmpty(email))
-            {
-                return false;
-            }
+            if (string.IsNullOrEmpty(email)) { return false; }
             Regex regex = new Regex(@"^[a-zA-Z0-9~!@#$%^&*()_\-+=\[\]{}\\|;:'"",<.>/?]+@gmail\.com$");
             return regex.IsMatch(email);
         }
@@ -214,10 +211,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                     }
                     break;
                 }
-                else
-                {
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Invalid_DateOfBirth, false);
-                }
+                else { Common.PrintMessage_Console(Language.AbstractLanguage.Error_Invalid_DateOfBirth, false); }
             } while (true);
             string mysqlFormattedDate = date.ToString("MM/dd/yyyy");
             if (DateTime.TryParseExact(mysqlFormattedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
@@ -240,10 +234,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                     int idBank = Convert.ToInt32(Console.ReadLine().Trim());
                     return idBank;
                 }
-                catch (FormatException)
-                {
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
-                }
+                catch (FormatException) { Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false); }
             }
         }
         public static string StandardizeString(string str)

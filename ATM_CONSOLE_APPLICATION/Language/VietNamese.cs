@@ -41,9 +41,6 @@
             Email_Current = "Email hiện tại: ";
             SDT_Current = "Số điện thoại hiện tại: ";
             IsUpdate = "Có muốn sửa giá trị này không? (Y hoặc N)";
-            // Chosse
-            Input_choose = "Nhập lựa chọn: ";
-            Exception_choose = "Chỉ được nhập số";
             // Login
             Input_User = "Nhập tài khoản: ";
             Input_Pass = "Nhập mật khẩu: ";
@@ -62,6 +59,7 @@
             Input_ID_Transaction = "Nhập ID giao dịch: ";
             Input_Card = "Nhập số thẻ: ";
             Input_Card_Error = "Sô thẻ có 16 chữ số và không chứa ký tự đặc biệt";
+            Exception_choose = "Chỉ được nhấp số";
             // Register
             Error_Input_Gender = "Nhập giới tính không hợp lệ";
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
@@ -100,9 +98,10 @@
             SendRequire_Racharge_Success = "Gửi yêu cầu nạp tiền thành công\nVui lòng đợi quản trị viên phê duyệt";
             SendRequire_Racharge_Error = "Gửi yêu nạp tiền thất bại";
             NotFind_Transaction = "Không tìm thấy giao dịch";
-            Confirm_Recharge_Error = "Giao dịch này đã được xác nhận từ trước";
             Confirm_Reacharge_Success = "Xác nhận nạp tiền, cập nhật số dư thành công";
-            Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";
+            IsConfirm_Recharge = "Có đồng ý xác nhận giao dịch này không (Y/N)?";
+            // tranfer
+            Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";          
             Input_NumberBank_Recipient_Error = "Số tài khoản không hợp lệ, số tài khoản có 10 chữ số và không có ký tự đặc biệt";
             Input_Amount_Tranfer = "Nhập số tiền cần chuyển: ";
             NumberBank_NotExist = "Số tài khoản người nhận không tồn tại";
