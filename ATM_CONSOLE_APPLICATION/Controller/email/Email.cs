@@ -25,7 +25,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             message.From.Add(new MailboxAddress("ATM CONSOLE APPLICATION", from));
             message.To.Add(new MailboxAddress("Customer", to));
             message.Subject = subject;
-            signature = "<p style='font-size: 10px; color: gray;'>ATM CONSOLE APPLICATION<br/>" +
+            signature = "<p style='font-size: 12px; color: gray;'>ATM CONSOLE APPLICATION<br/>" +
             "Coded with love by Ying and VuAnh, This code is the product of countless cups of coffee<br/>" +
             "Email: yingnhanviengg@gmail.com or anhvt290791@gmail.com<br/>" +
             "Phone: 0345211459</p>" +
