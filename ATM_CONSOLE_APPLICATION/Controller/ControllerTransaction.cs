@@ -45,6 +45,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             if (itembank != null && itembank.Balance >= amount)
             {
                 var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");
+                var itemtransaction = List_Transactions.FirstOrDefault(x => x.Bank_Account.ID_Bank.Equals(itembank.ID_Bank));
+                itemtransaction.Bank_Account.Balance -= amount;
                 itembank.Balance -= amount;
                 if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
                 {                   
@@ -71,7 +73,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public bool RequireReachaerge(double amount)
         {
             var rechager = new Model.ModelTransaction(ControllerBank_User.UserBank, type: "recharge", amount, status_transaction: "processing");
-            return rechager.RequireReachaerge(rechager);
+            return rechager.SendTransaction(rechager);
         }
         public bool Confirm_Reccharge(int id_transaction)
         {
