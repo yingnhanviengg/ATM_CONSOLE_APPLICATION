@@ -20,7 +20,7 @@ namespace ATM_CONSOLE_APPLICATION.View.TranferMoney
         public void Tranfer()
         {
             string numberbank_recipient = InputisValid.InputNumberBank_Recipient();
-            double deposits = InputisValid.InputDeposits();
+            double deposits = InputisValid.InputAmount();
             switch (controllerTranfer.Tranfer(deposits, ControllerBank_User.UserBank.ID_Bank, numberbank_recipient))
             {
                 case -1:

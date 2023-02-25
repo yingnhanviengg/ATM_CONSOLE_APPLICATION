@@ -7,10 +7,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
     public class CardAdmin : AbstractCard
     {
         private static CardAdmin? _cardAdmin;
-        private CardAdmin()
-        {
-
-        }
+        private CardAdmin() { }
         public static CardAdmin _CardAdmin
         {
             get

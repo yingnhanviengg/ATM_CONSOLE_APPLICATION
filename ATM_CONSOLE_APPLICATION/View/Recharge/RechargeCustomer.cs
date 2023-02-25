@@ -20,7 +20,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
         public void Recharge()
         {
             Console.Write(Language.AbstractLanguage.Input_Amount);
-            double amount = Convert.ToDouble(Console.ReadLine());
+            double amount = InputisValid.InputAmount();
             if (controllerRecharge.RequireReachaerge(amount))
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.SendRequire_Racharge_Success, true);

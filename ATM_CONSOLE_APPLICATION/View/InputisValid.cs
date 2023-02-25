@@ -6,26 +6,36 @@ namespace ATM_CONSOLE_APPLICATION.View
 {
     public class InputisValid
     {
+        public static string InputPassCard()
+        {
+            while (true)
+            {
+                Console.Write(AbstractLanguage.Input_PassCard);
+                string passcard = Console.ReadLine().Trim();
+                if (passcard.All(char.IsDigit) && passcard.Length == 4)
+                {
+                    return passcard;
+                }
+                else { Common.PrintMessage_Console(AbstractLanguage.Input_PassCard_Error, false); }
+            }
+        }
         public static string InputCode()
         {
             Console.Write(Language.AbstractLanguage.Enter_Code);
             string code = Console.ReadLine().Trim();
             return code;
         }
-        public static double InputDeposits()
+        public static double InputAmount()
         {
             while (true)
             {
                 try
                 {
-                    Console.Write(Language.AbstractLanguage.Input_Amount_Tranfer);
+                    Console.Write(Language.AbstractLanguage.Input_Amount);
                     double money = Convert.ToDouble(Console.ReadLine().Trim());
                     return money;
                 }
-                catch (FormatException)
-                {
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false);
-                }
+                catch (FormatException) { Common.PrintMessage_Console(Language.AbstractLanguage.Exception_choose, false); }
             }
         }
         public static string InputNumberBank_Recipient()
@@ -121,10 +131,7 @@ namespace ATM_CONSOLE_APPLICATION.View
                 {
                     return pass;
                 }
-                else
-                {
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Pass, false);
-                }
+                else { Common.PrintMessage_Console(Language.AbstractLanguage.Error_Input_Pass, false); }
             } while (true);
         }
         public static string InptUsername()

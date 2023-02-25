@@ -8,7 +8,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
     {
         public override void ShowMenu()
         {
-            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Withdraw_Money_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
             Common.UI();
             do
             {
@@ -31,25 +31,23 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         cardCustomer.Card_Management();
                         break;
                     case 2:
-                        break;
-                    case 3:
                         Console.Clear();
                         Recharge.RechargeCustomer recharge = Recharge.RechargeCustomer._RechargeCustomer;
                         recharge.Recharge();
                         break;
-                    case 4:
+                    case 3:
                         Console.Clear();
                         TranferMoney.TranferCustomer tranfer = TranferMoney.TranferCustomer._TranferCustomer;
                         tranfer.Tranfer();
                         break;
-                    case 5:
+                    case 4:
                         break;
-                    case 6:
+                    case 5:
                         Console.Clear();
                         Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
                         transactionCustomer.MenuTransaction();
                         break;
-                    case 7:
+                    case 6:
                         ChangeLanguage.Change_Language();
                         break;
                 }

@@ -23,8 +23,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 return _transactionAdmin;
             }
         }
-        private ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
-        private ControllerTranfer controllerTranfer = ControllerTranfer._ControllerTranfer;
         public void MenuTransaction()
         {
             string[] Menu_Customer = { AbstractLanguage.History_Tranfer, AbstractLanguage.History_Withdraw_Recharge, Language.AbstractLanguage.BackMenu };

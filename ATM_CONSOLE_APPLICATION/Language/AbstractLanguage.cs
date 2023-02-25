@@ -58,6 +58,9 @@
         public static string Input_Card { get; set; }
         public static string Input_Card_Error { get; set; }
         public static string Exception_choose { get; set; }
+        public static string Input_Amount { get; set; }
+        public static string Input_PassCard { get; set; }
+        public static string Input_PassCard_Error { get; set; }
         // Register
         public static string Error_Input_Gender { get; set; }
         public static string Error_Input_CMND { get; set; }
@@ -92,8 +95,7 @@
         public static string Lock_Account_Success { get; set; }
         public static string NotFind_ID { get; set; }
         public static string Unlock_Account_Success { get; set; }
-        // Reacharge
-        public static string Input_Amount { get; set; }
+        // Reacharge      
         public static string SendRequire_Racharge_Success { get; set; }
         public static string SendRequire_Racharge_Error { get; set; }
         public static string NotFind_Transaction { get; set; }
@@ -102,10 +104,13 @@
         // Tranfer Money
         public static string Input_NumberBank_Recipient { get; set; }
         public static string Input_NumberBank_Recipient_Error { get; set; }
-        public static string Input_Amount_Tranfer { get; set; }
         public static string NumberBank_NotExist { get; set; }
         public static string NumberBank_Lock { get; set; }
         public static string Tranfer_Success { get; set; }
         public static string Tranfer_Error { get; set; }
+        // Withdraw
+        public static string CardNotExistOrLock { get; set; }
+        public static string Withdraw_Success { get; set; }
+        public static string Error_insufficientBalance { get; set; }
     }
 }

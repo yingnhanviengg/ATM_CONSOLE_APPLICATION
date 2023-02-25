@@ -1,5 +1,7 @@
-﻿using ATM_CONSOLE_APPLICATION.Model;
+﻿using ATM_CONSOLE_APPLICATION.Controller.email;
+using ATM_CONSOLE_APPLICATION.Model;
 using Mysqlx.Crud;
+using Spectre.Console.Rendering;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -36,6 +38,26 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public static List<ModelTransaction> ListHistoryRecharge_Withdraw_User
         {
             get { return ModelTransaction.ListHistoryRecharge_Withdraw_User; }
+        }
+        public bool Withdraw(string card, double amount)
+        {
+            bool result;
+            var itemcard = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
+            var itembank = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(itemcard.UserBank.ID_Bank));           
+            if (itembank != null && itembank.Balance >= amount)
+            {
+                var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");                
+                if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
+                {
+                    itembank.Balance -= amount;
+                    Email email = new TemplateMailWithdraw();
+                    email.Mail(whithdraw);
+                    result = true;
+                }
+                else { result = false; }
+            }
+            else { result = false; }
+            return result;
         }
         public bool IsRechaerge(ModelBank_Account user)
         {

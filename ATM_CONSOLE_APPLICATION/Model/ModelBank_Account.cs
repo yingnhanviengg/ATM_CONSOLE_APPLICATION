@@ -42,10 +42,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 _listBank_User = value;
             }
         }
-        public ModelBank_Account()
-        {
-
-        }
+        public ModelBank_Account() { }
         public ModelBank_Account(int id_bank, ModelUser user)
         {
             this.ID_Bank = id_bank;
@@ -83,14 +80,22 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.status_bank = status_bank;
             this.User = user;
         }
-
-        public ModelBank_Account(int id_bank)
+        public bool Withdraw(ModelBank_Account modelBank_Account)
         {
-            this.ID_Bank = id_bank;
-        }
-        public ModelBank_Account(string number_bank)
-        {
-            this.Number_Bank = number_bank;
+            try
+            {
+                string query = "UPDATE bank_account SET balance = @balance WHERE id_bank_account = @id_bank_account;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@id_bank_account", modelBank_Account.ID_Bank);
+                mySqlCommand.Parameters.AddWithValue("@balance", modelBank_Account.Balance);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
         }
         public bool UnLock_Account(ModelBank_Account modelBank_Account)
         {

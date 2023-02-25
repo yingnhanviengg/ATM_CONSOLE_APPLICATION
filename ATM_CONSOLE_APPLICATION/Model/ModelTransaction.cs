@@ -105,6 +105,25 @@ namespace ATM_CONSOLE_APPLICATION.Model
             catch (Exception) { throw; }
             finally { DBHelper.Close(); }
         }
+        public bool SendTransaction(ModelTransaction transaction)
+        {
+            try
+            {
+                string query = "INSERT HIGH_PRIORITY INTO transaction(id_bank_account, type, amount, status_transaction) VALUES (@id_bank, @type, @amount, @status_transaction);";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@id_bank", transaction.Bank_Account.ID_Bank);
+                mySqlCommand.Parameters.AddWithValue("@type", transaction.Type_Tracsaction);
+                mySqlCommand.Parameters.AddWithValue("@amount", transaction.amount);
+                mySqlCommand.Parameters.AddWithValue("@status_transaction", transaction.status_transaction);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
+        }
         public bool RequireReachaerge(ModelTransaction Rechager)
         {
             try

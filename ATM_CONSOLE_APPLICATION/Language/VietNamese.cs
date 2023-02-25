@@ -60,6 +60,8 @@
             Input_Card = "Nhập số thẻ: ";
             Input_Card_Error = "Sô thẻ có 16 chữ số và không chứa ký tự đặc biệt";
             Exception_choose = "Chỉ được nhấp số";
+            Input_PassCard = "Nhập mật khẩu thẻ: ";
+            Input_PassCard_Error = "Mật khẩu thẻ là 4 số tự nhiên, không có ký tự đặc biệt";
             // Register
             Error_Input_Gender = "Nhập giới tính không hợp lệ";
             Error_Input_CMND = "Nhập CMND hoặc CCCD không hợp lệ";
@@ -94,7 +96,7 @@
             NotFind_ID = "Không tìm thấy ID khách hàng";
             Unlock_Account_Success = "Mở khóa tài khoản thành công";
             // Reacharge
-            Input_Amount = "Nhập số tiền muốn nạp vào tài khoản: ";
+            Input_Amount = "Nhập số tiền: ";
             SendRequire_Racharge_Success = "Gửi yêu cầu nạp tiền thành công\nVui lòng đợi quản trị viên phê duyệt";
             SendRequire_Racharge_Error = "Gửi yêu nạp tiền thất bại";
             NotFind_Transaction = "Không tìm thấy giao dịch";
@@ -103,11 +105,14 @@
             // tranfer
             Input_NumberBank_Recipient = "Nhập số tài khoản người nhận: ";          
             Input_NumberBank_Recipient_Error = "Số tài khoản không hợp lệ, số tài khoản có 10 chữ số và không có ký tự đặc biệt";
-            Input_Amount_Tranfer = "Nhập số tiền cần chuyển: ";
             NumberBank_NotExist = "Số tài khoản người nhận không tồn tại";
             NumberBank_Lock = "Tài khoản người nhận đang bị khóa";
             Tranfer_Success = "Chuyển khoản thành công";
             Tranfer_Error = "Chuyển khoản thất bại";
+            // Withdraw
+            CardNotExistOrLock = "Sai mã số thẻ và mật khẩu hoặc thẻ đang bị tạm khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
+            Withdraw_Success = "Rút tiền thành công";
+            Error_insufficientBalance = "Số dư không đủ để thực hiện giao dịch";
         }
     }
 }

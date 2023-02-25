@@ -1,13 +1,20 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Menu;
+using ATM_CONSOLE_APPLICATION.View.Withdraw;
 using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View
 {
     public class MainMenu
     {
-        public MainMenu() { }
+        public MainMenu()
+        {
+            ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
+            ControllerCard controllerCard = ControllerCard.controllerCard;
+            ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
+            ControllerTranfer controllerTranfer = ControllerTranfer._ControllerTranfer;
+        }
         private static AbstractMenu? _menu = null;
         public static AbstractMenu Menu
         {
@@ -29,7 +36,7 @@ namespace ATM_CONSOLE_APPLICATION.View
         }
         public bool MenuLogin()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register };
+            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register, AbstractLanguage.Withdraw_Money_Customer };
             bool result = false;
             Login_Register.Login_Register login_Register = Login_Register.Login_Register._Login_Register;
             do
@@ -50,6 +57,11 @@ namespace ATM_CONSOLE_APPLICATION.View
                     case 1:
                         Console.Clear();
                         login_Register.Register();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        VWithdraw vWithdraw = VWithdraw._Withdraw;
+                        vWithdraw.Withdraw();
                         break;
                 }
             } while (!result);

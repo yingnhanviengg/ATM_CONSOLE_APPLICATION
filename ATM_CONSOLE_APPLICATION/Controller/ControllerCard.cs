@@ -25,6 +25,14 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelCard.Card; }
         }
+        public bool checkCardExistence(string card, string passcard)
+        {
+            if (ListCard.Any(x => x.Number_Card.Equals(card) && x.Pass_Card.Equals(passcard) && x.Status_Card.Equals("normal")))
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public bool UnLockCard(string card)
         {
             var item = ControllerCard.ListCard.FirstOrDefault(x => x.Number_Card.Equals(card));
