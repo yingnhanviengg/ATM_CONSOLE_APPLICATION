@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
+using MySql.Data.MySqlClient;
 
 namespace ATM_CONSOLE_APPLICATION.Model
 {
@@ -34,6 +35,19 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 return _list_TranferMoney;
             }
             set { _list_TranferMoney = value; }
+        }
+        private static List<ModelTranferMoney> _list_TranferMoney_user;
+        public static List<ModelTranferMoney> List_TranferMoney_User
+        {
+            get
+            {
+                if (_list_TranferMoney_user == null)
+                {
+                    _list_TranferMoney_user = List_TranferMoney.Where(item => item.Bank_Sender.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank) || item.Bank_Recipient.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank)).ToList();
+                }
+                return _list_TranferMoney_user;
+            }
+            set { _list_TranferMoney_user = value; }
         }
         public ModelTranferMoney() {  }
         public ModelTranferMoney(int iD_Tranfer, double amount, DateTime created_at_tranfer, ModelBank_Account bank_Sender, ModelBank_Account bank_Recipient)

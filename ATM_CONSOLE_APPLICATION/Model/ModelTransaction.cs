@@ -65,6 +65,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             set { _listHistoryRecharge_Withdraw_User = value; }
         }
+
         public ModelTransaction() { }
         public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
         {

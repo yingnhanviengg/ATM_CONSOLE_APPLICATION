@@ -110,15 +110,15 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
         public void Table_HistoryTranfer()
         {
             int pageNumber = 1;
-            int pageCount = (ControllerTranfer.List_TranferMoney.Count + 10 - 1) / 10;
+            int pageCount = (ControllerTranfer.List_TranferMoney_User.Count + 10 - 1) / 10;
             int pageSize = 10;
-            if (ControllerTranfer.List_TranferMoney.Count > 10)
+            if (ControllerTranfer.List_TranferMoney_User.Count > 10)
             {
                 while (true)
                 {
                     try
                     {
-                        Console.WriteLine($"Giao dịch chuyển tiền {pageCount} trang, {ControllerTranfer.List_TranferMoney.Count} giao dịch ");
+                        Console.WriteLine($"Giao dịch chuyển tiền {pageCount} trang, {ControllerTranfer.List_TranferMoney_User.Count} giao dịch ");
                         Console.Write("Nhập số trang: ");
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
@@ -130,7 +130,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     }
                 }
             }
-            if (ControllerTranfer.List_TranferMoney.Count == 0)
+            if (ControllerTranfer.List_TranferMoney_User.Count == 0)
             {
                 Console.WriteLine("Ko có dữ liệu");
                 return;
@@ -161,12 +161,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 else
                 {
                     int startIndex = (pageNumber - 1) * pageSize;
-                    foreach (var item in ControllerTranfer.List_TranferMoney.Skip(startIndex).Take(pageSize).ToList())
+                    foreach (var item in ControllerTranfer.List_TranferMoney_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        if (item.Bank_Sender.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank) || item.Bank_Recipient.ID_Bank.Equals(ControllerBank_User.UserBank.ID_Bank))
-                        {
-                            table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{item.created_at_tranfer}");
-                        }
+                        table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{item.created_at_tranfer}");
                     }
                 }
                 AnsiConsole.Write(table);

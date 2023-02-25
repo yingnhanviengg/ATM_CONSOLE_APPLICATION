@@ -15,6 +15,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             get { return ModelTranferMoney.TranferMoney; }
         }
+        public static List<ModelTranferMoney> List_TranferMoney_User
+        {
+            get { return ModelTranferMoney.List_TranferMoney_User; }
+        }
         private static ControllerTranfer _controllerTranfer;
         public static ControllerTranfer _ControllerTranfer
         {
