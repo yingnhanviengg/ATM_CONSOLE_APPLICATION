@@ -11,7 +11,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at_transaction { get; set; }
         public string status_transaction { get; set; }
         public ModelBank_Account Bank_Account { get; set; }
-        public ModelUser User { get; set; }
         private static ModelTransaction _transaction;
         public static ModelTransaction Transaction
         {
@@ -66,10 +65,9 @@ namespace ATM_CONSOLE_APPLICATION.Model
         }
 
         public ModelTransaction() { }
-        public ModelTransaction(ModelBank_Account Bank_Account, ModelUser user, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
+        public ModelTransaction(ModelBank_Account Bank_Account, int id_transaction, string type, double amount, DateTime created_at_tracsaction, string status_transaction)
         {
             this.Bank_Account = Bank_Account;
-            this.User = user;
             this.ID_Transaction = id_transaction;
             this.Type_Tracsaction = type;
             this.amount = amount;
@@ -146,7 +144,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         {
             try
             {
-                string query = "SELECT transaction.*, user.id_user, user.full_name, user.cmnd_cccd, user.email, bank_account.number_bank, bank_account.balance, user.number_phone, user.status_user FROM bank_account INNER JOIN user ON bank_account.id_user = user.id_user INNER JOIN transaction ON transaction.id_bank_account = bank_account.id_bank_account;";
+                string query = "SELECT transaction.* FROM transaction;";
                 using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
                 using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
                 using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
@@ -164,8 +162,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public ModelTransaction GetTransaction(MySqlDataReader reader)
         {
             ModelTransaction transaction = new ModelTransaction(
-                new ModelBank_Account(reader.GetInt32("id_bank_account"), reader.GetString("number_bank"), reader.GetDouble("balance")),
-                new ModelUser(reader.GetInt32("id_user"), reader.GetString("full_name"), reader.GetString("cmnd_cccd"), reader.GetString("email"), reader.GetString("number_phone"), reader.GetString("status_user")),
+                ModelBank_Account._ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(reader.GetInt32("id_bank_account"))),
                 reader.GetInt32("id_transaction"),
                 reader.GetString("type"),
                 reader.GetDouble("amount"),

@@ -17,7 +17,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 return _login_Register;
             }
         }
-        private ControllerBank_User ControllerUser = ControllerBank_User.ControllerUser;
+        private ControllderUser ControllerUser = ControllderUser.__ControllerUser;
         public bool Login()
         {
             string user = InputisValid.InptUsername();

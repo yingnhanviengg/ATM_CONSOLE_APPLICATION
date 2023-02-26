@@ -75,11 +75,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{ControllerBank_User.UserBank.User.Phone}");
             string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : ControllerBank_User.UserBank.User.Phone;
 
-            ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
-            switch (controllerBank_User.IsValidUpdate(ControllerBank_User.UserBank.User.ID_User, cmnd_cccd, email, phone))
+            ControllderUser controllderUser = ControllderUser.__ControllerUser;
+            switch (controllderUser.IsValidUpdate(ControllderUser.User.ID_User, cmnd_cccd, email, phone))
             {
                 case 1:
-                    if (controllerBank_User.Upate_Information(ControllerBank_User.UserBank.User.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
+                    if (controllderUser.Upate_Information(ControllderUser.User.ID_User, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
                     {
                         Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                     }

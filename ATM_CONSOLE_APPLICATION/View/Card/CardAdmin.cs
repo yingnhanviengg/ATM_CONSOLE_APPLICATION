@@ -63,13 +63,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             string card = InputisValid.InputNumberCarb();
             if (controllerCard.UnLockCard(card))
             {
-
                 Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Success, true);
             }
-            else
-            {
-                Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Error, false);
-            }
+            else { Common.PrintMessage_Console(AbstractLanguage.UnLock_Card_Error, false); }
         }
         public void LockCard()
         {
@@ -80,10 +76,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
 
                 Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Success, true);
             }
-            else
-            {
-                Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Error, false);
-            }
+            else { Common.PrintMessage_Console(AbstractLanguage.Lock_Card_Error, false); }
         }
         public override void TableCard()
         {

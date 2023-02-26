@@ -4,11 +4,8 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
 {
     public class TemplateMailRecharge : Email
     {
-        public TemplateMailRecharge()
-        {
-
-        }
-        public override bool Mail(object model)
+        public TemplateMailRecharge() { }
+        public override bool SendMail(object model)
         {
             if (Language.AbstractLanguage.Current_Language.Equals("Vietnamese"))
             {
@@ -18,7 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             {
                 Mail_English(model);
             }
-            return SendMail(((ModelTransaction)model).User.Email);
+            return Mail(((ModelTransaction)model).Bank_Account.User.Email);
         }
         public override void Mail_Vietnamese(object model)
         {
@@ -26,11 +23,12 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Xác nhận nạp tiền thành công";
-            body = $"Xin chào {((ModelTransaction)model).User.FullName}<br/>" +
+            body = $"Xin chào {((ModelTransaction)model).Bank_Account.User.FullName}<br/>" +
                 $"Yêu cầu nạp tiền đã được quản trị viên xác nhận <br/>" +
                 $"Thông báo thông tin tài khoản:<br/>" +
                 $"Số tài khoản: {((ModelTransaction)model).Bank_Account.Number_Bank}<br/>" +
-                $"Số dư: {((ModelTransaction)model).Bank_Account.Balance}" +
+                $"Số tiền nạp: {((ModelTransaction)model).amount}<br/>" +
+                $"Số dư hiện tại: {((ModelTransaction)model).Bank_Account.Balance}<br/>" +
                 $"Thời gian xác nhận yêu cầu {currentTime}";
         }
         public override void Mail_English(object model)
@@ -38,7 +36,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Xác nhận nạp tiền thành công";
-            body = $"Xin chào {((ModelTransaction)model).User.FullName}<br/>" +
+            body = $"Xin chào {((ModelTransaction)model).Bank_Account.User.FullName}<br/>" +
                 $"Yêu cầu nạp tiền đã được quản trị viên xác nhận <br/>" +
                 $"Thông báo thông tin tài khoản:<br/>" +
                 $"Số tài khoản: {((ModelTransaction)model).Bank_Account.Number_Bank}" +

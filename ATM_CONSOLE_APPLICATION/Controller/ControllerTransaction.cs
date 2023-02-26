@@ -46,29 +46,17 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             {
                 var whithdraw = new ModelTransaction(itembank, type: "withdraw", amount, status_transaction: "complete");
                 var itemtransaction = List_Transactions.FirstOrDefault(x => x.Bank_Account.ID_Bank.Equals(itembank.ID_Bank));
-                itemtransaction.Bank_Account.Balance -= amount;
                 itembank.Balance -= amount;
                 if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
                 {                   
                     Email email = new TemplateMailWithdraw();
-                    email.Mail(whithdraw);
+                    email.SendMail(whithdraw);
                     result = true;
                 }
                 else { result = false; }
             }
             else { result = false; }
             return result;
-        }
-        public bool IsRechaerge(ModelBank_Account user)
-        {
-            var index = ControllerBank_User.ListBank_User.FindIndex(x => x.User.ID_User.Equals(user.User.ID_User));
-            if (index != -1)
-            {
-                var valid = ControllerBank_User.ListBank_User[index];
-                ControllerBank_User.ListBank_User[index].Balance = user.Balance;
-                ControllerBank_User.UserBank.Balance = user.Balance;
-            }
-            return true;
         }
         public bool RequireReachaerge(double amount)
         {
@@ -80,15 +68,12 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             var itemTransacton = ControllerTransaction.List_Transactions.FirstOrDefault(x => x.ID_Transaction.Equals(id_transaction));
             if (itemTransacton != default && itemTransacton.status_transaction.Equals("processing"))
             {
-                var indexbank = ControllerBank_User.ListBank_User.FindIndex(x => x.ID_Bank.Equals(itemTransacton.Bank_Account.ID_Bank));
-                var itembank = ControllerBank_User.ListBank_User[indexbank];
-                if (itembank != null && itemTransacton.Confirm_Reccharge(itemTransacton))
+                if (itemTransacton.Confirm_Reccharge(itemTransacton))
                 {
                     itemTransacton.Bank_Account.Balance += itemTransacton.amount;
-                    itembank.Balance += itemTransacton.amount;
                     itemTransacton.status_transaction = "complete";
                     email.Email email = new email.TemplateMailRecharge();
-                    email.Mail(itemTransacton);
+                    email.SendMail(itemTransacton);
                     return true;
                 }
                 else { return false; }

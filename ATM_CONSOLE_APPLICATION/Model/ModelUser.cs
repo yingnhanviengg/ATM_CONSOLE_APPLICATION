@@ -17,6 +17,38 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public DateTime created_at { get; set; }
         public string role { get; set; }
         public string status_user { get; set; }
+        private static ModelUser? _user;
+        public static ModelUser User
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    _user = new ModelUser();
+                }
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
+        private static List<ModelUser> _listUser;
+        public static List<ModelUser> _ListUser
+        {
+            get
+            {
+                if (_listUser == null)
+                {
+                    _listUser = new List<ModelUser>();
+                }
+                return _listUser;
+            }
+            set
+            {
+                _listUser = value;
+            }
+        }
         public ModelUser() { }
         public ModelUser(string username, string password)
         {
@@ -70,6 +102,104 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Email = email;
             this.Phone = phone;
             this.status_user = status_user;
+        }
+        public bool UnLock_Account(ModelUser user)
+        {
+            try
+            {
+                string query = "UPDATE user SET status_user = 'normal' WHERE id_user = @iduser;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@iduser", user.ID_User);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
+        }
+        public bool Lock_Account(ModelUser user)
+        {
+            try
+            {
+                string query = "UPDATE user SET status_user = 'lock' WHERE id_user = @iduser;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@iduser", user.ID_User);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
+        }
+        public void GetBank_User(ModelUser user)
+        {
+            User = user;
+            ModelBank_Account.UserBank = ModelBank_Account._ListBank_User.FirstOrDefault(x => x.User.ID_User.Equals(user.ID_User));           
+        }
+        public bool Update_Information(ModelUser user)
+        {
+            try
+            {
+                string query = "UPDATE user SET full_name = @fullname, Date_Of_Birth = @dateofbirth, gender = @gender, cmnd_cccd = @cmnd_cccd, Address = @address, email = @email, number_phone = @numberphone WHERE id_user = @iduser;";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@iduser", user.ID_User);
+                mySqlCommand.Parameters.AddWithValue("@fullname", user.FullName);
+                mySqlCommand.Parameters.AddWithValue("@dateofbirth", user.DateOfBirth);
+                mySqlCommand.Parameters.AddWithValue("@gender", user.Gender);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", user.CMND_CCCD);
+                mySqlCommand.Parameters.AddWithValue("@address", user.Address);
+                mySqlCommand.Parameters.AddWithValue("@email", user.Email);
+                mySqlCommand.Parameters.AddWithValue("@numberphone", user.Phone);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
+        }
+        public bool IsRegister(ModelUser user)
+        {
+            try
+            {
+                string query = "INSERT HIGH_PRIORITY INTO user(full_name, Date_Of_Birth, gender, cmnd_cccd, Address, username, password, email, number_phone) VALUES (@fullname, @dateofbirth, @gender, @cmnd_cccd, @address, @username, @password, @email, @numberphone);";
+                using MySqlCommand mySqlCommand = new MySqlCommand(query, DBHelper.Open());
+                mySqlCommand.Parameters.AddWithValue("@fullname", user.FullName);
+                mySqlCommand.Parameters.AddWithValue("@dateofbirth", user.DateOfBirth);
+                mySqlCommand.Parameters.AddWithValue("@gender", user.Gender);
+                mySqlCommand.Parameters.AddWithValue("@cmnd_cccd", user.CMND_CCCD);
+                mySqlCommand.Parameters.AddWithValue("@address", user.Address);
+                mySqlCommand.Parameters.AddWithValue("@username", user.Username);
+                mySqlCommand.Parameters.AddWithValue("@password", user.Password);
+                mySqlCommand.Parameters.AddWithValue("@email", user.Email);
+                mySqlCommand.Parameters.AddWithValue("@numberphone", user.Phone);
+                if (mySqlCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception) { throw; }
+            finally { DBHelper.Close(); }
+        }
+        public void GetListUser()
+        {
+            _ListUser.Clear();
+            string query = "SELECT user.* FROM user WHERE status_user = 'normal' OR status_user = 'lock' ";
+            using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
+            using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
+            {
+                while (mySqlDataReader.Read())
+                {
+                    _ListUser.Add(GetUser(mySqlDataReader));
+                }
+            }
+            DBHelper.Close();
         }
         public ModelUser GetUser(MySqlDataReader reader)
         {

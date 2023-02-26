@@ -35,13 +35,14 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         {
             var bank_sender = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(id_bank_sender));
             var bank_recipient = ControllerBank_User.ListBank_User.FirstOrDefault(x => x.Number_Bank.Equals(numberbank_recipient));
-            if (bank_recipient != default)
+            if (bank_sender != null && bank_recipient != default)
             {
                 var tranfer = new ModelTranferMoney(amount, bank_sender, bank_recipient);
                 if (bank_recipient.User.status_user.Equals("normal"))
                 {
-                    Email email = new TemplateMailTranfer_Money();
-                    email.Mail(tranfer);
+                    Email email;
+                    email = new TemplateMailTranfer_Code();
+                    email.SendMail(tranfer);
                     int cout = 3;
                     do
                     {
@@ -51,7 +52,10 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                             {
                                 bank_sender.Balance -= tranfer.amount;
                                 bank_recipient.Balance += tranfer.amount;
-                                ControllerBank_User.UserBank.Balance -= tranfer.amount;
+                                email = new TemplateMailTranferToSender();
+                                email.SendMail(tranfer);
+                                email = new TemplateMailTranferToRecipient();
+                                email.SendMail(tranfer);
                                 return 1;
                             }
                         }

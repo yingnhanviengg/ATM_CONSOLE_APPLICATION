@@ -96,7 +96,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public void GetListTranfer()
         {
             List_TranferMoney.Clear();
-            string query = "SELECT history_tranfer.id_tranfer, history_tranfer.id_bank_recipient, history_tranfer.id_bank_sender, history_tranfer.amount, history_tranfer.created_at_tranfer, bank_account_recipient.number_bank AS number_bank_recipient, bank_account_recipient.balance AS balance_recipient, bank_account_recipient.status_bank AS status_bank_recipient, user_recipient.id_user AS id_user_recipient, user_recipient.full_name AS full_name_recipient, user_recipient.cmnd_cccd AS cmnd_cccd_recipient, user_recipient.email AS email_recipient, user_recipient.number_phone AS number_phone_recipient, user_recipient.status_user AS status_user_recipient, bank_account_sender.number_bank AS number_bank_sender, bank_account_sender.balance AS balance_sender, bank_account_sender.status_bank AS status_bank_sender, user_sender.id_user AS id_user_sender, user_sender.full_name AS full_name_sender, user_sender.cmnd_cccd AS cmnd_cccd_sender, user_sender.email AS email_sender, user_sender.number_phone AS number_phone_sender, user_sender.status_user AS status_user_sender FROM history_tranfer INNER JOIN bank_account AS bank_account_recipient ON history_tranfer.id_bank_recipient = bank_account_recipient.id_bank_account INNER JOIN user AS user_recipient ON bank_account_recipient.id_user = user_recipient.id_user INNER JOIN bank_account AS bank_account_sender ON history_tranfer.id_bank_sender = bank_account_sender.id_bank_account INNER JOIN user AS user_sender ON bank_account_sender.id_user = user_sender.id_user;";
+            string query = "SELECT history_tranfer.* FROM history_tranfer";
             using MySqlCommand command = new MySqlCommand(query, DBHelper.Open());
             using (MySqlDataReader mySqlDataReader = command.ExecuteReader())
             {
@@ -113,8 +113,8 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 reader.GetInt32("id_tranfer"),
                 reader.GetDouble("amount"),
                 reader.GetDateTime("created_at_tranfer"),
-                new ModelBank_Account(reader.GetInt32("id_bank_sender"), reader.GetString("number_bank_sender"), reader.GetDouble("balance_sender"), reader.GetString("status_bank_sender"), new ModelUser(reader.GetInt32("id_user_sender"), reader.GetString("full_name_sender"), reader.GetString("cmnd_cccd_sender"), reader.GetString("email_sender"), reader.GetString("number_phone_sender"), reader.GetString("status_user_sender"))),
-                new ModelBank_Account(reader.GetInt32("id_bank_recipient"), reader.GetString("number_bank_recipient"), reader.GetDouble("balance_recipient"), reader.GetString("status_bank_recipient"), new ModelUser(reader.GetInt32("id_user_recipient"), reader.GetString("full_name_recipient"), reader.GetString("cmnd_cccd_recipient"), reader.GetString("email_recipient"), reader.GetString("number_phone_recipient"), reader.GetString("status_user_recipient")))
+                ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(reader.GetInt32("id_bank_sender"))),
+                ControllerBank_User.ListBank_User.FirstOrDefault(x => x.ID_Bank.Equals(reader.GetInt32("id_bank_recipient")))
                 );
             return tranferMoney;
         }

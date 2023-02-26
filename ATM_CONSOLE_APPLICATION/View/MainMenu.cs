@@ -10,6 +10,7 @@ namespace ATM_CONSOLE_APPLICATION.View
     {
         public MainMenu()
         {
+            ControllderUser controllderUser = ControllderUser.__ControllerUser;
             ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
             ControllerCard controllerCard = ControllerCard.controllerCard;
             ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;

@@ -6,12 +6,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
 {
     public class InformationAdmin : AbstractInformation
     {
-        ControllerBank_User controllerBank_User = ControllerBank_User.ControllerUser;
+        ControllderUser controllderUser = ControllderUser.__ControllerUser;
         private static InformationAdmin? _informationAdmin;
-        private InformationAdmin()
-        {
-
-        }
+        private InformationAdmin() { }
         public static InformationAdmin _InformationAdmin
         {
             get
@@ -65,27 +62,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            if (controllerBank_User.Unlock_Account(id))
+            if (controllderUser.Unlock_Account(id))
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
             }
-            else
-            {
-                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
-            }
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false); }
         }
         public void Lock_Account()
         {
             Table_Informatio();
             int id = InputisValid.InputIDUser();
-            if (controllerBank_User.Lock_Account(id))
+            if (controllderUser.Lock_Account(id))
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.Lock_Account_Success, true);
             }
-            else
-            {
-                Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false);
-            }
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.NotFind_ID, false); }
         }
         public override void Update_Information()
         {
@@ -115,10 +106,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 Console.WriteLine($"{Language.AbstractLanguage.SDT_Current}{item.User.Phone}");
                 string phone = Common.Edit() ? InputisValid.InputPhoneNumber() : item.User.Phone;
 
-                switch (controllerBank_User.IsValidUpdate(id, cmnd_cccd, email, phone))
+                switch (controllderUser.IsValidUpdate(id, cmnd_cccd, email, phone))
                 {
                     case 1:
-                        if (controllerBank_User.Upate_Information(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
+                        if (controllderUser.Upate_Information(id, fullname, dateofbirth, gender, cmnd_cccd, address, email, phone))
                         {
                             Common.PrintMessage_Console(Language.AbstractLanguage.Update_Information_Success, true);
                         }
@@ -205,4 +196,5 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             return item.Date.ToString("dd/MM/yyyy");
         }
     }
+
 }
