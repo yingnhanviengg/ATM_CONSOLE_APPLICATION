@@ -23,7 +23,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         {
             bool result = false;
             string user = InputisValid.InptUsername();
-            int count = 3;
+            int count = 5;
             if (ControllerUser.FindUser(user))
             {
                 do
@@ -55,8 +55,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                 }
             }
             else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }           
-            return result;
-            
+            return result;         
         }
         public void Register()
         {
