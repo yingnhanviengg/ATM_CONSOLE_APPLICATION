@@ -36,7 +36,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         public bool Unlock_Account(int id)
         {
             var item = List_User.FirstOrDefault(x => x.status_user.Equals(id));
-            if (item == default && item.status_user.Equals("lock"))
+            if (item != default && item.status_user.Equals("lock"))
             {
                 if (item.UnLock_Account(item))
                 {
@@ -47,10 +47,24 @@ namespace ATM_CONSOLE_APPLICATION.Controller
             }
             else { return false; }
         }
+        public bool LockAcountLimitLogin(string user)
+        {
+            var item = List_User.FirstOrDefault(x => x.Username.Equals(user));
+            if (item != default && item.status_user.Equals("normal"))
+            {
+                if (item.Lock_Account(item))
+                {
+                    item.status_user = "lock";
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
         public bool Lock_Account(int id)
         {
-            var item = List_User.FirstOrDefault(x => x.status_user.Equals(id));
-            if (item == default && item.status_user.Equals("normal"))
+            var item = List_User.FirstOrDefault(x => x.ID_User.Equals(id));
+            if (item != default && item.status_user.Equals("normal"))
             {
                 if (item.Lock_Account(item))
                 {

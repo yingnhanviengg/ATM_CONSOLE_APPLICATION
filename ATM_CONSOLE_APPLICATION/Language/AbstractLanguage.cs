@@ -45,6 +45,9 @@
         public static string Notification_Login_True { get; set; }
         public static string Notification_Login_Fasle { get; set; }
         public static string Account_Is_Locked { get; set; }
+        public static string UserNotExist { get; set; }
+        public static string LimitReached_Lock { get; set; }
+        public static string Account_HasLocked { get; set; }
         // Input
         public static string Input_Fullname { get; set; }
         public static string Input_DateOfBirth { get; set; }

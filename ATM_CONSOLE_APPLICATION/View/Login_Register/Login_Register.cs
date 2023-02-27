@@ -1,4 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
+using System.Collections.Specialized;
 
 namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
@@ -20,21 +21,43 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
         private ControllderUser ControllerUser = ControllderUser.__ControllerUser;
         public bool Login()
         {
+            bool result = false;
             string user = InputisValid.InptUsername();
-            string pass = InputisValid.InputPassword();
-            Console.Clear();
-            switch (ControllerUser.IsLoggedIn(user, pass))
+            int count = 3;
+            if (ControllerUser.FindUser(user))
             {
-                case 1:
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_True, true);
-                    return true;
-                case -1:
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Account_Is_Locked, false);
-                    return false;
-                default:
-                    Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
-                    return false;
+                do
+                {
+                    string pass = InputisValid.InputPassword();
+                    Console.Clear();
+                    switch (ControllerUser.IsLoggedIn(user, pass))
+                    {
+                        case 1:
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_True, true);
+                            result = true;
+                            break;
+                        case -1:
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Account_Is_Locked, false);
+                            count = 0;
+                            break;
+                        default:
+                            count--;
+                            Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
+                            Common.PrintMessage_Console( count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);                          
+                            break;
+                    }
+                } while (count != 0);
+                if (count == 0)
+                {
+                    Console.Clear();
+                    ControllerUser.LockAcountLimitLogin(user);
+                    Common.PrintMessage_Console(Language.AbstractLanguage.Account_HasLocked, false);
+                }
             }
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }
+            
+            return result;
+            
         }
         public void Register()
         {
