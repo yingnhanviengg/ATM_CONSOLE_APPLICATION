@@ -38,7 +38,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             break;
                         case -1:
                             Common.PrintMessage_Console(Language.AbstractLanguage.Account_Is_Locked, false);
-                            count = 0;
+                            count = -1;
                             break;
                         default:
                             count--;
@@ -46,7 +46,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             Common.PrintMessage_Console( count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);                          
                             break;
                     }
-                } while (count != 0 && result != true);
+                } while (count != 0 && result != true && count != -1 );
                 if (count == 0)
                 {
                     Console.Clear();

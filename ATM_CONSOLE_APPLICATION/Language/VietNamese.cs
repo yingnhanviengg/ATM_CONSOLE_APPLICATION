@@ -49,7 +49,7 @@
             Account_Is_Locked = "Tài khoản bị khóa, liên hệ quản trị viên để được hỗ trợ";
             UserNotExist = "Tài khoản không tồn tại";
             LimitReached_Lock = "nhập sai sẽ bị khóa tài khoản tạm thời";
-            Account_HasLocked = "Tài khoản đã bị khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
+            Account_HasLocked = "Nhập sai mật khẩu nhiều lần, tài khoản đã bị khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
             // Input
             Input_Fullname = "Nhập họ và tên: ";
             Input_DateOfBirth = "Nhập ngày/tháng/năm sinh: ";
