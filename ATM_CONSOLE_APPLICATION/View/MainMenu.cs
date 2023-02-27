@@ -46,7 +46,6 @@ namespace ATM_CONSOLE_APPLICATION.View
                 var menuSelection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("")
-                    .HighlightStyle(Style.Parse("chartreuse2"))
                     .PageSize(10)
                     .AddChoices(Menu_Customer));
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
