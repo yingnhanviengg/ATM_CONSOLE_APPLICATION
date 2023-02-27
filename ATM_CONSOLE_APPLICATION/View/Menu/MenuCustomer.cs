@@ -15,7 +15,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                 var menuSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("")
-                        .PageSize(10)
+                        .PageSize(10)                        
                         .AddChoices(Menu_Customer));
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
                 switch (selectedIndex)
