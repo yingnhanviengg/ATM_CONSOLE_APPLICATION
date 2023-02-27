@@ -8,8 +8,8 @@ namespace ATM_CONSOLE_APPLICATION
         {
             AnsiConsole.Write(
                 new FigletText("ATM CONSOLE APPLICATION")
-                    .LeftJustified()
-                    .Color(Color.Red));
+                .Centered()
+                .Color(Color.Red));
         }
         public static bool IsConfirm_Recharge()
         {

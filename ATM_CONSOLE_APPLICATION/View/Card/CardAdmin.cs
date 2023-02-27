@@ -20,17 +20,9 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             }
         }
         private ControllerCard controllerCard = ControllerCard.controllerCard;
-        public void Card_Management_Menu()
-        {
-            string[] Menu = { AbstractLanguage.Show_All_Card, AbstractLanguage.Lock_Card, AbstractLanguage.UnLock_Card };
-            for (int i = 0; i < Menu.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: {Menu[i]}");
-            }
-        }
         public override void Card_Management()
         {
-            string[] Menu_Customer = { Language.AbstractLanguage.Login, Language.AbstractLanguage.Register, Language.AbstractLanguage.BackMenu };
+            string[] Menu_Customer = { AbstractLanguage.Show_All_Card, AbstractLanguage.Lock_Card, AbstractLanguage.UnLock_Card, Language.AbstractLanguage.BackMenu };
             Common.UI();
             do
             {
