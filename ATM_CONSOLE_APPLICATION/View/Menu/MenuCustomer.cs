@@ -8,7 +8,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
     {
         public override void ShowMenu()
         {
-            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Bank_Deposit_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
             Common.UI();
             do
             {
@@ -41,13 +41,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         tranfer.Tranfer();
                         break;
                     case 4:
-                        break;
-                    case 5:
                         Console.Clear();
                         Transaction.TransactionCustomer transactionCustomer = new Transaction.TransactionCustomer();
                         transactionCustomer.MenuTransaction();
                         break;
-                    case 6:
+                    case 5:
                         ChangeLanguage.Change_Language();
                         break;
                 }

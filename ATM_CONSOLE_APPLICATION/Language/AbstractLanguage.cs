@@ -16,7 +16,6 @@
         public static string Withdraw_Money_Customer { get; set; }
         public static string Recharge_Customer { get; set; }
         public static string Tranfer_Money_Customer { get; set; }
-        public static string Bank_Deposit_Customer { get; set; }
         public static string Transaction_History_Customer { get; set; }
         public static string History_Tranfer { get; set; }
         public static string History_Withdraw_Recharge { get; set; }
