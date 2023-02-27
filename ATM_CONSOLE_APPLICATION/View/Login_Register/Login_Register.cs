@@ -46,7 +46,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                             Common.PrintMessage_Console( count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);                          
                             break;
                     }
-                } while (count != 0);
+                } while (count != 0 && result != true);
                 if (count == 0)
                 {
                     Console.Clear();
@@ -54,8 +54,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                     Common.PrintMessage_Console(Language.AbstractLanguage.Account_HasLocked, false);
                 }
             }
-            else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }
-            
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }           
             return result;
             
         }
