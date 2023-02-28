@@ -184,7 +184,9 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
                 else { return false; }
             }
-            catch (Exception) { throw; }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message + "Error");
+                throw; }
             finally { DBHelper.Close(); }
         }
         public void GetListUser()
