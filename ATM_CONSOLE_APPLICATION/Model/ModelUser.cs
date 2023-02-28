@@ -50,11 +50,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
         }
         public ModelUser() { }
-        public ModelUser(string username, string password)
-        {
-            this.Username = username;
-            this.Password = password;
-        }
         public ModelUser(int id_user, string fullname, DateTime dateofbirth, string gender, string CMND_CCCD, string address, string email, string phone)
         {
             this.ID_User = id_user;
@@ -92,15 +87,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.Phone = phone;
             this.created_at = created_at;
             this.role = role;
-            this.status_user = status_user;
-        }
-        public ModelUser(int id, string fullname, string cmnd_cccd, string email, string phone, string status_user)
-        {
-            this.ID_User = id;
-            this.FullName = fullname;
-            this.CMND_CCCD = cmnd_cccd;
-            this.Email = email;
-            this.Phone = phone;
             this.status_user = status_user;
         }
         public bool UnLock_Account(ModelUser user)

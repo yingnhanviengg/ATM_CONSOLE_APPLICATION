@@ -57,20 +57,6 @@ namespace ATM_CONSOLE_APPLICATION.Model
             this.status_bank = status_bank;
             this.User = user;
         }
-        public ModelBank_Account(int id_bank, string number_bank, double balance)
-        {
-            this.ID_Bank = id_bank;
-            this.Number_Bank = number_bank;
-            this.Balance = balance;
-        }
-        public ModelBank_Account(int id_bank, string number_bank, double balance, string status_bank, ModelUser user)
-        {
-            this.ID_Bank = id_bank;
-            this.Number_Bank = number_bank;
-            this.Balance = balance;
-            this.status_bank = status_bank;
-            this.User = user;
-        }
         public bool Withdraw(ModelBank_Account modelBank_Account)
         {
             try
