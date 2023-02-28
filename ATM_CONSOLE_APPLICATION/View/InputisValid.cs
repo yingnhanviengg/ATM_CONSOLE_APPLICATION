@@ -108,7 +108,7 @@ namespace ATM_CONSOLE_APPLICATION.View
             {
                 Console.Write(Language.AbstractLanguage.Input_Gender);
                 string gender = Console.ReadLine().Trim();
-                if (gender.ToLower().Equals("nam") || gender.ToLower().Equals("nữ"))
+                if (gender.ToLower().Equals("nam") || gender.ToLower().Equals("nữ") || gender.ToLower().Equals("male") || gender.ToLower().Equals("female"))
                 {
                     return char.ToUpper(gender[0]) + gender.Substring(1);
                 }
