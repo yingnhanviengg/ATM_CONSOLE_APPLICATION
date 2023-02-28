@@ -112,7 +112,9 @@
         public static string Tranfer_Error { get; set; }
         // Withdraw
         public static string CardNotExistOrLock { get; set; }
+        public static string IncorretPassCard { get; set; }
         public static string Withdraw_Success { get; set; }
         public static string Error_insufficientBalance { get; set; }
+        public static string Card_HasLocked { get; set; }
     }
 }

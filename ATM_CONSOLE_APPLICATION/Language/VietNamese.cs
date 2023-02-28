@@ -47,7 +47,7 @@
             Notification_Login_Fasle = "Đăng nhập thất bại, sai mật khẩu vui lòng nhập lại";
             Account_Is_Locked = "Tài khoản bị khóa, liên hệ quản trị viên để được hỗ trợ";
             UserNotExist = "Tài khoản không tồn tại";
-            LimitReached_Lock = "nhập sai sẽ bị khóa tài khoản tạm thời";
+            LimitReached_Lock = "lần nhập sai sẽ bị khóa tạm thời";
             Account_HasLocked = "Nhập sai mật khẩu nhiều lần, tài khoản đã bị khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
             // Input
             Input_Fullname = "Nhập họ và tên: ";
@@ -112,9 +112,11 @@
             Tranfer_Success = "Chuyển khoản thành công";
             Tranfer_Error = "Chuyển khoản thất bại";
             // Withdraw
-            CardNotExistOrLock = "Sai mã số thẻ và mật khẩu hoặc thẻ đang bị tạm khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
+            CardNotExistOrLock = "Sai mã số thẻ hoặc thẻ đang bị tạm khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
+            IncorretPassCard = "Mật khẩu thẻ không chính xác";
             Withdraw_Success = "Rút tiền thành công";
             Error_insufficientBalance = "Số dư không đủ để thực hiện giao dịch";
+            Card_HasLocked = "Nhập sai mật khẩu nhiều lần, thẻ đã bị khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
         }
     }
 }
