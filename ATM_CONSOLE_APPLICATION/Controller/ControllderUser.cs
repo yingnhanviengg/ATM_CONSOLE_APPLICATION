@@ -1,12 +1,6 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller.email;
 using ATM_CONSOLE_APPLICATION.Model;
 using ATM_CONSOLE_APPLICATION.View;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -137,7 +131,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Register(string fullname, DateTime dateofbirth, string gender, string cmnd_cccd, string address, string username, string password, string email, string phone)
         {
-            var userRegister = new Model.ModelUser(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone);          
+            var userRegister = new Model.ModelUser(fullname, dateofbirth, gender, cmnd_cccd, address, username, password, email, phone);
             bool result = false;
             Email templateMail;
             templateMail = new TemplateMailRegister_Code();

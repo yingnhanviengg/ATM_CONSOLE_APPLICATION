@@ -1,6 +1,4 @@
-﻿using ATM_CONSOLE_APPLICATION.Controller.email;
-using ATM_CONSOLE_APPLICATION.Model;
-using ATM_CONSOLE_APPLICATION.View;
+﻿using ATM_CONSOLE_APPLICATION.Model;
 
 namespace ATM_CONSOLE_APPLICATION.Controller
 {
@@ -26,6 +24,6 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 }
                 return _ControllerUser;
             }
-        }            
+        }
     }
 }

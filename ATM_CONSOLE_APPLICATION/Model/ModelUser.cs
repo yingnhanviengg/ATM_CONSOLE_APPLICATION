@@ -124,7 +124,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
         public void GetBank_User(ModelUser user)
         {
             User = user;
-            ModelBank_Account.UserBank = ModelBank_Account._ListBank_User.FirstOrDefault(x => x.User.ID_User.Equals(user.ID_User));           
+            ModelBank_Account.UserBank = ModelBank_Account._ListBank_User.FirstOrDefault(x => x.User.ID_User.Equals(user.ID_User));
         }
         public bool Update_Information(ModelUser user)
         {
@@ -170,9 +170,11 @@ namespace ATM_CONSOLE_APPLICATION.Model
                 }
                 else { return false; }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message + "Error");
-                throw; }
+                throw;
+            }
             finally { DBHelper.Close(); }
         }
         public void GetListUser()

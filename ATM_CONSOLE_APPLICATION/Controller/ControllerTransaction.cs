@@ -48,7 +48,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
                 var itemtransaction = List_Transactions.FirstOrDefault(x => x.Bank_Account.ID_Bank.Equals(itembank.ID_Bank));
                 itembank.Balance -= amount;
                 if (whithdraw.SendTransaction(whithdraw) && itembank.Withdraw(itembank))
-                {                   
+                {
                     Email email = new TemplateMailWithdraw();
                     email.SendMail(whithdraw);
                     result = true;

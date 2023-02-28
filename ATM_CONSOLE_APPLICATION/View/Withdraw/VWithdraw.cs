@@ -1,6 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
-using System.Collections.Specialized;
 
 namespace ATM_CONSOLE_APPLICATION.View.Withdraw
 {
@@ -23,7 +22,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Withdraw
         private ControllerTransaction controllerTransaction = ControllerTransaction._ControllerTransaction;
         public void Withdraw()
         {
-            string card = InputisValid.InputNumberCarb();           
+            string card = InputisValid.InputNumberCarb();
             if (controllerCard.checkNumberCardExistence(card))
             {
                 int count = 3;
@@ -43,7 +42,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Withdraw
                     }
                     else
                     {
-                        count--; 
+                        count--;
                         Common.PrintMessage_Console(AbstractLanguage.IncorretPassCard, false);
                         Common.PrintMessage_Console(count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);
                     }

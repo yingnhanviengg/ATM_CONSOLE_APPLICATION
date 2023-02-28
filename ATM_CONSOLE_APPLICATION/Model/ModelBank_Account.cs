@@ -73,7 +73,7 @@ namespace ATM_CONSOLE_APPLICATION.Model
             }
             catch (Exception) { throw; }
             finally { DBHelper.Close(); }
-        }     
+        }
         public bool Create_Bank_Account(ModelBank_Account bank)
         {
             try

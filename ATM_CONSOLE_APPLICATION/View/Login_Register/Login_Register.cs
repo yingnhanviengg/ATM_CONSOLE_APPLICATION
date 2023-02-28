@@ -1,5 +1,4 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
-using System.Collections.Specialized;
 
 namespace ATM_CONSOLE_APPLICATION.View.Login_Register
 {
@@ -43,10 +42,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                         default:
                             count--;
                             Common.PrintMessage_Console(Language.AbstractLanguage.Notification_Login_Fasle, false);
-                            Common.PrintMessage_Console( count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);                          
+                            Common.PrintMessage_Console(count.ToString() + " " + Language.AbstractLanguage.LimitReached_Lock, false);
                             break;
                     }
-                } while (count != 0 && result != true && count != -1 );
+                } while (count != 0 && result != true && count != -1);
                 if (count == 0)
                 {
                     Console.Clear();
@@ -54,8 +53,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Login_Register
                     Common.PrintMessage_Console(Language.AbstractLanguage.Account_HasLocked, false);
                 }
             }
-            else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }           
-            return result;         
+            else { Common.PrintMessage_Console(Language.AbstractLanguage.UserNotExist, false); }
+            return result;
         }
         public void Register()
         {
