@@ -166,7 +166,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 }
                 AnsiConsole.Write(table);
                 Console.WriteLine($"Trang {pageNumber}/{pageCount}");
-                table.Rows.Clear();
             }
         }
         public string DateOfBirthToString(DateTime item)

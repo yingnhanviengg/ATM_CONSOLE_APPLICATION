@@ -40,7 +40,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
             table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Pass_Card}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}", $"{ControllerCard.Card.Status_Card}");
             AnsiConsole.Write(table);
-            table.Rows.Clear();
         }
         public override string DateOfBirthToString(DateTime item)
         {

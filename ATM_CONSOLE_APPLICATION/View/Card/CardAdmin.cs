@@ -127,7 +127,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 }
                 AnsiConsole.Write(table);
                 Console.WriteLine($"Trang {pageNumber}/{pageCount}");
-                table.Rows.Clear();
             }
         }
         public override string DateOfBirthToString(DateTime item)

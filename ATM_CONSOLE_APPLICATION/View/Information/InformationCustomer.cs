@@ -118,7 +118,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance}", $"{ControllerBank_User.UserBank.User.Address}",
                 $"{ControllerBank_User.UserBank.User.Email}", $"{ControllerBank_User.UserBank.User.Phone}");
             AnsiConsole.Write(table);
-            table.Rows.Clear();
         }
         public override string DateOfBirthToString(DateTime item)
         {

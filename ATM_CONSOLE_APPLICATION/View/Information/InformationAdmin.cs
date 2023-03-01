@@ -188,7 +188,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 }
                 AnsiConsole.Write(table);
                 Console.WriteLine($"Trang {pageNumber}/{pageCount}");
-                table.Rows.Clear();
             }
         }
         public override string DateOfBirthToString(DateTime item)
@@ -196,5 +195,4 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             return item.Date.ToString("dd/MM/yyyy");
         }
     }
-
 }
