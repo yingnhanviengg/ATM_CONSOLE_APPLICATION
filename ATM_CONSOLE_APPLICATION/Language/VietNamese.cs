@@ -1,4 +1,7 @@
-﻿namespace ATM_CONSOLE_APPLICATION.Language
+﻿using Org.BouncyCastle.Asn1.Ocsp;
+using System.Transactions;
+
+namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class VietNamese : AbstractLanguage
     {
@@ -117,6 +120,43 @@
             Withdraw_Success = "Rút tiền thành công";
             Error_insufficientBalance = "Số dư không đủ để thực hiện giao dịch";
             Card_HasLocked = "Nhập sai mật khẩu nhiều lần, thẻ đã bị khóa vui lòng liên hệ quản trị viên để được hỗ trợ";
+            //Table
+            FullName = "Họ Và Tên";
+            Birth = "Ngày/Tháng/Năm Sinh";
+            Gender = "Giới Tính";
+            Bankaccountnumber = "Số Tài Khoản";
+            Balance = "Số Dư";
+            Address = "Địa Chỉ";
+            PhoneNumber = "Số Điện Thoại";
+            status = "Trạng Thái";
+            IDcustomer = "ID Khách Hàng";
+            Show = "Hiển thị";
+            Customer = "Khách Hàng";
+            page = "trang";
+            EnterPage = "Nhập số trang: ";
+            ErrorFormat = "Nhập sai định dạng";
+            Nodataavailable = "Không có dữ liệu";
+            Invalidpagenumber = "Số trang không hợp lệ";
+            ATMCardNumber = "Số Thẻ ATM";
+            CardPassword = "Mật Khẩu Thẻ";
+            CardCreationDate = "Ngày Tạo Thẻ";
+            CardExpirationDate = "Ngày Hết Hạn";
+            CardStatus = "Trạng Thái Thẻ";
+            Card = "thẻ";
+            request = "yêu cầu";
+            TransactionID = "ID Giao Dịch";
+            DepositAmount = "Số Tiền Nạp";
+            RequestStatus = "Trạng Thái Yêu Cầu";
+            TimeRequired = "Thời Gian Yêu Cầu";
+            Transactiontype = "Loại Giao Dịch";
+            Transactionamount = "Số Tiền Giao Dịch";
+            TransactionStatus = "Trạng Thái Giao Dịch";
+            TimeTransaction = "Thời Gian Giao Dịch";
+            Transaction = "giao dịch";
+            FullNameSender = "Họ Và Tên Người Chuyển";
+            transferamount = "Số Tiền Chuyển";
+            FullNamerecipients = "Họ Và Tên Người Nhận";
+            transfertime = "Thời Gian Chuyển";
         }
     }
 }

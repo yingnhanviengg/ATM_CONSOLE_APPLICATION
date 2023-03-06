@@ -1,4 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using Spectre.Console;
 using Table = Spectre.Console.Table;
 
@@ -104,15 +105,15 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             Table table = new Table();
             table.Border(TableBorder.AsciiDoubleHead);
             table.Expand();
-            table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
-            table.AddColumn("[springgreen2_1]Ngày/Tháng/Năm Sinh[/]");
-            table.AddColumn("[springgreen2_1]Giới Tính[/]");
-            table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
-            table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
-            table.AddColumn("[springgreen2_1]Số Dư[/]");
-            table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
-            table.AddColumn("[springgreen2_1]Email[/]");
-            table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullName}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.Birth}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.Gender}[/]");
+            table.AddColumn($"[springgreen2_1]CMND/CCCD[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.Balance}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.Address}[/]");
+            table.AddColumn($"[springgreen2_1]Email[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
             table.AddRow($"{ControllerBank_User.UserBank.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.UserBank.User.DateOfBirth)}",
                 $"{ControllerBank_User.UserBank.User.Gender}", $"{ControllerBank_User.UserBank.User.CMND_CCCD}",
                 $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance}", $"{ControllerBank_User.UserBank.User.Address}",

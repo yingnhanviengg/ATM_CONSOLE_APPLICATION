@@ -56,21 +56,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 {
                     try
                     {
-                        Console.WriteLine($"Giao dịch {pageCount} trang, {ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count} giao dịch ");
-                        Console.Write("Nhập số trang: ");
+                        Console.WriteLine($"{AbstractLanguage.Show} {pageCount} {AbstractLanguage.page}, {ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count} {AbstractLanguage.Transaction}");
+                        Console.Write(AbstractLanguage.EnterPage);
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
                         break;
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Nhập sai định dạng");
+                        Console.WriteLine(AbstractLanguage.ErrorFormat);
                     }
                 }
             }
             if (ControllerTransaction.ListHistoryRecharge_Withdraw_User.Count == 0)
             {
-                Console.WriteLine("Ko có dữ liệu");
+                Console.WriteLine(AbstractLanguage.Nodataavailable);
                 return;
             }
             else
@@ -78,18 +78,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]ID Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TransactionID}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullName}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-                table.AddColumn("[springgreen2_1]Loại Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Số Tiền Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Thời Gian Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Trạng Thái Giao Dịch[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Transactiontype}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Transactionamount}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TimeTransaction}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TransactionStatus}[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
-                    Console.WriteLine("Số trang không hợp lệ.");
+                    Console.WriteLine(AbstractLanguage.Invalidpagenumber);
                     return;
                 }
                 else
@@ -101,7 +101,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     }
                 }
                 AnsiConsole.Write(table);
-                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                Console.WriteLine($"{AbstractLanguage.page} {pageNumber}/{pageCount}");
             }
         }
         public void Table_HistoryTranfer()
@@ -115,21 +115,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 {
                     try
                     {
-                        Console.WriteLine($"Giao dịch chuyển tiền {pageCount} trang, {ControllerTranfer.List_TranferMoney_User.Count} giao dịch ");
-                        Console.Write("Nhập số trang: ");
+                        Console.WriteLine($"{AbstractLanguage.Show} {pageCount} {AbstractLanguage.page}, {ControllerTranfer.List_TranferMoney_User.Count} {AbstractLanguage.Transaction}");
+                        Console.Write(AbstractLanguage.EnterPage);
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
                         break;
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Nhập sai định dạng");
+                        Console.WriteLine(AbstractLanguage.ErrorFormat);
                     }
                 }
             }
             if (ControllerTranfer.List_TranferMoney_User.Count == 0)
             {
-                Console.WriteLine("Ko có dữ liệu");
+                Console.WriteLine(AbstractLanguage.Nodataavailable);
                 return;
             }
             else
@@ -137,22 +137,22 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]ID Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên Người Chuyển[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TransactionID}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullNameSender}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
                 table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-                table.AddColumn("[springgreen2_1]Số Tiền Chuyển[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên Người Nhận[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.transferamount}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullNamerecipients}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
                 table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-                table.AddColumn("[springgreen2_1]Thời Gian Chuyển[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.transfertime}[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
-                    Console.WriteLine("Số trang không hợp lệ.");
+                    Console.WriteLine(AbstractLanguage.Invalidpagenumber);
                     return;
                 }
                 else
@@ -164,7 +164,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     }
                 }
                 AnsiConsole.Write(table);
-                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                Console.WriteLine($"{AbstractLanguage.page} {pageNumber}/{pageCount}");
             }
         }
         public string DateOfBirthToString(DateTime item)

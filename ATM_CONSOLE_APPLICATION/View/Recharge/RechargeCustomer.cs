@@ -19,7 +19,6 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
         ControllerTransaction controllerRecharge = ControllerTransaction._ControllerTransaction;
         public void Recharge()
         {
-            Console.Write(Language.AbstractLanguage.Input_Amount);
             double amount = InputisValid.InputAmount();
             if (controllerRecharge.RequireReachaerge(amount))
             {

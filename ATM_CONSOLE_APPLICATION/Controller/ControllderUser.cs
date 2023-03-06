@@ -29,7 +29,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller
         }
         public bool Unlock_Account(int id)
         {
-            var item = List_User.FirstOrDefault(x => x.status_user.Equals(id));
+            var item = List_User.FirstOrDefault(x => x.ID_User.Equals(id));
             if (item != default && item.status_user.Equals("lock"))
             {
                 if (item.UnLock_Account(item))

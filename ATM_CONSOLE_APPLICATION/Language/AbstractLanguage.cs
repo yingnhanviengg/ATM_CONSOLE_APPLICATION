@@ -1,4 +1,6 @@
-﻿namespace ATM_CONSOLE_APPLICATION.Language
+﻿using System.Security.Principal;
+
+namespace ATM_CONSOLE_APPLICATION.Language
 {
     public abstract class AbstractLanguage
     {
@@ -116,5 +118,42 @@
         public static string Withdraw_Success { get; set; }
         public static string Error_insufficientBalance { get; set; }
         public static string Card_HasLocked { get; set; }
+        //Table
+        public static string FullName { get; set; }
+        public static string Birth { get; set; }
+        public static string Gender { get; set; }
+        public static string Bankaccountnumber { get; set;}
+        public static string Balance { get; set; }
+        public static string Address { get; set; }
+        public static string PhoneNumber { get; set; }
+        public static string status { get; set; }
+        public static string IDcustomer { get; set; }
+        public static string Show { get; set; }
+        public static string Customer { get; set; }
+        public static string page { get; set; }
+        public static string EnterPage { get; set; }
+        public static string ErrorFormat { get; set; }
+        public static string Nodataavailable { get; set; }
+        public static string Invalidpagenumber { get; set; }
+        public static string ATMCardNumber { get; set; }
+        public static string CardPassword { get; set; }
+        public static string CardCreationDate { get; set; }
+        public static string CardExpirationDate { get; set; }
+        public static string CardStatus { get; set; }
+        public static string Card { get; set; }
+        public static string request { get; set; }
+        public static string TransactionID { get; set; }
+        public static string DepositAmount { get; set; }
+        public static string RequestStatus { get; set; }
+        public static string TimeRequired { get; set; }
+        public static string Transactiontype { get; set; }
+        public static string Transactionamount { get; set; }
+        public static string TransactionStatus { get; set; }
+        public static string TimeTransaction { get; set; }
+        public static string Transaction { get; set; }
+        public static string FullNameSender { get; set; }
+        public static string transferamount { get; set; }
+        public static string FullNamerecipients { get; set; }
+        public static string transfertime { get; set; }
     }
 }

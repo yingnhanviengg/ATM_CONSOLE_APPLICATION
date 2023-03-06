@@ -34,16 +34,16 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
                 switch (selectedIndex)
                 {
-                    case 1:
+                    case 0:
                         TableCard();
                         break;
-                    case 2:
+                    case 1:
                         LockCard();
                         break;
-                    case 3:
+                    case 2:
                         UnLockCard();
                         break;
-                    case 4:
+                    case 3:
                         MainMenu.Menu.ShowMenu();
                         break;
                 }
@@ -81,21 +81,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 {
                     try
                     {
-                        Console.WriteLine($"Số thẻ hiển thị {pageCount} trang, {ControllerCard.ListCard.Count} thẻ ");
-                        Console.Write("Nhập số trang: ");
+                        Console.WriteLine($"{AbstractLanguage.Show} {pageCount} {AbstractLanguage.page}, {ControllerCard.ListCard.Count} {AbstractLanguage.Card}");
+                        Console.Write(AbstractLanguage.EnterPage);
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
                         break;
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Nhập sai định dạng");
+                        Console.WriteLine(AbstractLanguage.ErrorFormat);
                     }
                 }
             }
             if (ControllerCard.ListCard.Count == 0)
             {
-                Console.WriteLine("Ko có dữ liệu");
+                Console.WriteLine(AbstractLanguage.Nodataavailable);
                 return;
             }
             else
@@ -103,18 +103,18 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]Số Thẻ ATM[/]");
-                table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
-                table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
-                table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
-                table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
-                table.AddColumn("[springgreen2_1]Tên Khách Hàng[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.ATMCardNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardPassword}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardCreationDate}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardExpirationDate}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardStatus}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullName}[/]");
                 table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
-                table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
+                table.AddColumn($"[springgreen2_1]Email[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
-                    Console.WriteLine("Số trang không hợp lệ.");
+                    Console.WriteLine(AbstractLanguage.Invalidpagenumber);
                     return;
                 }
                 else
@@ -126,7 +126,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                     }
                 }
                 AnsiConsole.Write(table);
-                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                Console.WriteLine($"{AbstractLanguage.page} {pageNumber}/{pageCount}");
             }
         }
         public override string DateOfBirthToString(DateTime item)

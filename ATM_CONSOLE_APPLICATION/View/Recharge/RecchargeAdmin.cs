@@ -44,21 +44,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 {
                     try
                     {
-                        Console.WriteLine($"Yêu cầu hiển thị {pageCount} trang, {ControllerTransaction.ListRequireRecharge.Count} yêu cầu ");
-                        Console.Write("Nhập số trang: ");
+                        Console.WriteLine($"{AbstractLanguage.Show} {pageCount} {AbstractLanguage.page}, {ControllerTransaction.ListRequireRecharge.Count} {AbstractLanguage.request}");
+                        Console.Write(AbstractLanguage.EnterPage);
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
                         break;
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Nhập sai định dạng");
+                        Console.WriteLine(AbstractLanguage.ErrorFormat);
                     }
                 }
             }
             if (ControllerTransaction.ListRequireRecharge.Count == 0)
             {
-                Console.WriteLine("Ko có dữ liệu");
+                Console.WriteLine(AbstractLanguage.Nodataavailable);
                 return;
             }
             else
@@ -66,20 +66,19 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]ID Giao Dịch[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TransactionID}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullName}[/]");
                 table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
-                table.AddColumn("[springgreen2_1]Số Dư[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Balance}[/]");
                 table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-                table.AddColumn("[springgreen2_1]Số Tiền Nạp[/]");
-                table.AddColumn("[springgreen2_1]Trạng Thái Yêu Cầu[/]");
-                table.AddColumn("[springgreen2_1]Thời Gian Yêu Cầu[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.DepositAmount}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.RequestStatus}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.TimeRequired}[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
-                    Console.WriteLine("Số trang không hợp lệ.");
+                    Console.WriteLine(AbstractLanguage.Invalidpagenumber);
                     return;
                 }
                 else
@@ -87,11 +86,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerTransaction.ListRequireRecharge.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.User.CMND_CCCD}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.Balance}", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.amount}", $"{item.status_transaction}", $"{item.created_at_transaction}");
+                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.User.CMND_CCCD}", $"{item.Bank_Account.Balance}", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.amount}", $"{item.status_transaction}", $"{item.created_at_transaction}");
                     }
                 }
                 AnsiConsole.Write(table);
-                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                Console.WriteLine($"{AbstractLanguage.page} {pageNumber}/{pageCount}");
             }
         }
         public string DateOfBirthToString(DateTime item)

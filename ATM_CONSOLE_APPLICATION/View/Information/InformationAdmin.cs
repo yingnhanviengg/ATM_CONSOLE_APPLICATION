@@ -139,21 +139,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 {
                     try
                     {
-                        Console.WriteLine($"Khách hàng hiển thị {pageCount} trang, {ControllerBank_User.ListBank_User.Count} khách hàng ");
-                        Console.Write("Nhập số trang: ");
+                        Console.WriteLine($"{AbstractLanguage.Show} {pageCount} {AbstractLanguage.page}, {ControllerBank_User.ListBank_User.Count} {AbstractLanguage.Customer}");
+                        Console.Write(AbstractLanguage.EnterPage);
                         pageNumber = Convert.ToInt32(Console.ReadLine());
                         Console.Clear();
                         break;
                     }
-                    catch (Exception)
+                    catch (FormatException)
                     {
-                        Console.WriteLine("Nhập sai định dạng");
+                        Console.WriteLine(AbstractLanguage.ErrorFormat);
                     }
                 }
             }
             if (ControllerBank_User.ListBank_User.Count == 0)
             {
-                Console.WriteLine("Ko có dữ liệu");
+                Console.WriteLine(AbstractLanguage.Nodataavailable);
                 return;
             }
             else
@@ -161,20 +161,20 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                 Table table = new Table();
                 table.Border(TableBorder.AsciiDoubleHead);
                 table.Expand();
-                table.AddColumn("[springgreen2_1]ID Khách Hàng[/]");
-                table.AddColumn("[springgreen2_1]Họ Và Tên[/]");
-                table.AddColumn("[springgreen2_1]Ngày/Tháng/Năm Sinh[/]");
-                table.AddColumn("[springgreen2_1]Giới Tính[/]");
-                table.AddColumn("[springgreen2_1]CMND/CCCD[/]");
-                table.AddColumn("[springgreen2_1]Số Tài Khoản[/]");
-                table.AddColumn("[springgreen2_1]Số Dư[/]");
-                table.AddColumn("[springgreen2_1]Địa Chỉ[/]");
-                table.AddColumn("[springgreen2_1]Email[/]");
-                table.AddColumn("[springgreen2_1]Số Điện Thoại[/]");
-                table.AddColumn("[springgreen2_1]Trạng Thái[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.IDcustomer}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.FullName}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Birth}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Gender}[/]");
+                table.AddColumn($"[springgreen2_1]CMND/CCCD[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Bankaccountnumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Balance}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.Address}[/]");
+                table.AddColumn($"[springgreen2_1]Email[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
+                table.AddColumn($"[springgreen2_1]{AbstractLanguage.status}[/]");
                 if (pageNumber < 1 || pageNumber > pageCount)
                 {
-                    Console.WriteLine("Số trang không hợp lệ.");
+                    Console.WriteLine(AbstractLanguage.Invalidpagenumber);
                     return;
                 }
 
@@ -187,7 +187,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     }
                 }
                 AnsiConsole.Write(table);
-                Console.WriteLine($"Trang {pageNumber}/{pageCount}");
+                Console.WriteLine($"{AbstractLanguage.page} {pageNumber}/{pageCount}");
             }
         }
         public override string DateOfBirthToString(DateTime item)

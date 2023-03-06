@@ -1,4 +1,5 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View.Card
@@ -33,11 +34,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
             Table table = new Table();
             table.Border(TableBorder.AsciiDoubleHead);
             table.Expand();
-            table.AddColumn("[springgreen2_1]Số Thẻ ATM[/]");
-            table.AddColumn("[springgreen2_1]Mật Khẩu[/]");
-            table.AddColumn("[springgreen2_1]Ngày Tạo Thẻ[/]");
-            table.AddColumn("[springgreen2_1]Ngày Hết Hạn[/]");
-            table.AddColumn("[springgreen2_1]Trạng Thái Thẻ[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.ATMCardNumber}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardPassword}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardCreationDate}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardExpirationDate}[/]");
+            table.AddColumn($"[springgreen2_1]{AbstractLanguage.CardStatus}[/]");
             table.AddRow($"{ControllerCard.Card.Number_Card}", $"{ControllerCard.Card.Pass_Card}", $"{DateOfBirthToString(ControllerCard.Card.Created_at_Card)}", $"{DateOfBirthToString(ControllerCard.Card.Expiration_Date)}", $"{ControllerCard.Card.Status_Card}");
             AnsiConsole.Write(table);
         }
