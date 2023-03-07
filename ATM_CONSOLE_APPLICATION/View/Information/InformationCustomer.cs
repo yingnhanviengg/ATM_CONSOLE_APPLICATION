@@ -116,7 +116,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
             table.AddColumn($"[springgreen2_1]{AbstractLanguage.PhoneNumber}[/]");
             table.AddRow($"{ControllerBank_User.UserBank.User.FullName}", $"{DateOfBirthToString(ControllerBank_User.UserBank.User.DateOfBirth)}",
                 $"{ControllerBank_User.UserBank.User.Gender}", $"{ControllerBank_User.UserBank.User.CMND_CCCD}",
-                $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance}", $"{ControllerBank_User.UserBank.User.Address}",
+                $"{ControllerBank_User.UserBank.Number_Bank}", $"{ControllerBank_User.UserBank.Balance} VNĐ", $"{ControllerBank_User.UserBank.User.Address}",
                 $"{ControllerBank_User.UserBank.User.Email}", $"{ControllerBank_User.UserBank.User.Phone}");
             AnsiConsole.Write(table);
         }

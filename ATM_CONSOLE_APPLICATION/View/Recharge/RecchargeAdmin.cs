@@ -86,7 +86,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Recharge
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerTransaction.ListRequireRecharge.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.User.CMND_CCCD}", $"{item.Bank_Account.Balance}", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.amount}", $"{item.status_transaction}", $"{item.created_at_transaction}");
+                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.User.CMND_CCCD}", $"{item.Bank_Account.Balance} VNĐ", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.amount} VNĐ", $"{item.status_transaction}", $"{item.created_at_transaction}");
                     }
                 }
                 AnsiConsole.Write(table);

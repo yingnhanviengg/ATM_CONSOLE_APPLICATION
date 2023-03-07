@@ -183,7 +183,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Information
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerBank_User.ListBank_User.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance}", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.User.status_user}");
+                        table.AddRow($"{item.User.ID_User}", $"{item.User.FullName}", $"{DateOfBirthToString(item.User.DateOfBirth)}", $"{item.User.Gender}", $"{item.User.CMND_CCCD}", $"{item.Number_Bank}", $"{item.Balance} VNĐ", $"{item.User.Address}", $"{item.User.Email}", $"{item.User.Phone}", $"{item.User.status_user}");
                     }
                 }
                 AnsiConsole.Write(table);

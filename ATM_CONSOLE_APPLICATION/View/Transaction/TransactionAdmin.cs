@@ -34,9 +34,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                 switch (selectedIndex)
                 {
                     case 0:
+                        Console.Clear();
                         Table_HistoryTranfer();
                         break;
                     case 1:
+                        Console.Clear();
                         Table_HistoryRecharge();
                         break;
                     case 2:
@@ -98,7 +100,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerTransaction.List_Transactions.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount}", $"{item.created_at_transaction}", $"{item.status_transaction}");
+                        table.AddRow($"{item.ID_Transaction}", $"{item.Bank_Account.User.FullName}", $"{item.Bank_Account.Number_Bank}", $"{item.Bank_Account.User.Email}", $"{item.Bank_Account.User.Phone}", $"{item.Type_Tracsaction}", $"{item.amount} VNĐ", $"{item.created_at_transaction}", $"{item.status_transaction}");
                     }
                 }
                 AnsiConsole.Write(table);
@@ -162,7 +164,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                     int startIndex = (pageNumber - 1) * pageSize;
                     foreach (var item in ControllerTranfer.List_TranferMoney.Skip(startIndex).Take(pageSize).ToList())
                     {
-                        table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount}", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{item.created_at_tranfer}");
+                        table.AddRow($"{item.ID_Tranfer}", $"{item.Bank_Sender.User.FullName}", $"{item.Bank_Sender.Number_Bank}", $"{item.Bank_Sender.User.CMND_CCCD}", $"{item.Bank_Sender.User.Email}", $"{item.Bank_Sender.User.Phone}", $"{item.amount} VNĐ", $"{item.Bank_Recipient.User.FullName}", $"{item.Bank_Recipient.Number_Bank}", $"{item.Bank_Recipient.User.CMND_CCCD}", $"{item.Bank_Recipient.User.Email}", $"{item.Bank_Recipient.User.Phone}", $"{item.created_at_tranfer}");
                     }
                 }
                 AnsiConsole.Write(table);
