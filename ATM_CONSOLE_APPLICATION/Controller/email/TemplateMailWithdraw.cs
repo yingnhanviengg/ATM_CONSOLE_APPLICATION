@@ -44,10 +44,27 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         }
         public override void Mail_English(object model)
         {
-            SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
-            SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
-            subject = "Transfer confirmation code";
-            body = "This is your transfer confirmation code";
+            DateTime currentTime = DateTime.Now;
+            SendMail_Success = "Email sent successfully. Please check your Gmail account.";
+            SendMail_Error = "Email sending failed. Please check and re-enter your Gmail.";
+            subject = "Withdrawal Successful";
+            body = $@"<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Withdrawal Successful </title>
+</head>
+<body>
+<p>Hello {((ModelTranferMoney)model).Bank_Recipient.User.FullName},</p>
+<p>Your withdrawal request has been processed successfully at {currentTime} </p>
+<p>Transaction details:</p>
+<ul>
+<li>Withdrawal amount: {((ModelTransaction)model).amount}</li>
+<li>Current balance: {((ModelTransaction)model).Bank_Account.Balance}</li>
+</ul>
+<p>Thank you and have a nice day!</p>
+</body>
+</html>";
         }
     }
 }

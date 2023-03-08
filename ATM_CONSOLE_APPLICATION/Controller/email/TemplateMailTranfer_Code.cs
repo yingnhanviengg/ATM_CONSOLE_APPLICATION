@@ -48,10 +48,31 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         }
         public override void Mail_English(object model)
         {
-            SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
-            SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
+            SendMail_Success = "Email sent successfully, please check your gmail account";
+            SendMail_Error = "Failed to send email, please check and re-enter your gmail";
             subject = "Transfer confirmation code";
-            body = "This is your transfer confirmation code";
+            body = $@"<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Transaction confirmation for money transfer</title>
+</head>
+<body>
+<p>Hello {((ModelTranferMoney)model).Bank_Sender.User.FullName},</p>
+<p>Money transfer request</p>
+<p>Transaction details are as follows:</p>
+<ul>
+<li>Sending account number: {((ModelTranferMoney)model).Bank_Sender.Number_Bank}</li>
+<li>Sender name: {((ModelTranferMoney)model).Bank_Sender.User.FullName}</li>
+<li>Transfer amount: {((ModelTranferMoney)model).amount}</li>
+<li>Recipient account number: {((ModelTranferMoney)model).Bank_Recipient.Number_Bank}</li>
+<li>Recipient name: {((ModelTranferMoney)model).Bank_Recipient.User.FullName}</li>
+<li>Transaction verification code: {code}</li>
+</ul>
+<p>Please use this verification code to complete the transaction request.</p>
+<p>Thank you and have a nice day!</p>
+</body>
+</html>";
         }
     }
 }
