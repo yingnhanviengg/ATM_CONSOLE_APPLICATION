@@ -24,9 +24,23 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Success = "Gửi email thành công hẫy kiểm tra tài khoản gmail của bạn";
             SendMail_Error = "Gửi email thất bại hẫy kiểm tra lại nhập lại gmail";
             subject = "Rút Tiền Thành Công";
-            body = $"Xin chào {((ModelTransaction)model).Bank_Account.User.FullName}<br/>" +
-                $"Rút số tiền {((ModelTransaction)model).amount} vào lúc {currentTime} thành công<br/>" +
-                $"Số dư hiện tại: {((ModelTransaction)model).Bank_Account.Balance}";
+            body = $@"<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset='UTF-8'>
+        <title>Thông báo số dư tài </title>
+      </head>
+      <body>
+        <p>Xin chào {((ModelTranferMoney)model).Bank_Recipient.User.FullName},</p>
+        <p>Xác nhận yêu cầu rút tiền của bạn đã được xử lý thành công vào lúc {currentTime} </p>
+        <p>Thông tin chi tiết giao dịch như sau:</p>
+        <ul>
+            <li>Số tiền đã rút: {((ModelTransaction)model).amount}</li>
+            <li>Số dư hiện tại: {((ModelTransaction)model).Bank_Account.Balance}</li>
+        </ul>
+        <p>Xin cảm ơn và chúc bạn một ngày tốt lành!</p>
+      </body>
+    </html>"; 
         }
         public override void Mail_English(object model)
         {

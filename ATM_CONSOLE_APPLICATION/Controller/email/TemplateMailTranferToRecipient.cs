@@ -23,10 +23,27 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
             SendMail_Success = null;
             SendMail_Error = null;
             subject = "Thông Báo Số Dư Tài Khoản";
-            body = $"Xin chào {((ModelTranferMoney)model).Bank_Recipient.User.FullName}<br/>" +
-                $"Nhận được số tiền {((ModelTranferMoney)model).amount} từ số tài khoản {((ModelTranferMoney)model).Bank_Sender.Number_Bank}<br/>" +
-                $"Sô dư hiện tại: {((ModelTranferMoney)model).Bank_Recipient.Balance}<br/>" +
-                $"Thời gian giao dịch {currentTime}";
+            body = $@"<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset='UTF-8'>
+        <title>Thông báo số dư tài </title>
+      </head>
+      <body>
+        <p>Xin chào {((ModelTranferMoney)model).Bank_Recipient.User.FullName},</p>
+        <p>Hoàn tất yêu cầu chuyển </p>
+        <p>Thông tin chi tiết giao dịch như sau:</p>
+        <ul>
+          <li>Số tài khoản gửi: {((ModelTranferMoney)model).Bank_Sender.Number_Bank}</li>
+          <li>Tên người gửi: {((ModelTranferMoney)model).Bank_Sender.User.FullName}</li>
+          <li>Số tiền chuyển: {((ModelTranferMoney)model).amount}</li>
+          <li>Số tài khoản nhận: {((ModelTranferMoney)model).Bank_Recipient.Number_Bank}</li>
+          <li>Tên người nhận: {((ModelTranferMoney)model).Bank_Recipient.User.FullName}</li>
+          <li>Sô dư hiện tại: {((ModelTranferMoney)model).Bank_Recipient.Balance}</li>
+        </ul>
+        <p>Xin cảm ơn và chúc bạn một ngày tốt lành!</p>
+      </body>
+    </html>";
         }
         public override void Mail_English(object model)
         {
