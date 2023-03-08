@@ -1,5 +1,4 @@
-﻿using ATM_CONSOLE_APPLICATION.Controller;
-using ATM_CONSOLE_APPLICATION.Language;
+﻿using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
 using Spectre.Console;
 
@@ -21,7 +20,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
         }
         public override void ShowMenu()
         {
-            ResetLanguage:
+        ResetLanguage:
             string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };
             Common.UI();
             do

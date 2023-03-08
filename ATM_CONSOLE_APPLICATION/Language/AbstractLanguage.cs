@@ -1,6 +1,4 @@
-﻿using System.Security.Principal;
-
-namespace ATM_CONSOLE_APPLICATION.Language
+﻿namespace ATM_CONSOLE_APPLICATION.Language
 {
     public abstract class AbstractLanguage
     {
@@ -123,7 +121,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
         public static string FullName { get; set; }
         public static string Birth { get; set; }
         public static string Gender { get; set; }
-        public static string Bankaccountnumber { get; set;}
+        public static string Bankaccountnumber { get; set; }
         public static string Balance { get; set; }
         public static string Address { get; set; }
         public static string PhoneNumber { get; set; }

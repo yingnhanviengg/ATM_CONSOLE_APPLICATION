@@ -37,7 +37,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Transaction
                         Table_HistoryTranfer();
                         break;
                     case 1:
-                        Console.Clear(); 
+                        Console.Clear();
                         Table_HistoryRecharge_Withdraw();
                         break;
                     case 2:

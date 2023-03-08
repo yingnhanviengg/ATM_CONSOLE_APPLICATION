@@ -1,7 +1,6 @@
 ﻿using ATM_CONSOLE_APPLICATION.Controller;
 using ATM_CONSOLE_APPLICATION.Language;
 using Spectre.Console;
-using System;
 
 namespace ATM_CONSOLE_APPLICATION.View.Transaction
 {

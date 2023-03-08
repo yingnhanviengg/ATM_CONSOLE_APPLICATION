@@ -1,7 +1,5 @@
-﻿using ATM_CONSOLE_APPLICATION.Controller;
-using ATM_CONSOLE_APPLICATION.Language;
+﻿using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
-using ATM_CONSOLE_APPLICATION.View.Login_Register;
 using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View.Menu
@@ -22,15 +20,15 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
         }
         public override void ShowMenu()
         {
-            ResetLanguage:
-            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };        
+        ResetLanguage:
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };
             Common.UI();
             do
             {
                 var menuSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("")
-                        .PageSize(10)                        
+                        .PageSize(10)
                         .AddChoices(Menu_Customer));
                 int selectedIndex = Array.IndexOf(Menu_Customer, menuSelection);
                 switch (selectedIndex)

@@ -40,7 +40,7 @@ namespace ATM_CONSOLE_APPLICATION.Controller.email
         </ul>
         <p>Xin cảm ơn và chúc bạn một ngày tốt lành!</p>
       </body>
-    </html>"; 
+    </html>";
         }
         public override void Mail_English(object model)
         {

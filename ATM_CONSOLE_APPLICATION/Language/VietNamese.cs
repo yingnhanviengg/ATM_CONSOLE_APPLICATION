@@ -1,8 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.Ocsp;
-using Spectre.Console;
-using System.Transactions;
-
-namespace ATM_CONSOLE_APPLICATION.Language
+﻿namespace ATM_CONSOLE_APPLICATION.Language
 {
     public class VietNamese : AbstractLanguage
     {
