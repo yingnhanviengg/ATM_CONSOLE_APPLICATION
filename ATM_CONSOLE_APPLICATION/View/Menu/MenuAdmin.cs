@@ -1,4 +1,5 @@
-﻿using ATM_CONSOLE_APPLICATION.Language;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
 using Spectre.Console;
 
@@ -6,9 +7,21 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
 {
     public class MenuAdmin : AbstractMenu
     {
+        private static MenuAdmin _menuAdmin;
+        public static MenuAdmin _MenuAdmin
+        {
+            get
+            {
+                if (_menuAdmin == null)
+                {
+                    _menuAdmin = new MenuAdmin();
+                }
+                return _menuAdmin;
+            }
+        }
         public override void ShowMenu()
         {
-            string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language };
+            string[] Menu_Admin = { AbstractLanguage.Information_Manager_Admin, AbstractLanguage.Card_Manager_Admin, AbstractLanguage.Recharge_Manager_Admin, AbstractLanguage.Transaction_History_Manager_Admin, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };
             Common.UI();
             do
             {
@@ -43,6 +56,11 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 4:
                         Console.Clear();
                         ChangeLanguage.Change_Language();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        MainMenu mainMenu = MainMenu._MainMenu;
+                        mainMenu.Login();
                         break;
                 }
             } while (true);

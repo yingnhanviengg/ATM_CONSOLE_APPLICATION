@@ -5,6 +5,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
     public abstract class AbstractLanguage
     {
         public abstract void ChangeLanguage();
+        public static string LogOut { get; set; }
         public static string Change_Language { get; set; }
         public static string Current_Language { get; set; }
         public static string Enter_Code { get; set; }

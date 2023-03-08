@@ -1,4 +1,5 @@
 ﻿using Org.BouncyCastle.Asn1.Ocsp;
+using Spectre.Console;
 using System.Transactions;
 
 namespace ATM_CONSOLE_APPLICATION.Language
@@ -7,6 +8,7 @@ namespace ATM_CONSOLE_APPLICATION.Language
     {
         public override void ChangeLanguage()
         {
+            LogOut = "Log Out";
             Current_Language = "English";
             Enter_Code = "Enter verification code: ";
             Error_Code = "Verification code is incorrect";

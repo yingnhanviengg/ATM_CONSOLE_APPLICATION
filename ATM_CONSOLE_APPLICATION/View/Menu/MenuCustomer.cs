@@ -1,14 +1,28 @@
-﻿using ATM_CONSOLE_APPLICATION.Language;
+﻿using ATM_CONSOLE_APPLICATION.Controller;
+using ATM_CONSOLE_APPLICATION.Language;
 using ATM_CONSOLE_APPLICATION.View.Information;
+using ATM_CONSOLE_APPLICATION.View.Login_Register;
 using Spectre.Console;
 
 namespace ATM_CONSOLE_APPLICATION.View.Menu
 {
     public class MenuCustomer : AbstractMenu
     {
+        private static MenuCustomer _menuCustomer;
+        public static MenuCustomer _MenuCustomer
+        {
+            get
+            {
+                if (_menuCustomer == null)
+                {
+                    _menuCustomer = new MenuCustomer();
+                }
+                return _menuCustomer;
+            }
+        }
         public override void ShowMenu()
         {
-            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language };
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };
             Common.UI();
             do
             {
@@ -46,7 +60,13 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         transactionCustomer.MenuTransaction();
                         break;
                     case 5:
+                        Console.Clear();
                         ChangeLanguage.Change_Language();
+                        break;
+                    case 6:
+                        Console.Clear();
+                        MainMenu mainMenu = MainMenu._MainMenu;
+                        mainMenu.Login();
                         break;
                 }
             } while (true);
