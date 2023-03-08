@@ -35,15 +35,19 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
                 switch (selectedIndex)
                 {
                     case 0:
+                        Console.Clear();
                         TableCard();
                         break;
                     case 1:
+                        Console.Clear();
                         LockCard();
                         break;
                     case 2:
+                        Console.Clear();
                         UnLockCard();
                         break;
                     case 3:
+                        Console.Clear();
                         MainMenu.Menu.ShowMenu();
                         break;
                 }

@@ -50,11 +50,11 @@ namespace ATM_CONSOLE_APPLICATION.View
         public void ShowMainMenu()
         {
             ChangeLanguage.Change_Language();
-            Console.Clear();
             Login();
         }
         public void Login()
         {
+            Console.Clear();
             if (login_Register.MenuLogin())
             {
                 Menu.ShowMenu();

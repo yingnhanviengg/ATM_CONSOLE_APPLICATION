@@ -22,7 +22,8 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
         }
         public override void ShowMenu()
         {
-            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };
+            ResetLanguage:
+            string[] Menu_Customer = { AbstractLanguage.Information_Customer, AbstractLanguage.Card_Customer, AbstractLanguage.Recharge_Customer, AbstractLanguage.Tranfer_Money_Customer, AbstractLanguage.Transaction_History_Customer, AbstractLanguage.Change_Language, AbstractLanguage.LogOut };        
             Common.UI();
             do
             {
@@ -62,7 +63,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                     case 5:
                         Console.Clear();
                         ChangeLanguage.Change_Language();
-                        break;
+                        goto ResetLanguage;
                     case 6:
                         Console.Clear();
                         MainMenu mainMenu = MainMenu._MainMenu;

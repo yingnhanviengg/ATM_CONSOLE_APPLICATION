@@ -22,6 +22,7 @@ namespace ATM_CONSOLE_APPLICATION.View.Card
         private ControllerCard controllerCard = ControllerCard.controllerCard;
         public override void Card_Management()
         {
+            Common.UI();
             if (!controllerCard.GetCard())
             {
                 Common.PrintMessage_Console(Language.AbstractLanguage.No_CardYet, true);
