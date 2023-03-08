@@ -40,6 +40,10 @@ namespace ATM_CONSOLE_APPLICATION.View.Menu
                         Transaction.TransactionAdmin transactionAdmin = Transaction.TransactionAdmin._TransactionAdmin;
                         transactionAdmin.MenuTransaction();
                         break;
+                    case 4:
+                        Console.Clear();
+                        ChangeLanguage.Change_Language();
+                        break;
                 }
             } while (true);
         }
